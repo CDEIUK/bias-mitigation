@@ -18,13 +18,12 @@ jobs:
           architecture: 'x64'
 
       - name: Install dependencies
-        working-directory: src/
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r ./requirements.txt
-          python3 -m pip install -r ./requirements-pipeline.txt
+          python3 -m pip install -r requirements.txt
+          python3 -m pip install -r requirements-pipeline.txt
 
-      - name: Build Plots
+      - name: Remove superfluous cells
         working-directory: src/
         run: |
           mkdir -p ../notebooks
