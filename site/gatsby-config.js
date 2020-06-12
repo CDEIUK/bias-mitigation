@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: `/cdei-developmen`,
+  pathPrefix: `/cdei-development`,
   siteMetadata: {
     title: `CDEI Bias Exploration`,
     description: `This is an exploration of bias in various datasets.`,
