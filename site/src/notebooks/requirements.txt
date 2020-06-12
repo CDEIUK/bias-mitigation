@@ -1,0 +1,4 @@
+numpy==1.18.5
+plotly==4.8.1
+jupyter==1.0.0
+nb-filter-cells==0.0.2

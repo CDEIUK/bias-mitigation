@@ -1,0 +1,10 @@
+image: python:3.7
+pipelines:
+    default:
+        - step:
+            name: Run linters
+            caches:
+                - pip
+            script:
+                - pip install nox
+                - nox -s lint
