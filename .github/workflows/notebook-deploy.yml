@@ -28,7 +28,7 @@ jobs:
         working-directory: src/
         run: |
           mkdir -p ../notebooks
-          nb-filter-cells -i adult.ipynb -o ../nodebooks/adult.ipynb -t export
+          nb-filter-cells -i adult.ipynb -o ../notebooks/adult.ipynb -t export
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
