@@ -1,9 +1,9 @@
 module.exports = {
-  pathPrefix: `/cdie-development`,
+  pathPrefix: `/cdei-developmen`,
   siteMetadata: {
-    title: `React Playground Stuff`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `CDEI Bias Exploration`,
+    description: `This is an exploration of bias in various datasets.`,
+    author: `@facultyai`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

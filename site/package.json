@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "cdei-bias-website",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Exploring bias in datasets, a site deployment.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Gergely Imreh <gergely.imreh@faculty.ai>",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.5",
     "@mdx-js/react": "^1.6.5",
