@@ -4,20 +4,15 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../components/layout"
 import Navigation from "../components/navigation"
 
-export default function Post({ data }) {
+export default function Post({ data, pageContext }) {
   const post = data.mdx
-  const { next, nextLabel, previous, previousLabel } = post.frontmatter
+  const { next, previous } = pageContext
   return (
     <Layout>
       <div>
         <h1>{post.frontmatter.title}</h1>
         <MDXRenderer>{post.body}</MDXRenderer>
-        <Navigation
-          nextLabel={nextLabel}
-          next={next && `/${post.fields.collection}/${next}`}
-          previousLabel={previousLabel}
-          previous={previous && `/${post.fields.collection}/${previous}/`}
-        />
+        <Navigation next={next} previous={previous} />
       </div>
     </Layout>
   )
@@ -29,10 +24,6 @@ export const query = graphql`
       body
       frontmatter {
         title
-        next
-        nextLabel
-        previous
-        previousLabel
       }
       fields {
         collection
