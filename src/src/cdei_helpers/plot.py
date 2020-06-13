@@ -2,13 +2,23 @@ import plotly.graph_objs as go
 from sklearn.metrics import roc_curve
 
 
-def group_box_plots(scores, groups, attr):
+def group_box_plots(scores, groups, attr, group_names=None):
+    """
+    Helper function for plotting group box curves. Assumes binary labels.
+    """
+    unique_groups = sorted(set(groups))
     return go.Figure(
         data=[
-            go.Box(x=groups[attr == a], y=scores[attr == a], name=a,)
+            go.Box(x=groups[attr == a], y=scores[attr == a], name=a)
             for a in set(attr)
         ],
-        layout={"boxmode": "group"},
+        layout={
+            "boxmode": "group",
+            "xaxis": {
+                "tickvals": unique_groups,
+                "ticktext": group_names or unique_groups,
+            },
+        },
     )
 
 
