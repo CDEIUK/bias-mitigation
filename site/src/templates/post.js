@@ -6,16 +6,17 @@ import Navigation from "../components/navigation"
 
 export default function Post({ data }) {
   const post = data.mdx
+  const { next, nextLabel, previous, previousLabel } = post.frontmatter
   return (
     <Layout>
       <div>
         <h1>{post.frontmatter.title}</h1>
         <MDXRenderer>{post.body}</MDXRenderer>
         <Navigation
-          nextLabel={post.frontmatter.nextLabel}
-          next={`/${post.fields.collection}/${post.frontmatter.next}`}
-          previousLabel={post.frontmatter.previousLabel}
-          previous={`/${post.fields.collection}/${post.frontmatter.previous}/`}
+          nextLabel={nextLabel}
+          next={next && `/${post.fields.collection}/${next}`}
+          previousLabel={previousLabel}
+          previous={previous && `/${post.fields.collection}/${previous}/`}
         />
       </div>
     </Layout>
