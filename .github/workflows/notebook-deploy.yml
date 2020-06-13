@@ -2,8 +2,8 @@ name: Clean and Release Notebooks
 
 on:
   push:
-    branch:
-      - 'master'
+    branches:
+      - master
 
 jobs:
   clean-notebook:
