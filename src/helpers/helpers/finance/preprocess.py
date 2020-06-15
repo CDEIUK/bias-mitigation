@@ -2,8 +2,6 @@
 This submodule contains code for acquiring and preprocessing the Adult data
 from the UCI Machine Learning Repository.
 """
-import os
-
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -150,10 +148,8 @@ def preprocess(data_dir):
         train_df, test_size=0.2, random_state=42
     )
 
-    try:
-        os.makedirs(data_dir / "processed")
-    except FileExistsError:
-        pass
+    # ensure directory exists before saving
+    (data_dir / "processed").mkdir(parents=True, exist_ok=True)
 
     original_features = cts_features + one_hot_features + binary_features
 
