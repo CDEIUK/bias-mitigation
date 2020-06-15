@@ -1,5 +1,8 @@
 import React from "react"
 import Loadable from "react-loadable"
+import Loader from 'react-loader-spinner'
+
+const spinnerStyle = {textAlign: 'center'};
 
 const Plotly = Loadable({
   loader: () => import(`react-plotly.js`),
@@ -7,8 +10,16 @@ const Plotly = Loadable({
     timedOut ? (
       <blockquote>Error: Loading Plotly timed out.</blockquote>
     ) : (
-      <blockquote>Just loading now, shouldn't take long</blockquote>
-    ),
+      <div style={spinnerStyle}>
+        <Loader
+          type="ThreeDots"
+          color="#BF00FF"
+          height={75}
+          width={75}
+          timeout={10000} // 10sec
+        />
+      </div>
+  ),
   timeout: 10000,
 })
 
