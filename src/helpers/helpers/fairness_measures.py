@@ -4,6 +4,7 @@ import numpy as np
 Helper functions for computing various fairness measures
 """
 
+
 def accuracy(scores, labels):
     """
     Computes accuracy
@@ -11,14 +12,14 @@ def accuracy(scores, labels):
     """
     return ((scores >= 0.5) == labels).mean()
 
+
 def disparate_impact_p(scores, attr):
     """
     Computes disparate impact on probability level
     
     """
     a_mask = attr == 1
-    di = np.abs(scores[~a_mask].mean() - scores[a_mask].mean())
-    return di
+    return np.abs(scores[~a_mask].mean() - scores[a_mask].mean())
 
 
 def disparate_impact_d(scores, attr):
@@ -27,10 +28,10 @@ def disparate_impact_d(scores, attr):
     
     """
     a_mask = attr == 1
-    di = np.abs(
+    return np.abs(
         (scores[~a_mask] >= 0.5).mean() - (scores[a_mask] >= 0.5).mean()
     )
-    return di
+
 
 def equal_opportunity_p(scores, attr, labels):
     """
@@ -39,11 +40,9 @@ def equal_opportunity_p(scores, attr, labels):
     """
     a_mask = attr == 1
     y_mask = labels == 1
+    return disparate_impact_p(scores[y_mask], a_mask[y_mask])
 
-    eopp = disparate_impact_p(scores[y_mask], a_mask[y_mask])
 
-    return eopp
-    
 def equal_opportunity_d(scores, attr, labels):
     """
     Computes equal opportunity on decision level
@@ -51,11 +50,8 @@ def equal_opportunity_d(scores, attr, labels):
     """
     a_mask = attr == 1
     y_mask = labels == 1
+    return disparate_impact_d(scores[y_mask], a_mask[y_mask])
 
-    eopp = disparate_impact_d(scores[y_mask], a_mask[y_mask])
-
-    return eopp   
-    
 
 def equalised_odds_p(scores, attr, labels):
     """
@@ -67,9 +63,7 @@ def equalised_odds_p(scores, attr, labels):
 
     eo_0 = disparate_impact_p(scores[~y_mask], a_mask[~y_mask])
     eo_1 = disparate_impact_p(scores[y_mask], a_mask[y_mask])
-    eo = np.mean([eo_0, eo_1])
-
-    return eo
+    return np.mean([eo_0, eo_1])
 
 
 def equalised_odds_d(scores, attr, labels):
@@ -82,9 +76,7 @@ def equalised_odds_d(scores, attr, labels):
 
     eo_0 = disparate_impact_d(scores[~y_mask], a_mask[~y_mask])
     eo_1 = disparate_impact_d(scores[y_mask], a_mask[y_mask])
-    eo = np.mean([eo_0, eo_1])
-
-    return eo
+    return np.mean([eo_0, eo_1])
 
 
 def calibration(scores, attr, labels, n):
@@ -98,10 +90,10 @@ def calibration(scores, attr, labels, n):
     # Count differences between two groups within bins
     bins = np.linspace(0, 1, n + 1)
 
-    fair_1 = 0
-    fair_0 = 0
+    cal_y1 = 0
+    cal_y0 = 0
     for i in range(len(bins) - 1):
-        fair_1 += 1.0 - np.abs(
+        proportion_y1_a0 = (
             (
                 (scores[~a_mask & y_mask] > bins[i])
                 & (scores[~a_mask & y_mask] < bins[i + 1])
@@ -109,7 +101,9 @@ def calibration(scores, attr, labels, n):
             / (
                 (scores[~a_mask] > bins[i]) & (scores[~a_mask] < bins[i + 1])
             ).sum()
-            - (
+        )
+        proportion_y1_a1 = (
+            (
                 (scores[a_mask & y_mask] > bins[i])
                 & (scores[a_mask & y_mask] < bins[i + 1])
             ).sum()
@@ -117,7 +111,9 @@ def calibration(scores, attr, labels, n):
                 (scores[a_mask] > bins[i]) & (scores[a_mask] < bins[i + 1])
             ).sum()
         )
-        fair_0 += 1.0 - np.abs(
+        cal_y1 += 1.0 - np.abs(proportion_y1_a0 - proportion_y1_a1)
+
+        proportion_y0_a1 = (
             (
                 (scores[~a_mask & ~y_mask] > bins[i])
                 & (scores[~a_mask & ~y_mask] < bins[i + 1])
@@ -125,7 +121,10 @@ def calibration(scores, attr, labels, n):
             / (
                 (scores[~a_mask] > bins[i]) & (scores[~a_mask] < bins[i + 1])
             ).sum()
-            - (
+        )
+
+        proportion_y1_a1 = (
+            (
                 (scores[a_mask & ~y_mask] > bins[i])
                 & (scores[a_mask & ~y_mask] < bins[i + 1])
             ).sum()
@@ -133,6 +132,6 @@ def calibration(scores, attr, labels, n):
                 (scores[a_mask] > bins[i]) & (scores[a_mask] < bins[i + 1])
             ).sum()
         )
-    cal = np.mean([fair_1, fair_0]) / n
+        cal_y0 += 1.0 - np.abs(proportion_y0_a0 - proportion_y0_a1)
 
-    return cal
+    return np.mean([cal_y1, cal_y0]) / n
