@@ -24,10 +24,10 @@ jobs:
           python3 -m pip install -r requirements-pipeline.txt
 
       - name: Remove superfluous cells
-        working-directory: src/
+        working-directory: src/notebooks
         run: |
-          mkdir -p ../notebooks
-          nb-filter-cells -i adult.ipynb -o ../notebooks/adult.ipynb -t export
+          mkdir -p ../../notebooks
+          nb-filter-cells -i adult.ipynb -o ../../notebooks/adult.ipynb -t export
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -42,3 +42,6 @@ jobs:
 
           # Optional local file path to the repository
           repository: .
+
+          # Optional options appended to `git-push`
+          push_options: '--force'

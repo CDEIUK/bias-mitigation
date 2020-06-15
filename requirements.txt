@@ -4,4 +4,4 @@ plotly==4.8.1
 scikit-learn==0.23.1
 
 # local helpers
-./src/src/
+./src/helpers/
