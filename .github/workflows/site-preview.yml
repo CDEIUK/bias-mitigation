@@ -52,6 +52,11 @@ jobs:
         working-directory: site/
         run: npm install
 
+      - name: Modify Path for Preview
+        working-directory: site/
+        run: |
+          sed -i '' 's|pathPrefix: .*,|pathPrefix: '"'/$GITHUB_SHA'",'|' gatsby-config.js
+
       - name: Build Site
         working-directory: site/
         run: |
