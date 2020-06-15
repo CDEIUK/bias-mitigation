@@ -24,7 +24,7 @@ jobs:
           python3 -m pip install -r ./requirements-pipeline.txt
 
       - name: Build Plots
-        working-directory: src/
+        working-directory: src/notebooks
         run: |
           jupyter nbconvert --to python adult.ipynb
           python3 adult.py
@@ -37,11 +37,11 @@ jobs:
           node-version: 14.x
 
       - name: Install Node dependencies
-        working-directory: site/
+        working-directory: src/site
         run: npm install
 
       - name: Build Site
-        working-directory: site/
+        working-directory: src/site
         run: |
           npm run-script build
 
@@ -49,4 +49,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: site/public
+          publish_dir: src/site/public

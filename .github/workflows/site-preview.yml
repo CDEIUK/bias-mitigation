@@ -5,7 +5,6 @@ on:
     branches-ignore:
       - master
     paths:
-      - 'site/**'
       - 'src/**'
       - '.github/workflows/site-preview.yml'
 
@@ -36,7 +35,7 @@ jobs:
           python3 -m pip install -r ./requirements-pipeline.txt
 
       - name: Build Plots
-        working-directory: src/
+        working-directory: src/notebooks
         run: |
           jupyter nbconvert --to python adult.ipynb
           python3 adult.py
@@ -49,16 +48,16 @@ jobs:
           node-version: 14.x
 
       - name: Install Node dependencies
-        working-directory: site/
+        working-directory: src/site
         run: npm install
 
       - name: Modify Path for Preview
-        working-directory: site/
+        working-directory: src/site
         run: |
           sed -i 's|pathPrefix: .*,|pathPrefix: '"'/$GITHUB_SHA'",'|' gatsby-config.js
 
       - name: Build Site
-        working-directory: site/
+        working-directory: src/site
         run: |
           npm run-script build
 
@@ -70,10 +69,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        working-directory: ${{ env.working-directory }}
         run: |
           python3 -m pip install awscli
-          aws s3 sync --delete site/public s3://${{ secrets.AWS_DOCS_PREVIEW_BUCKET }}/$GITHUB_SHA/
+          aws s3 sync --delete src/site/public s3://${{ secrets.AWS_DOCS_PREVIEW_BUCKET }}/$GITHUB_SHA/
 
       - name: Update deployment status (success)
         if: success()
