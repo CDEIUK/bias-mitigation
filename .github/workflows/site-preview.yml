@@ -72,7 +72,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           python3 -m pip install awscli
-          aws s3 sync --delete src/site/public s3://${{ secrets.AWS_DOCS_PREVIEW_BUCKET }}/$GITHUB_SHA/
+          aws s3 sync --delete src/site/public s3://${{ secrets.AWS_DOCS_PREVIEW_BUCKET }}/${{ github.sha }}/
 
       - name: Update deployment status (success)
         if: success()
