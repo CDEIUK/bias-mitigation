@@ -47,8 +47,7 @@ jobs:
         working-directory: src/notebooks/finance
         run: |
           jupyter nbconvert --to python adversarial-debiasing.ipynb
-          python3 adult.py
-          python3 adversarial-debiasing.ipynb
+          python3 adversarial-debiasing.py
           mkdir -p ../../site/src/figures/
           mv *.json ../../site/src/figures
 
