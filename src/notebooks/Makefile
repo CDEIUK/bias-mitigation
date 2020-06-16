@@ -23,6 +23,10 @@ endif
 	jupyter nbconvert --to python $<
 	cd $(dir $<) && python $(notdir $@)
 
+$(NOTEBOOKS_DIR)/%.ipynb: %.ipynb
+	@mkdir -p $(dir $@)
+	nb-filter-cells -i $< -o $@ -t export
+
 .PHONY: clean export figures export
 
 all: figures export
@@ -31,17 +35,6 @@ all: figures export
 figures: $(OBJECTS)
 	@mkdir -p $(FIGURES_DIR)
 	$(copy_images)
-
-# # Export cleaned notebooks
-# export:
-# 	for source in $(SOURCES); do \
-# 		mkdir -p $(shell dirname $(NOTEBOOKS_DIR)/$$source); \
-# 		nb-filter-cells -i $$source -o $(NOTEBOOKS_DIR)/$$source -t export ; \
-# 	done
-
-$(NOTEBOOKS_DIR)/%.ipynb: %.ipynb
-	@mkdir -p $(dir $@)
-	nb-filter-cells -i $< -o $@ -t export
 
 export: $(CLEANNOTEBOOKS)
 
