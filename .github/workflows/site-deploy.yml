@@ -24,20 +24,9 @@ jobs:
           python3 -m pip install -r ./requirements-pipeline.txt
 
       - name: Build Plots
-        working-directory: src/notebooks
+        working-directory: src/
         run: |
-          jupyter nbconvert --to python adult.ipynb
-          python3 adult.py
-          mkdir -p ../site/src/figures/
-          mv *.json ../site/src/figures
-
-      - name: Build adversarial plots (temporary)
-        working-directory: src/notebooks/finance
-        run: |
-          jupyter nbconvert --to python adversarial-debiasing.ipynb
-          python3 adversarial-debiasing.py
-          mkdir -p ../../site/src/figures/
-          mv *.json ../../site/src/figures
+          make figures
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1

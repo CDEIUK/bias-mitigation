@@ -24,12 +24,10 @@ jobs:
           python3 -m pip install -r requirements-pipeline.txt
 
       - name: Remove superfluous cells
-        working-directory: src/notebooks
+        working-directory: src/
         run: |
-          mkdir -p ../../notebooks
-          nb-filter-cells -i adult.ipynb -o ../../notebooks/adult.ipynb -t export
-          mkdir -p ../../notebooks/finance
-          nb-filter-cells -i finance/adversarial-debiasing.ipynb -o ../../notebooks/finance/adversarial-debiasing.ipynb -t export
+          make clean
+          make export
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
