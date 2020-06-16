@@ -40,7 +40,7 @@ jobs:
           commit_options: '--no-verify --signoff'
 
           # Optional glob pattern of files which should be added to the commit
-          file_pattern: notebooks/*.ipynb
+          file_pattern: notebooks/**/*.ipynb
 
           # Optional local file path to the repository
           repository: .
