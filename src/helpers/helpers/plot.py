@@ -1,5 +1,9 @@
+import numpy as np
+import plotly
 import plotly.graph_objs as go
 from sklearn.metrics import roc_curve
+
+COLORS = plotly.colors.qualitative.Plotly
 
 
 def group_box_plots(scores, groups, attr, group_names=None):
@@ -28,17 +32,25 @@ def group_roc_curves(labels, scores, attr):
     """
     rocs = []
     for a in set(attr):
+        data = roc_curve(labels[attr == a], scores[attr == a])
+        thresh_index = min(np.where(data[2] <= 0.5)[0])
         rocs.append(
-            {
-                "name": a,
-                "data": roc_curve(labels[attr == a], scores[attr == a]),
-            }
+            {"name": a, "data": data, "thresh_index": thresh_index}
         )
 
     return go.Figure(
         data=[
             go.Scatter(x=roc["data"][0], y=roc["data"][1], name=roc["name"])
             for roc in rocs
+        ] + [
+            go.Scatter(
+                x=[roc["data"][0][roc["thresh_index"]]],
+                y=[roc["data"][1][roc["thresh_index"]]],
+                name=f"{roc['name']} - threshold",
+                mode="markers",
+                marker={"color": COLORS[i], "size": 15},
+            )
+            for i, roc in enumerate(rocs)
         ],
         layout={
             "xaxis": {"title": "False Positive Rate"},
