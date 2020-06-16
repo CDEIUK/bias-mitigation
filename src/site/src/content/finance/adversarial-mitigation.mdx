@@ -1,0 +1,39 @@
+---
+title: Mitigating Unwanted Biases with Adversarial Learning
+order: 4
+---
+
+import { LazyPlot } from "../../components/myplotly"
+
+import dp from "../../figures/adversarial-dp.json"
+import cdp from "../../figures/adversarial-cdp.json"
+import eo from "../../figures/adversarial-eo.json"
+
+The paper [Mitigating Unwanted Biases with Adversarial Learning][zhang] of Zhang et al. introduces a method for mitigating bias in a model using adversarial learning. Their approach is able to impose demographic parity, conditional demographic parity, and equalised odds with only minor modifications.
+
+The central idea is that the model is trained in tandem with an adversary, which we refer to as the discriminator. The discriminator monitors the model output, and tries to predict the sensitive data. The model on the other hand is trained to simultaneously optimise a performance objective and to fool the discriminator, thereby imposing fairness. For example, if the discriminator is unable to tell the difference between model outputs for men and model outputs for women, then men and women are treated equally by the model and hence the model achieves demographic parity.
+
+To achieve conditional demographic parity we additionally pass legitimate risk factors to the discriminator, so that the model receives no benefit from removing information about the sensitive data from its output that is contained in those factors. Similarly to achieve equalised odds we allow the discriminator to additionally see the labels during training, so that the model is not incentivised to remove from its output any information about the sensitive data that is contained in the labels.
+
+The [AI Fairness 360][aif360] library from IBM contains an implementation of this algorithm, however it only allows us to impose demographic parity. In order to apply each of the three fairness definitions in a unified way, we provide our own simple implementation.
+
+## Demographic parity
+
+This algorithm is very effective at imposing demographic parity. With minimal tuning we saw a significant increase in demographic parity and a minimal decrease in accuracy.
+
+<LazyPlot {...dp} />
+
+## Conditional demographic parity
+
+Similarly imposing conditional demographic parity with respect to `hours_per_week` with this approach proved very effective. Again without much tuning we saw a significant improvement.
+
+<LazyPlot {...cdp} />
+
+## Equal opportunity
+
+Equal opportunity proved more challenging. We saw some improvement, but if anything the model somewhat over-corrected. The core problem appears to be that the tension between performance and fairness constraints leads to some instability during training that is typical of adversarial methods. Zhang et al. recommend a few possible strategies for addressing these problems, such as modifying the discriminator loss weight over time so as to slowly increase the penalty for unfairness. In our implementation we warm up without a fairness constraint, but then turn on the fairness constraint suddenly rather than slowly increase it, so there are things we could have done differently to address some of the training issues, however it's clear that imposing equalised odds with this algorithm is more delicate than other definitions of fairness.
+
+<LazyPlot {...eo} />
+
+[zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
+[aif360]: https://aif360.readthedocs.io/en/latest/

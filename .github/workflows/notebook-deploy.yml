@@ -26,8 +26,15 @@ jobs:
       - name: Remove superfluous cells
         working-directory: src/
         run: |
+<<<<<<< HEAD
           make clean
           make export
+=======
+          mkdir -p ../../notebooks
+          nb-filter-cells -i adult.ipynb -o ../../notebooks/adult.ipynb -t export
+          mkdir -p ../../notebooks/finance
+          nb-filter-cells -i finance/adversarial-debiasing.ipynb -o ../../notebooks/finance/adversarial-debiasing.ipynb -t export
+>>>>>>> master
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -38,7 +45,7 @@ jobs:
           commit_options: '--no-verify --signoff'
 
           # Optional glob pattern of files which should be added to the commit
-          file_pattern: notebooks/*.ipynb
+          file_pattern: notebooks/**/*.ipynb
 
           # Optional local file path to the repository
           repository: .
