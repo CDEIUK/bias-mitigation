@@ -7,7 +7,9 @@ import { LazyPlot } from "../../components/myplotly"
 
 import dp from "../../figures/finance/adversarial-dp.json"
 import cdp from "../../figures/finance/adversarial-cdp.json"
+import blcdp from "../../figures/finance/bl-adversarial-cdp.json"
 import eo from "../../figures/finance/adversarial-eo.json"
+import bleo from "../../figures/finance/bl-adversarial-eo.json"
 
 The paper [Mitigating Unwanted Biases with Adversarial Learning][zhang] of Zhang et al. introduces a method for mitigating bias in a model using adversarial learning. Their approach is able to impose demographic parity, conditional demographic parity, and equalised odds with only minor modifications.
 
@@ -27,12 +29,14 @@ This algorithm is very effective at imposing demographic parity. With minimal tu
 
 Similarly imposing conditional demographic parity with respect to `hours_per_week` with this approach proved very effective. Again without much tuning we saw a significant improvement.
 
+<LazyPlot {...blcdp} />
 <LazyPlot {...cdp} />
 
 ## Equal opportunity
 
 Equal opportunity proved more challenging. We saw some improvement, but if anything the model somewhat over-corrected. The core problem appears to be that the tension between performance and fairness constraints leads to some instability during training that is typical of adversarial methods. Zhang et al. recommend a few possible strategies for addressing these problems, such as modifying the discriminator loss weight over time so as to slowly increase the penalty for unfairness. In our implementation we warm up without a fairness constraint, but then turn on the fairness constraint suddenly rather than slowly increase it, so there are things we could have done differently to address some of the training issues, however it's clear that imposing equalised odds with this algorithm is more delicate than other definitions of fairness.
 
+<LazyPlot {...bleo} />
 <LazyPlot {...eo} />
 
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
