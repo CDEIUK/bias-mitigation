@@ -20,6 +20,7 @@ jobs:
         run: |
           echo "Creating deployment for ref: $GITHUB_REF"
           API_RESPONSE=$(curl -H "Accept: application/vnd.github.ant-man-preview+json" -H "Authorization: token ${{ github.token }}" -X POST -H 'Content-Type: application/json' -d '{"ref": "'"$GITHUB_REF"'", "environment": "preview", "transient_environment": true, "description": "Pages preview", "required_contexts": []}' "https://api.github.com/repos/$GITHUB_REPOSITORY/deployments")
+          echo $API_RESPONSE | jq .
           STATUSES_URL=$(echo $API_RESPONSE | jq .statuses_url)
           echo "Statuses URL gathered: $STATUSES_URL"
           if [ "${STATUSES_URL}" = "null" ]; then echo "Invalid Statuses URL, stop here to avoid issues further down."; exit 1; fi
