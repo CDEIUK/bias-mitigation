@@ -1,9 +1,9 @@
 
-FIGURES_DIR = ../site/src/figures 
+FIGURES_DIR = ../site/src/figures
 NOTEBOOKS_DIR = ../../notebooks
 
 # Master notebooks
-SOURCES := $(shell find . -type f -name "*.ipynb")
+SOURCES := $(shell find . -type f -name "*.ipynb" ! -path "*/.ipynb_checkpoints/*")
 # Python files needed for generating the images
 OBJECTS := $(SOURCES:%.ipynb=%.py)
 CLEANNOTEBOOKS = $(addprefix $(NOTEBOOKS_DIR)/, $(SOURCES))
@@ -43,7 +43,7 @@ clean:
 	@echo "=> Removing converted Python files (src)"
 	@$(rm) $(OBJECTS)
 	@echo "=> Removing exported images (src)"
-	@find . -type f -name "*.json" -delete 
+	@find . -type f -name "*.json" -delete
 	@echo "=> Removing cleaned notebooks (notebooks)"
 	@$(rm) -r $(CLEANNOTEBOOKS)
 	@echo "Cleanup complete!"
