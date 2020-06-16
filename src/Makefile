@@ -1,6 +1,6 @@
 
 
-.PHONY: clean export figures install
+.PHONY: clean export figures install install-pipeline
 
 install:
 	cd .. ; pip install -r src/requirements.txt
