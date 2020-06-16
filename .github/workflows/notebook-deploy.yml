@@ -26,15 +26,8 @@ jobs:
       - name: Remove superfluous cells
         working-directory: src/
         run: |
-<<<<<<< HEAD
           make clean
           make export
-=======
-          mkdir -p ../../notebooks
-          nb-filter-cells -i adult.ipynb -o ../../notebooks/adult.ipynb -t export
-          mkdir -p ../../notebooks/finance
-          nb-filter-cells -i finance/adversarial-debiasing.ipynb -o ../../notebooks/finance/adversarial-debiasing.ipynb -t export
->>>>>>> master
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
