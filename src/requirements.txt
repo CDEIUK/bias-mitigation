@@ -6,5 +6,6 @@ scikit-learn==0.23.1
 tensorflow==2.2.0
 tqdm==4.46.1
 
+## due to this, run pip install -r src/requirements.txt from the root of this repo
 # local helpers
 ./src/helpers/
