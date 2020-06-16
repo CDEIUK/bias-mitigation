@@ -26,6 +26,7 @@ jobs:
       - name: Remove superfluous cells
         working-directory: src/
         run: |
+          make clean
           make export
 
       - uses: stefanzweifel/git-auto-commit-action@v4

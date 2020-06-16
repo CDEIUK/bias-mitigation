@@ -6,6 +6,7 @@ NOTEBOOKS_DIR = ../../notebooks
 SOURCES := $(shell find . -type f -name "*.ipynb")
 # Python files needed for generating the images
 OBJECTS := $(SOURCES:%.ipynb=%.py)
+CLEANNOTEBOOKS = $(addprefix $(NOTEBOOKS_DIR)/, $(SOURCES))
 rm       = rm -f
 
 OS := $(shell uname)
@@ -31,17 +32,25 @@ figures: $(OBJECTS)
 	@mkdir -p $(FIGURES_DIR)
 	$(copy_images)
 
-# Export cleaned notebooks
-export:
-	for source in $(SOURCES); do \
-		mkdir -p $(shell dirname $(NOTEBOOKS_DIR)/$$source); \
-		nb-filter-cells -i $$source -o $(NOTEBOOKS_DIR)/$$source -t export ; \
-	done
+# # Export cleaned notebooks
+# export:
+# 	for source in $(SOURCES); do \
+# 		mkdir -p $(shell dirname $(NOTEBOOKS_DIR)/$$source); \
+# 		nb-filter-cells -i $$source -o $(NOTEBOOKS_DIR)/$$source -t export ; \
+# 	done
+
+$(NOTEBOOKS_DIR)/%.ipynb: %.ipynb
+	@mkdir -p $(dir $@)
+	nb-filter-cells -i $< -o $@ -t export
+
+export: $(CLEANNOTEBOOKS)
 
 # Clean temporary files in this folder
 clean:
-	@echo "=> Cleaning converted Python files (here)"
+	@echo "=> Removing converted Python files (src)"
 	@$(rm) $(OBJECTS)
-	@echo "=> Cleaning exported images (here)"
+	@echo "=> Removing exported images (src)"
 	@find . -type f -name "*.json" -delete 
+	@echo "=> Removing cleaned notebooks (notebooks)"
+	@$(rm) -r $(CLEANNOTEBOOKS)
 	@echo "Cleanup complete!"
