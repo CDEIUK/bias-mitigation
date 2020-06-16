@@ -28,14 +28,6 @@ jobs:
         run: |
           make figures
 
-      - name: Build adversarial plots (temporary)
-        working-directory: src/notebooks/finance
-        run: |
-          jupyter nbconvert --to python adversarial-debiasing.ipynb
-          python3 adversarial-debiasing.py
-          mkdir -p ../../site/src/figures/
-          mv *.json ../../site/src/figures
-
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
