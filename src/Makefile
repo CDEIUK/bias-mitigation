@@ -36,3 +36,9 @@ export:
 
 clean:
 	$(MAKE) -C notebooks clean
+
+site-format-check:
+	cd site; npm run-script format
+
+site-format-check:
+	cd site; npm run-script format-check
