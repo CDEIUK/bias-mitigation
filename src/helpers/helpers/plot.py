@@ -24,7 +24,7 @@ def group_box_plots(scores, groups, attr, group_names=None):
             },
         },
     )
-    return fig.update_traces(orientation='h')
+    return fig.update_traces(orientation="h")
 
 
 def group_roc_curves(labels, scores, attr):
