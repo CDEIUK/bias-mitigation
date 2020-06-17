@@ -1,0 +1,56 @@
+name: Linting
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - '.github/workflows/lint.yml'
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        make-lint: ["src-black-check", "notebooks-black-check", "src-flake8", "notebooks-flake8"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip setuptools wheel
+          python3 -m pip install -r ./src/requirements-pipeline.txt
+
+      - name: Lint with ${{ matrix.make-lint }}
+        working-directory: src/
+        run: |
+          make ${{ matrix.make-lint }}
+
+  node-lint:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        make-lint: ["site-format-check"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Node dependencies
+        working-directory: src/site
+        run: npm install
+
+      - name: Lint with ${{ matrix.make-lint }}
+        working-directory: src/
+        run: |
+          make ${{ matrix.make-lint }}
