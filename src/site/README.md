@@ -3,12 +3,11 @@
 ![Build and Deploy Site](https://github.com/imrehg/react-playground/workflows/Build%20and%20Deploy%20Site/badge.svg)
 ![Clean and Release Notebooks](https://github.com/imrehg/react-playground/workflows/Clean%20and%20Release%20Notebooks/badge.svg)
 
-
 Combining:
 
-* [Gatsby](https://www.gatsbyjs.org/)
-* [Plotly](https://plotly.com/)
-* [MDX](https://mdxjs.com/)
+- [Gatsby](https://www.gatsbyjs.org/)
+- [Plotly](https://plotly.com/)
+- [MDX](https://mdxjs.com/)
 
 In a single project, isn't it fun?
 
