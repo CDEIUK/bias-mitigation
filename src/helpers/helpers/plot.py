@@ -14,7 +14,7 @@ def group_box_plots(scores, groups, attr, group_names=None):
     return go.Figure(
         data=[
             go.Box(x=groups[attr == a], y=scores[attr == a], name=a)
-            for a in set(attr)
+            for a in sorted(set(attr))
         ],
         layout={
             "boxmode": "group",
@@ -31,18 +31,17 @@ def group_roc_curves(labels, scores, attr):
     Helper function for plotting group ROC curves. Assumes binary labels.
     """
     rocs = []
-    for a in set(attr):
+    for a in sorted(set(attr)):
         data = roc_curve(labels[attr == a], scores[attr == a])
         thresh_index = min(np.where(data[2] <= 0.5)[0])
-        rocs.append(
-            {"name": a, "data": data, "thresh_index": thresh_index}
-        )
+        rocs.append({"name": a, "data": data, "thresh_index": thresh_index})
 
     return go.Figure(
         data=[
             go.Scatter(x=roc["data"][0], y=roc["data"][1], name=roc["name"])
             for roc in rocs
-        ] + [
+        ]
+        + [
             go.Scatter(
                 x=[roc["data"][0][roc["thresh_index"]]],
                 y=[roc["data"][1][roc["thresh_index"]]],
