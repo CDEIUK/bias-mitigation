@@ -36,9 +36,9 @@ jobs:
       - name: Flake8 (notebooks)
         working-directory: src/
         run: |
-          make notebooks-flake8-check
+          make notebooks-flake8
 
       - name: Flake8 (source)
         working-directory: src/
         run: |
-          make src-flake8-check
+          make src-flake8
