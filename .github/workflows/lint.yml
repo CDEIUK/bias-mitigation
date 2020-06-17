@@ -3,7 +3,7 @@ name: Linting
 on:
   push:
     paths:
-      - 'src/**.ipynb'
+      - 'src/**'
       - '.github/workflows/lint.yml'
 
 jobs:
