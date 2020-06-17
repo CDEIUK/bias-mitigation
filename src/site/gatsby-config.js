@@ -1,10 +1,11 @@
 module.exports = {
+  pathPrefix: `/cdei-development`,
   siteMetadata: {
-    siteTitle: `@rocketseat/gatsby-theme-docs`,
-    defaultTitle: `@rocketseat/gatsby-theme-docs`,
-    siteTitleShort: `gatsby-theme-docs`,
-    siteDescription: `Out of the box Gatsby Theme for creating documentation websites easily and quickly`,
-    siteUrl: `https://rocketdocs.netlify.com`,
+    siteTitle: `ML Bias Exploration`,
+    defaultTitle: `ML Bias Exploration`,
+    siteTitleShort: `ML Bias`,
+    siteDescription: `Exploring bias in machine learning (ML) models`,
+    siteUrl: `https://imrehg.github.io/cdei-development`,
     siteAuthor: `@rocketseat`,
     siteImage: `/banner.png`,
     siteLanguage: `en`,
@@ -17,9 +18,9 @@ module.exports = {
       resolve: `@rocketseat/gatsby-theme-docs`,
       options: {
         configPath: `src/config`,
-        docsPath: `src/docs`,
+        docsPath: `src/content`,
         githubUrl: `https://github.com/rocketseat/gatsby-themes`,
-        baseDir: `examples/gatsby-theme-docs`,
+        baseDir: `src/site`,
       },
     },
     {
@@ -34,12 +35,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-sitemap`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // trackingId: ``,
-      },
-    },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {

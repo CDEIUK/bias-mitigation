@@ -2,13 +2,19 @@
 
 - label: 'Introduction'
   link: '/'
-- label: 'Getting started'
-  link: '/getting-started'
-- label: Usage
+- label: Finance
   items:
-    - label: 'Creating docs'
-      link: '/usage/creating-docs'
-    - label: 'Navigation'
-      link: '/usage/navigation'
-    - label: 'Shadowing'
-      link: '/usage/shadowing'
+    - label: 'Intro'
+      link: '/finance/intro'
+    - label: 'Dataset'
+      link: '/finance/data'
+    - label: 'Biased model'
+      link: '/finance/biased-model'
+    - label: 'Adversarial Mitigation'
+      link: '/finance/adversarial-mitigation'
+    - label: 'Interventions'
+      link: '/finance/intervention_kamiran'
+- label: Recruiting
+  items:
+    - label: 'Intro'
+      link: '/recruiting/intro'
