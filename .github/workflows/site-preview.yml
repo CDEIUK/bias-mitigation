@@ -7,7 +7,6 @@ on:
     paths:
       - 'src/**'
       - '.github/workflows/site-preview.yml'
-      - 'requirements**.txt'
 
 jobs:
   deploy:

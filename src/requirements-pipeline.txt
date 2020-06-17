@@ -1,4 +1,6 @@
 -r requirements.txt
+black==19.10b0
+black-nb==0.3.0
 jupyter==1.0.0
 jupyter_contrib_nbextensions==0.5.1
 nb-filter-cells==0.0.2

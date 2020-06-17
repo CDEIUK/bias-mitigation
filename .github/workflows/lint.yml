@@ -1,0 +1,29 @@
+name: Linting
+
+on:
+  push:
+    paths:
+      - 'src/**.ipynb'
+      - '.github/workflows/lint.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r ./src/requirements-pipeline.txt
+
+      - name: Black
+        working-directory: src/
+        run: |
+          make notebooks-black-check
