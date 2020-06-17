@@ -26,6 +26,7 @@ endif
 $(NOTEBOOKS_DIR)/%.ipynb: %.ipynb
 	@mkdir -p $(dir $@)
 	nb-filter-cells -i $< -o $@ -t export
+	nbstripout $<
 
 .PHONY: clean export figures export
 
