@@ -26,17 +26,20 @@ endif
 $(NOTEBOOKS_DIR)/%.ipynb: %.ipynb
 	@mkdir -p $(dir $@)
 	nb-filter-cells -i $< -o $@ -t export
+	nbstripout $@
 
-.PHONY: clean export figures export
+.PHONY: black black-check clean export flake8 figures
 
-all: figures export
+all: black flake8 figures export
 
-# Create figures from notebooks
-figures: $(OBJECTS)
-	@mkdir -p $(FIGURES_DIR)
-	$(copy_images)
+black:
+	black-nb $(SOURCES)
 
-export: $(CLEANNOTEBOOKS)
+black-check:
+	black-nb --check $(SOURCES)
+
+flake8:
+	flake8-nb --ignore E203,W503 --count --show-source --statistics $(SOURCES)
 
 # Clean temporary files in this folder
 clean:
@@ -47,3 +50,11 @@ clean:
 	@echo "=> Removing cleaned notebooks (notebooks)"
 	@$(rm) -r $(CLEANNOTEBOOKS)
 	@echo "Cleanup complete!"
+
+# Create the clean exports
+export: black $(CLEANNOTEBOOKS)
+
+# Create figures from notebooks
+figures: $(OBJECTS)
+	@mkdir -p $(FIGURES_DIR)
+	$(copy_images)

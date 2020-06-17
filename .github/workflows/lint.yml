@@ -1,13 +1,18 @@
-name: Build and Deploy Site
+name: Linting
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - 'src/**'
+      - '.github/workflows/lint.yml'
 
 jobs:
-  deploy:
+  python-lint:
     runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        make-lint: ["src-black-check", "notebooks-black-check", "src-flake8", "notebooks-flake8"]
+
     steps:
       - uses: actions/checkout@v2
 
@@ -22,10 +27,19 @@ jobs:
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install -r ./src/requirements-pipeline.txt
 
-      - name: Build Plots
+      - name: Lint with ${{ matrix.make-lint }}
         working-directory: src/
         run: |
-          make figures
+          make ${{ matrix.make-lint }}
+
+  node-lint:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        make-lint: ["site-format-check"]
+
+    steps:
+      - uses: actions/checkout@v2
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
@@ -36,13 +50,7 @@ jobs:
         working-directory: src/site
         run: npm install
 
-      - name: Build Site
-        working-directory: src/site
+      - name: Lint with ${{ matrix.make-lint }}
+        working-directory: src/
         run: |
-          npm run-script build
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: src/site/public
+          make ${{ matrix.make-lint }}
