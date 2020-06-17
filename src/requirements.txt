@@ -1,5 +1,7 @@
+aif360[DisparateImpactRemover]==0.3.0
 joblib==0.15.1
 matplotlib==3.2.1
+numba==0.48.0
 numpy==1.18.5
 pandas==1.0.4
 plotly==4.8.1
