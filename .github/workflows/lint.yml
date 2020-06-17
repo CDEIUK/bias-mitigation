@@ -23,7 +23,12 @@ jobs:
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install -r ./src/requirements-pipeline.txt
 
-      - name: Black
+      - name: Black (notebooks)
         working-directory: src/
         run: |
           make notebooks-black-check
+
+      - name: Black (source)
+        working-directory: src/
+        run: |
+          make src-black-check

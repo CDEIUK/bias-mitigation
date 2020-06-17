@@ -1,12 +1,19 @@
+SRC = helpers
 
-
-.PHONY: notebooks-black notebooks-black-check clean export figures install install-pipeline
+.PHONY: notebooks-black notebooks-black-check clean export figures \
+    install install-pipeline src-black src-black-check
 
 install:
 	cd .. ; pip install -r src/requirements.txt
 
 install-pipeline:
 	cd .. ; pip install -r src/requirements-pipeline.txt
+
+src-black:
+	black $(SRC)
+
+src-black-check:
+	black --check $(SRC)
 
 notebooks-black:
 	$(MAKE) -C notebooks black
