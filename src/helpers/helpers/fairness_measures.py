@@ -1,14 +1,12 @@
-import numpy as np
-
 """
 Helper functions for computing various fairness measures
 """
+import numpy as np
 
 
 def accuracy(scores, labels):
     """
     Computes accuracy
-    
     """
     return ((scores >= 0.5) == labels).mean()
 
@@ -16,7 +14,6 @@ def accuracy(scores, labels):
 def disparate_impact_p(scores, attr):
     """
     Computes disparate impact on probability level
-    
     """
     a_mask = attr == 1
     return np.abs(scores[~a_mask].mean() - scores[a_mask].mean())
@@ -25,7 +22,6 @@ def disparate_impact_p(scores, attr):
 def disparate_impact_d(scores, attr):
     """
     Computes disparate impact on decision level
-    
     """
     a_mask = attr == 1
     return np.abs(
@@ -36,7 +32,6 @@ def disparate_impact_d(scores, attr):
 def equal_opportunity_p(scores, attr, labels):
     """
     Computes equal opportunity on probability level
-    
     """
     a_mask = attr == 1
     y_mask = labels == 1
@@ -46,7 +41,6 @@ def equal_opportunity_p(scores, attr, labels):
 def equal_opportunity_d(scores, attr, labels):
     """
     Computes equal opportunity on decision level
-    
     """
     a_mask = attr == 1
     y_mask = labels == 1
@@ -56,7 +50,6 @@ def equal_opportunity_d(scores, attr, labels):
 def equalised_odds_p(scores, attr, labels):
     """
     Computes equalised odds on probability level
-    
     """
     a_mask = attr == 1
     y_mask = labels == 1
@@ -69,7 +62,6 @@ def equalised_odds_p(scores, attr, labels):
 def equalised_odds_d(scores, attr, labels):
     """
     Computes equalised odds on decision level
-    
     """
     a_mask = attr == 1
     y_mask = labels == 1
@@ -82,7 +74,6 @@ def equalised_odds_d(scores, attr, labels):
 def calibration(scores, attr, labels, n):
     """
     Computes calibration
-    
     """
     a_mask = attr == 1
     y_mask = labels == 1
@@ -113,7 +104,7 @@ def calibration(scores, attr, labels, n):
         )
         cal_y1 += 1.0 - np.abs(proportion_y1_a0 - proportion_y1_a1)
 
-        proportion_y0_a1 = (
+        proportion_y0_a0 = (
             (
                 (scores[~a_mask & ~y_mask] > bins[i])
                 & (scores[~a_mask & ~y_mask] < bins[i + 1])
@@ -123,7 +114,7 @@ def calibration(scores, attr, labels, n):
             ).sum()
         )
 
-        proportion_y1_a1 = (
+        proportion_y0_a1 = (
             (
                 (scores[a_mask & ~y_mask] > bins[i])
                 & (scores[a_mask & ~y_mask] < bins[i + 1])
