@@ -1,0 +1,44 @@
+name: Linting
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - '.github/workflows/lint.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip setuptools wheel
+          python3 -m pip install -r ./src/requirements-pipeline.txt
+
+      - name: Black (notebooks)
+        working-directory: src/
+        run: |
+          make notebooks-black-check
+
+      - name: Black (source)
+        working-directory: src/
+        run: |
+          make src-black-check
+
+      - name: Flake8 (notebooks)
+        working-directory: src/
+        run: |
+          make notebooks-flake8
+
+      - name: Flake8 (source)
+        working-directory: src/
+        run: |
+          make src-flake8
