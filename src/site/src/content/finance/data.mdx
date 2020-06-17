@@ -42,7 +42,7 @@ Another consideration is the representation of different groups in the data. Men
 
 Since we are merely demonstrating different methods of measuring and mitigating bias we proceed with the data as is, but in a real world application we should see if we can collect more data in order to ensure better representation.
 
-As well as determining whether we could collect more data, we should also consider whether the data we have is appropriate for the task at hand. In this case we decide that the `fnlwgt` feature is not relevant to the task of predicting someone's salary, and drop the `education-num` column as it contains duplicate information also available in the `education` column. Of the remaining features we decide that for now we are happy to include all of them in the model, though we should take care to measure the impact of including features such as `race` or `sex`. As discussed in our report, simply excluding these features is not in any case guaranteed to prevent the resulting model to be unbiased. We scale the continuous ones, and one-hot encode the categorical ones ready for modelling. You can see all of the preprocessing we do here **LINK TO NOTEBOOK**.
+As well as determining whether we could collect more data, we should also consider whether the data we have is appropriate for the task at hand. In this case we decide that the `fnlwgt` feature is not relevant to the task of predicting someone's salary, and drop the `education-num` column as it contains duplicate information also available in the `education` column. Of the remaining features we decide that for now we are happy to include all of them in the model, though we should take care to measure the impact of including features such as `race` or `sex`. As discussed in our report, simply excluding these features is not in any case guaranteed to prevent the resulting model to be unbiased. We scale the continuous ones, and one-hot encode the categorical ones ready for modelling. You can see all of the preprocessing we do [here][binder-data].
 
 Once the data has been preprocessed, we can look at bias that is present in the data, before we have even trained a model. First, we look at the proportion of men and women that earn more than $50,000 dollars, we see that the proportion is much higher for men.
 
@@ -59,3 +59,4 @@ Finally, we identify a possible "legitimate risk factor" in the `hours_per_week`
 Next we'll try training a model without any attempt to mitigate bias and investigate the results.
 
 [adult-data]: https://archive.ics.uci.edu/ml/datasets/Adult
+[binder-data]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Fdata.ipynb "Open notebook on Binder"
