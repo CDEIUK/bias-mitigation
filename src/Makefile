@@ -1,7 +1,8 @@
 SRC = helpers
 
-.PHONY: notebooks-black notebooks-black-check clean export figures \
-    install install-pipeline src-black src-black-check
+.PHONY: clean export figures install install-pipeline \
+	notebooks-black notebooks-black-check notebooks-flake8 \
+	src-black src-black-check src-flake8
 
 install:
 	cd .. ; pip install -r src/requirements.txt
@@ -15,11 +16,17 @@ src-black:
 src-black-check:
 	black --check $(SRC)
 
+src-flake8:
+	flake8 $(SRC)
+
 notebooks-black:
 	$(MAKE) -C notebooks black
 
 notebooks-black-check:
 	$(MAKE) -C notebooks black-check
+
+notebooks-flake8:
+	$(MAKE) -C notebooks flake8
 
 figures:
 	$(MAKE) -C notebooks figures

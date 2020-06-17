@@ -27,15 +27,18 @@ $(NOTEBOOKS_DIR)/%.ipynb: %.ipynb
 	@mkdir -p $(dir $@)
 	nb-filter-cells -i $< -o $@ -t export
 
-.PHONY: black black-check clean export figures
+.PHONY: black black-check clean export flake8 figures
 
-all: black figures export
+all: black flake8 figures export
 
 black:
 	black-nb $(SOURCES)
 
 black-check:
 	black-nb --check $(SOURCES)
+
+flake8:
+	flake8-nb $(SOURCES)
 
 # Clean temporary files in this folder
 clean:

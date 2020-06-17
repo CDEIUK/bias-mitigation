@@ -32,3 +32,13 @@ jobs:
         working-directory: src/
         run: |
           make src-black-check
+
+      - name: Flake8 (notebooks)
+        working-directory: src/
+        run: |
+          make notebooks-black-check
+
+      - name: Flake8 (source)
+        working-directory: src/
+        run: |
+          make src-black-check
