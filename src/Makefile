@@ -7,13 +7,13 @@ SRC = helpers
 preinstall:
 	@python3 -m pip install --upgrade pip setuptools wheel
 
-install: preinstall
+install:
 	cd .. ; python3 -m pip install -r src/requirements.txt
 
-install-pipeline: preinstall
-	cd .. ; python3 -m pip install -r src/requirements.txt ; python3 -m pip install -r src/requirements-pipeline.txt
+install-pipeline:
+	cd .. ; python3 -m pip install -r src/requirements-pipeline.txt
 
-install-linting: preinstall
+install-linting:
 	cd .. ; pip install -r src/requirements-linting.txt
 
 src-black:
