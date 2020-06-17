@@ -19,15 +19,14 @@ module.exports = {
       options: {
         configPath: `src/config`,
         docsPath: `src/content`,
-        githubUrl: `https://github.com/rocketseat/gatsby-themes`,
         baseDir: `src/site`,
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Rocketseat Gatsby Themes`,
-        short_name: `RS Gatsby Themes`,
+        name: `Machine Learning Bias Exploration`,
+        short_name: `ML Bias`,
         start_url: `/`,
         background_color: `#ffffff`,
         display: `standalone`,
@@ -38,7 +37,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://rocketdocs.netlify.com`,
+        siteUrl: `https://imrehg.github.io/cdei-development`,
       },
     },
     `gatsby-plugin-offline`,
