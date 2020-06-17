@@ -38,7 +38,7 @@ black-check:
 	black-nb --check $(SOURCES)
 
 flake8:
-	flake8-nb --count --show-source --statistics $(SOURCES)
+	flake8-nb --ignore E203,W503 --count --show-source --statistics $(SOURCES)
 
 # Clean temporary files in this folder
 clean:
