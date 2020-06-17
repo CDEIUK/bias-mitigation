@@ -7,8 +7,12 @@ on:
       - '.github/workflows/lint.yml'
 
 jobs:
-  lint:
+  python-lint:
     runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        make-lint: ["src-black-check", "notebooks-black-check", "src-flake8", "notebooks-flake8"]
+
     steps:
       - uses: actions/checkout@v2
 
@@ -23,22 +27,30 @@ jobs:
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install -r ./src/requirements-pipeline.txt
 
-      - name: Black (notebooks)
+      - name: Lint with ${{ matrix.make-lint }}
         working-directory: src/
         run: |
-          make notebooks-black-check
+          make ${{ matrix.make-lint }}
 
-      - name: Black (source)
-        working-directory: src/
-        run: |
-          make src-black-check
+  node-lint:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        make-lint: ["site-format-check"]
 
-      - name: Flake8 (notebooks)
-        working-directory: src/
-        run: |
-          make notebooks-flake8
+    steps:
+      - uses: actions/checkout@v2
 
-      - name: Flake8 (source)
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install Node dependencies
+        working-directory: src/site
+        run: npm install
+
+      - name: Lint with ${{ matrix.make-lint }}
         working-directory: src/
         run: |
-          make src-flake8
+          make ${{ matrix.make-lint }}
