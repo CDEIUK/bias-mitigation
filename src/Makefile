@@ -17,7 +17,7 @@ src-black-check:
 	black --check $(SRC)
 
 src-flake8:
-	flake8 $(SRC)
+	flake8 --ignore E203,W503 --count --show-source --statistics $(SRC)
 
 notebooks-black:
 	$(MAKE) -C notebooks black
