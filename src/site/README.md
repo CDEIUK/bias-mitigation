@@ -34,20 +34,20 @@
 
 1. Create the website.
 
-    ```sh
-    gatsby new rocket-docs https://github.com/rocketseat/gatsby-starter-rocket-docs
-    ```
+   ```sh
+   gatsby new rocket-docs https://github.com/rocketseat/gatsby-starter-rocket-docs
+   ```
 
 2. Start developing.
 
-    ```sh
-    cd rocket-docs
-    gatsby develop
-    ```
+   ```sh
+   cd rocket-docs
+   gatsby develop
+   ```
 
-3. Are you ready for launch? 
+3. Are you ready for launch?
 
-    Your site is now running at `http://localhost:8000`
+   Your site is now running at `http://localhost:8000`
 
 ## 📄 Docs
 
