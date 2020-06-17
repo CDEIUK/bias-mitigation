@@ -11,19 +11,20 @@ def group_box_plots(scores, groups, attr, group_names=None):
     Helper function for plotting group box curves. Assumes binary labels.
     """
     unique_groups = sorted(set(groups))
-    return go.Figure(
+    fig = go.Figure(
         data=[
             go.Box(x=groups[attr == a], y=scores[attr == a], name=a)
             for a in sorted(set(attr))
         ],
         layout={
             "boxmode": "group",
-            "xaxis": {
+            "yaxis": {
                 "tickvals": unique_groups,
                 "ticktext": group_names or unique_groups,
             },
         },
     )
+    return fig.update_traces(orientation='h')
 
 
 def group_roc_curves(labels, scores, attr):
