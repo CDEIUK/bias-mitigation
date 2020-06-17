@@ -20,6 +20,8 @@ jobs:
       - name: Install dependencies
         working-directory: src/
         run: |
+          make preinstall
+          make install
           make install-pipeline
 
       - name: Build Plots
