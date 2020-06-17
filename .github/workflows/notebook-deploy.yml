@@ -21,6 +21,7 @@ jobs:
         working-directory: src/
         run: |
           make install-pipeline
+          make install-linting
 
       - name: Remove superfluous cells
         working-directory: src/
