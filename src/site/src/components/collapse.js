@@ -18,7 +18,7 @@ export default function Collapse({ children, label }) {
             isOpen ? `${style.chevron} ${style.chevronOpen}` : style.chevron
           }
         />
-        <span>{label}</span>
+        <span className={style.label}>{label}</span>
       </div>
       <ReactCollapse
         theme={{ collapse: style.collapse, content: style.content }}

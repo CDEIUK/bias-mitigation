@@ -1,0 +1,63 @@
+---
+title: Interventions
+---
+
+import Collapse from "../../components/collapse"
+
+Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on **BINDER** and the code is all available on GitHub **LINK TO CDEI GITHUB**.
+
+## Summary
+
+High-level comparison of methods goes here?
+
+## Feldman
+
+Feldman et. al introduce a pre-processing technique for imposing demographic parity. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+
+<Collapse label="How it works">
+
+The algorithm assumes a binary or categorical protected attribute. It adjusts the distributions of the features so that they are similar for each protected group. For example, if `hours_per_week` is different for men and women, the disparate impact remover would adjust the data to bring the two distributions in line. This can be done for example by inverting the cumulative distribution function.
+
+</Collapse>
+
+## Hardt
+
+Hardt et al introduce a post-processing technique for imposing equalised odds and equal opportunity. It is implemented in [IBM's AI Fairness 360][aif-360] library, and [Microsoft's FairLearn][fairlearn] library.
+
+<Collapse label="How it works">
+
+Equalised odds requires that the true and false positive rates are equal for each protected group. Equal opportunity requires that only the true positive rates are the same. In either case the algorithm achieves this by adjusting the decision thresholds for each group that are used to determine the prediction. In some cases this alone is not enough to achieve equality, in which case two thresholds are set for each group, and the prediction is made by first randomly choosing between the thresholds, then making a prediction with the threshold.
+
+The algorithm is very widely applicable, as it only needs access to the model outputs and the protected attribute. Moreover Hardt et al. show that their algorithm is optimal among post-processing algorithms for equalised odds. However, the possible randomness present in predictions may not be satisfactory when individual fairness is a concern, as two identical individuals could receive different predictions due to the stochasticity.
+
+</Collapse>
+
+## Kamiran
+
+## Kamiran - Calders
+
+## Kamishima
+
+## Pleiss
+
+## Zemel
+
+## Zhang
+
+The paper [Mitigating Unwanted Biases with Adversarial Learning][zhang] of Zhang et al. introduces a method for mitigating bias in a model using adversarial learning. Their approach is able to impose demographic parity, conditional demographic parity, and equalised odds with only minor modifications. There is an implementation in [IBM's AI Fairness 360][aif-360] library, but it can only address demographic parity. Hence we provide our own implementation for comparing its performance across different definitions of fairness.
+
+<Collapse label="How it works">
+
+The model is trained in tandem with an adversary, which we refer to as the discriminator. The discriminator monitors the model output, and tries to predict the protected attributes. If it were able to do so, this would be a sign that the model is treating the protected groups differently. Hence the model is trained to simultaneously optimise a performance objective and to fool the discriminator. If it learns to fool the discriminator, then the model outputs are unbiased.
+
+To achieve conditional demographic parity we additionally pass legitimate risk factors to the discriminator, so that the model receives no benefit from removing information about the protected attributes from its output that is contained in those factors. Similarly to achieve equalised odds we allow the discriminator to additionally see the labels during training, so that the model is not incentivised to remove from its output any information about the sensitive data that is contained in the labels.
+
+</Collapse>
+
+## Conclusions
+
+Say something really smart here.
+
+[aif-360]: https://aif360.readthedocs.io/en/latest/
+[fairlearn]: https://fairlearn.github.io/
+[zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
