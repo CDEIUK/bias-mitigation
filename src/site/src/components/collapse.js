@@ -4,28 +4,25 @@ import { Collapse as ReactCollapse } from "react-collapse"
 import style from "./collapse.module.css"
 
 export default function Collapse({ children, label }) {
-  const [collapsed, setCollapsed] = useState(false)
-  const defaultChevronStyle = { transition: "transform 300ms ease-in-out" }
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <div className={style.wrapper}>
       <div
-        style={{ display: "flex", alignItems: "center" }}
-        onClick={() => setCollapsed(!collapsed)}
+        className={style.toggle}
+        onClick={() => setIsOpen(!isOpen)}
         role="button"
       >
         <MdChevronRight
           size="1.5em"
-          style={
-            collapsed
-              ? { transform: "rotate(90deg)", ...defaultChevronStyle }
-              : defaultChevronStyle
+          className={
+            isOpen ? `${style.chevron} ${style.chevronOpen}` : style.chevron
           }
         />
         <span>{label}</span>
       </div>
       <ReactCollapse
         theme={{ collapse: style.collapse, content: style.content }}
-        isOpened={collapsed}
+        isOpened={isOpen}
       >
         {children}
       </ReactCollapse>
