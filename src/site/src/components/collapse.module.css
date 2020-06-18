@@ -1,0 +1,30 @@
+.chevron {
+  transition: transform 300ms ease-in-out;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+.collapse {
+  transition: height 300ms ease-in-out;
+}
+
+.content {
+  padding: 1em;
+  padding-bottom: 0;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.wrapper {
+  color: #737380;
+  background-color: #eeeeee;
+  border-radius: 6px;
+  padding: 1em;
+  margin-bottom: 1em;
+}

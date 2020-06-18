@@ -2,6 +2,7 @@
 title: The Adult data set
 ---
 
+import Collapse from "../../components/collapse"
 import { LazyPlot } from "../../components/siteplotly"
 
 import salary_by_sex from "../../figures/finance/salary_by_sex.json"
@@ -16,7 +17,9 @@ Our goal is to try and predict an individual's annual income in order to target 
 
 ## Data identification
 
-The data we have available to us is the Adult data set from the [UCI Machine learning repository][adult-data]. Contains 14 features:
+The data we have available to us is the Adult data set from the [UCI Machine learning repository][adult-data].
+
+<Collapse label="Features in the adult data set">
 
 - `age`: The age of the individual in years,
 - `capital_gain`: Capital gain in the previous year,
@@ -34,6 +37,8 @@ The data we have available to us is the Adult data set from the [UCI Machine lea
 - `workclass`: The industry / sector that the individual works in.
 
 In addition to this, the binary label `salary` encodes whether individual earns more or less than \$50,000.
+
+</Collapse>
 
 In this case we don't have the means to collect different data. In the real world we would always consider whether we could have access to better data that is more representative. For example, the data we are using was collected in 1994, so it's quite likely that the demographic patterns captured in the data are no longer representative. If we were performing this task for real we would likely recommend that more up to date data is collected, that better reflects demographic shifts in the intervening 26 years.
 
