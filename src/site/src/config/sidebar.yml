@@ -1,0 +1,20 @@
+# Sidebar navigation
+
+- label: 'Introduction'
+  link: '/'
+- label: Finance
+  items:
+    - label: 'Intro'
+      link: '/finance/intro'
+    - label: 'Dataset'
+      link: '/finance/data'
+    - label: 'Biased model'
+      link: '/finance/biased-model'
+    - label: 'Adversarial Mitigation'
+      link: '/finance/adversarial-mitigation'
+    - label: 'Interventions'
+      link: '/finance/intervention_kamiran'
+- label: Recruiting
+  items:
+    - label: 'Intro'
+      link: '/recruiting/intro'

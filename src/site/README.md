@@ -1,16 +1,58 @@
-## React-Playground
+<p align="center">
+  <img src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/theme-docs.svg" alt="A illustration of file that is the @rocketseat/gatsby-theme-docs logo" width="100">
+</p>
 
-![Build and Deploy Site](https://github.com/imrehg/react-playground/workflows/Build%20and%20Deploy%20Site/badge.svg)
-![Clean and Release Notebooks](https://github.com/imrehg/react-playground/workflows/Clean%20and%20Release%20Notebooks/badge.svg)
+<h2 align="center">
+  Gatsby Starter: Rocket Docs
+</h2>
 
-Combining:
+<p align="center">
+  Out of the box Gatsby Starter for creating documentation websites easily and quickly. With support for MDX, code highlight, Analytics, SEO and more 🔥 Using the theme: <a href="https://github.com/Rocketseat/gatsby-themes/tree/master/%40rocketseat/gatsby-theme-docs">@rocketseat/gatsby-theme-docs</a>
+</p>
 
-- [Gatsby](https://www.gatsbyjs.org/)
-- [Plotly](https://plotly.com/)
-- [MDX](https://mdxjs.com/)
+<p align="center">
+  <img src="https://img.shields.io/badge/PRs-welcome-%237159c1.svg" alt="PRs welcome!" />
 
-In a single project, isn't it fun?
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-%237159c1">
 
-Launch cleaned notebook in Binder: [here](https://mybinder.org/v2/gh/imrehg/react-playground/master?filepath=demo%2Ffig1-clean.ipynb)
+  <a href="https://twitter.com/intent/follow?screen_name=rocketseat">
+    <img src="https://img.shields.io/twitter/follow/rocketseat.svg?label=Follow%20@rocketseat" alt="Follow @rocketseat" />
+  </a>
+</p>
 
-[![Fig1 in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/imrehg/react-playground/master?filepath=demo%2Ffig1-clean.ipynb)
+## 🚀 Features
+
+- MDX for docs;
+- Fully customizable through the usage of Gatsby Themes (and Theme UI)
+- Sidebar customization with Yaml;
+- Code highlighting with [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) and [react-live](https://github.com/FormidableLabs/react-live) support. Copy code button and option to show line numbers.
+- SEO (Sitemap, schema.org data, Open Graph and Twitter tags).
+- Google Analytics support;
+- Offline Support & WebApp Manifest
+
+## ⚡️ Getting started
+
+1. Create the website.
+
+   ```sh
+   gatsby new rocket-docs https://github.com/rocketseat/gatsby-starter-rocket-docs
+   ```
+
+2. Start developing.
+
+   ```sh
+   cd rocket-docs
+   gatsby develop
+   ```
+
+3. Are you ready for launch?
+
+   Your site is now running at `http://localhost:8000`
+
+## 📄 Docs
+
+Looking for docs? Check our live demo and documentation [website](https://rocketdocs.netlify.com).
+
+---
+
+Made with 💜 by Rocketseat :wave: [check our community!](https://discordapp.com/invite/gCRAFhc)

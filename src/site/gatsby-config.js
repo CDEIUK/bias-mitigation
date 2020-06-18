@@ -1,44 +1,45 @@
 module.exports = {
   pathPrefix: `/cdei-development`,
   siteMetadata: {
-    title: `CDEI Bias Exploration`,
-    description: `This is an exploration of bias in various datasets.`,
-    author: `@facultyai`,
+    siteTitle: `ML Bias Exploration`,
+    defaultTitle: `ML Bias Exploration`,
+    siteTitleShort: `ML Bias`,
+    siteDescription: `Exploring bias in machine learning (ML) models`,
+    siteUrl: `https://imrehg.github.io/cdei-development`,
+    siteAuthor: `@rocketseat`,
+    siteImage: `/banner.png`,
+    siteLanguage: `en`,
+    themeColor: `#7159c1`,
+    basePath: `/`,
+    footer: `Theme by Rocketseat`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `@rocketseat/gatsby-theme-docs`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        configPath: `src/config`,
+        docsPath: `src/content`,
+        baseDir: `src/site`,
       },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `pages`,
-        path: `${__dirname}/src/content`,
-      },
-    },
-    `gatsby-plugin-mdx`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {},
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `cdei-bias`,
-        short_name: `cdei`,
+        name: `Machine Learning Bias Exploration`,
+        short_name: `ML Bias`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/site-favicon.png`, // This path is relative to the root of the site.
+        background_color: `#ffffff`,
+        display: `standalone`,
+        icon: `static/favicon.png`,
       },
     },
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://imrehg.github.io/cdei-development`,
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 }

@@ -5,6 +5,10 @@ on:
     paths:
       - 'src/**'
       - '.github/workflows/lint.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - '.github/workflows/lint.yml'
 
 jobs:
   python-lint:
@@ -23,9 +27,10 @@ jobs:
           architecture: 'x64'
 
       - name: Install dependencies
+        working-directory: src/
         run: |
-          python3 -m pip install --upgrade pip setuptools wheel
-          python3 -m pip install -r ./src/requirements-pipeline.txt
+          make preinstall
+          make install-linting
 
       - name: Lint with ${{ matrix.make-lint }}
         working-directory: src/

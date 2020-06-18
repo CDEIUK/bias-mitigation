@@ -18,9 +18,11 @@ jobs:
           architecture: 'x64'
 
       - name: Install dependencies
+        working-directory: src/
         run: |
-          python3 -m pip install --upgrade pip setuptools wheel
-          python3 -m pip install -r ./src/requirements-pipeline.txt
+          make preinstall
+          make install
+          make install-pipeline
 
       - name: Build Plots
         working-directory: src/

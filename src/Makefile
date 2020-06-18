@@ -1,14 +1,20 @@
 SRC = helpers
 
-.PHONY: clean export figures install install-pipeline \
+.PHONY: clean export figures preinstall install install-pipeline install-linting \
 	notebooks-black notebooks-black-check notebooks-flake8 \
 	src-black src-black-check src-flake8
 
+preinstall:
+	@python3 -m pip install --upgrade pip setuptools wheel
+
 install:
-	cd .. ; pip install -r src/requirements.txt
+	cd .. ; python3 -m pip install -r src/requirements.txt
 
 install-pipeline:
-	cd .. ; pip install -r src/requirements-pipeline.txt
+	cd .. ; python3 -m pip install -r src/requirements-pipeline.txt
+
+install-linting:
+	cd .. ; pip install -r src/requirements-linting.txt
 
 src-black:
 	black $(SRC)
