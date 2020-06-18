@@ -46,7 +46,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "6b153626e4adf793c4ff07c47e421c49"
+    "revision": "45eaef9adf037bb654626f4c6692c367"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-e5cb9e0c77a823b86dc2.js"
@@ -57,7 +57,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "86575608c83295e09f7bf9a23c37350a"
+    "revision": "82bd260821a13c3fb4012d5102f607c2"
   },
   {
     "url": "manifest.webmanifest",
@@ -154,7 +154,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/cdei-development/app-90c02dc58e03a2ec13aa.js`))) {
+  if (!resources || !(await caches.match(`/cdei-development/app-d5572edabd1db8971a0d.js`))) {
     return await fetch(event.request)
   }
 
