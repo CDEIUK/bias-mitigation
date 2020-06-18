@@ -1,0 +1,16 @@
+.collapse {
+  transition: height 300ms;
+}
+
+.content {
+  padding: 1em;
+  padding-bottom: 0;
+}
+
+.wrapper {
+  color: #737380;
+  background-color: #eeeeee;
+  border-radius: 6px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
