@@ -13,7 +13,7 @@ def group_box_plots(scores, groups, attr, group_names=None):
     unique_groups = sorted(set(groups))
     fig = go.Figure(
         data=[
-            go.Box(x=groups[attr == a], y=scores[attr == a], name=a)
+            go.Box(x=scores[attr == a], y=groups[attr == a], name=a)
             for a in sorted(set(attr))
         ],
         layout={
