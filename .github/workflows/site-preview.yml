@@ -58,7 +58,7 @@ jobs:
         working-directory: src/
         run: |
           source venv/bin/activate
-          make figures
+          make -j $(nproc) figures
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
