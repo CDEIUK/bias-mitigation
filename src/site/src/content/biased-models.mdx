@@ -2,14 +2,14 @@
 title: Training a biased model
 ---
 
-import { LazyPlot } from "../../components/siteplotly"
+import { LazyPlot } from "../components/siteplotly"
 
-import dp_by_race from "../../figures/finance/bl_dp_by_race.json"
-import dp_by_sex from "../../figures/finance/bl_dp_by_sex.json"
-import cdp_by_race from "../../figures/finance/bl_cdp_by_race.json"
-import cdp_by_sex from "../../figures/finance/bl_cdp_by_sex.json"
-import eo_by_race from "../../figures/finance/bl_eo_by_race.json"
-import eo_by_sex from "../../figures/finance/bl_eo_by_sex.json"
+import dp_by_race from "../figures/finance/bl_dp_by_race.json"
+import dp_by_sex from "../figures/finance/bl_dp_by_sex.json"
+import cdp_by_race from "../figures/finance/bl_cdp_by_race.json"
+import cdp_by_sex from "../figures/finance/bl_cdp_by_sex.json"
+import eo_by_race from "../figures/finance/bl_eo_by_race.json"
+import eo_by_sex from "../figures/finance/bl_eo_by_sex.json"
 
 We start by training a simple model on the data, specifically a shallow, feed-forward neural network. You can see the details [here][binder-biased]. To understand the possible sources of bias in our model, it's useful to first train a model with no attempted mitigation, and understand the resulting unfairness.
 
