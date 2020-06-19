@@ -2,4 +2,8 @@
 title: Introduction
 ---
 
-This is an overview of the recruitment data.
+In this series of posts we are going to use a synthetic data set of job applicants to demonstrate how bias in machine learning can be measured and mitigated.
+
+We will assume throughout that we work for a large corporation and that the data represents historical job applicants together with whether they were hired or not. Our goal is to train a machine learning algorithm that can predict whether the individual should receive a job offer based on their qualifications, experience and demographics.
+
+We will use this hypothetical application to walk through the steps of our recommended workflow, and discuss the considerations that should be made at each step. We will start with a discussion of the problem and whether the data we have available to us for the task is appropriate. We will go on to train a model without intervention to examine the resulting bias. After understanding the consequences of not trying to mitigate bias, we will go on to compare a number of possible interventions. Where possible we use open-source tools, though in a few cases we implement simple versions of the algorithms listed in our accompanying report. We'll conclude by weighing up the advantages and disadvantages of each approach, and discuss the possible implications of choosing any one intervention.
