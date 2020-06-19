@@ -13,7 +13,7 @@ const Plotly = Loadable({
       <div style={spinnerStyle}>
         <Loader
           type="ThreeDots"
-          color="#BF00FF"
+          color="#525453"
           height={75}
           width={75}
           timeout={10000} // 10sec
