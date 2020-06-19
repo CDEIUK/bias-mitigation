@@ -23,12 +23,6 @@ jobs:
           if [ "${STATUSES_URL}" = "null" ]; then echo "Invalid Statuses URL, stop here to avoid issues further down."; echo $API_RESPONSE | jq . ; exit 1; fi
           echo "::set-output name=statuses_url::$STATUSES_URL"
 
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.8'
-          architecture: 'x64'
-
       - name: Cache Python
         id: cache-python
         uses: actions/cache@v2
@@ -39,6 +33,12 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}-${{ hashFiles('**/src/helpers/**') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
 
       - name: Setup Virtualenv
         run: |
@@ -58,6 +58,17 @@ jobs:
         run: |
           source venv/bin/activate
           make -j $(nproc) figures
+
+      - name: Cache Node
+        id: cache-node
+        uses: actions/cache@v2
+        with:
+          path: |
+            src/site/node_modules
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-node-${{ hashFiles('**/src/site/package*json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
