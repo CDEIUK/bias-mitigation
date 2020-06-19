@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.2.0",
   "description": "Exploration of bias in machine learning (ML) models.",
-  "author": "Faculty",
-  "license": "MIT",
+  "author": "Faculty / CDEI",
   "starter-name": "gatsby-starter-rocket-docs",
   "dependencies": {
     "@rocketseat/gatsby-theme-docs": "^2.1.1",

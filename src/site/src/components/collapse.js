@@ -11,6 +11,10 @@ export default function Collapse({ children, label }) {
         className={style.toggle}
         onClick={() => setIsOpen(!isOpen)}
         role="button"
+        tabIndex={0}
+        onKeyDown={() => {
+          setIsOpen(!isOpen)
+        }}
       >
         <MdChevronRight
           size="1.5em"
