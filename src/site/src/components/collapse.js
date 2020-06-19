@@ -12,8 +12,11 @@ export default function Collapse({ children, label }) {
         onClick={() => setIsOpen(!isOpen)}
         role="button"
         tabIndex={0}
-        onKeyDown={() => {
-          setIsOpen(!isOpen)
+        onKeyPress={event => {
+          // Checking for a Return/Enter press
+          if (event.which === 13) {
+            setIsOpen(!isOpen)
+          }
         }}
       >
         <MdChevronRight
