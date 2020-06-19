@@ -18,3 +18,5 @@
   items:
     - label: 'Intro'
       link: '/recruiting/intro'
+    - label: 'Dataset'
+      link: '/recruiting/data'
