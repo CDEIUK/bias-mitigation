@@ -7,6 +7,7 @@ class NumpyEncoder(json.JSONEncoder):
     """
     Encode Numpy objects as JSON objects
     """
+
     def default(self, obj):
         if isinstance(obj, np.ndarray):
             return obj.tolist()
