@@ -10,11 +10,13 @@
       link: '/finance/data'
     - label: 'Biased model'
       link: '/finance/biased-model'
-    - label: 'Adversarial Mitigation'
-      link: '/finance/adversarial-mitigation'
     - label: 'Interventions'
-      link: '/finance/intervention_kamiran'
+      link: '/finance/interventions'
+    - label: 'Conclusion'
+      link: '/finance/conclusion'
 - label: Recruiting
   items:
     - label: 'Intro'
       link: '/recruiting/intro'
+    - label: 'Dataset'
+      link: '/recruiting/data'

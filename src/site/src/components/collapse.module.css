@@ -11,8 +11,17 @@
 }
 
 .content {
-  padding: 1em;
-  padding-bottom: 0;
+  padding: 1em 2em;
+}
+
+.content p {
+  margin-bottom: 0;
+}
+
+.label {
+  margin-left: 0.5em;
+  font-size: 1.1rem;
+  color: #636370;
 }
 
 .toggle {

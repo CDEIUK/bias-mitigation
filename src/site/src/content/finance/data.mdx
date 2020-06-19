@@ -17,9 +17,11 @@ Our goal is to try and predict an individual's annual income in order to target 
 
 ## Data identification
 
-The data we have available to us is the Adult data set from the [UCI Machine learning repository][adult-data].
+The data we have available to us is the Adult data set from the [UCI Machine learning repository][adult-data]. The task is to predict whether or not an individual is a high earner from their demographics.
 
 <Collapse label="Features in the adult data set">
+
+The Adult data set contains the following features.
 
 - `age`: The age of the individual in years,
 - `capital_gain`: Capital gain in the previous year,
@@ -36,7 +38,9 @@ The data we have available to us is the Adult data set from the [UCI Machine lea
 - `sex`: The individual's sex,
 - `workclass`: The industry / sector that the individual works in.
 
-In addition to this, the binary label `salary` encodes whether individual earns more or less than \$50,000.
+In addition to this, the binary label `salary` encodes whether individual earns more or less than \$50,000. We refer to those that earn more than \$50,000 as "high earners" and those who don't as "low earners".
+
+We drop the `fnlwgt` feature, as it is not relevant to the prediction task at hand, and the `education-num` feature as it duplicates the information available in the `education` feature.
 
 </Collapse>
 
@@ -46,17 +50,15 @@ Another consideration is the representation of different groups in the data. Men
 
 Since we are merely demonstrating different methods of measuring and mitigating bias we proceed with the data as is, but in a real world application we should see if we can collect more data in order to ensure better representation.
 
-As well as determining whether we could collect more data, we should also consider whether the data we have is appropriate for the task at hand. In this case we decide that the `fnlwgt` feature is not relevant to the task of predicting someone's salary, and drop the `education-num` column as it contains duplicate information also available in the `education` column. Of the remaining features we decide that for now we are happy to include all of them in the model, though we should take care to measure the impact of including features such as `race` or `sex`. As discussed in our report, simply excluding these features is not in any case guaranteed to prevent the resulting model to be unbiased. We scale the continuous ones, and one-hot encode the categorical ones ready for modelling. You can see all of the preprocessing we do [here][binder-data].
-
-Once the data has been preprocessed, we can look at bias that is present in the data, before we have even trained a model. First, we look at the proportion of men and women that earn more than \$50,000 dollars, we see that the proportion is much higher for men.
+Once the data has been preprocessed, we can look at bias that is present in the data, before worrying about bias introduced by the model. First, we look at the proportion of men and women that are high earners, we see that the proportion is much higher for men.
 
 <LazyPlot {...salary_by_sex} />
 
-Similarly, there is a large disparity in proportion of individuals earning more than \$50,000 across different races.
+Similarly, there is a large disparity in proportion of high earners across different races.
 
 <LazyPlot {...salary_by_race} />
 
-Finally, we identify a possible "legitimate risk factor" in the `hours_per_week` feature. There is a clear relationship between the number of hours worked per week and the chances that the individual earns more than \$50,000, which stands to reason. Of course we should be careful, because the number of hours worked per week by any one person is itself influenced by societal factors. For example, women are more often than men expected to play the role of a home-maker, and so may not work as many hours.
+Finally, we identify a possible "legitimate risk factor" in the `hours_per_week` feature. There is a clear relationship between the number of hours worked per week and the chances that the individual is a high earner, which stands to reason. Of course we should be careful, because the number of hours worked per week by any one person is itself influenced by societal factors. For example, women are more often than men expected to play the role of a home-maker, and so may not work as many hours.
 
 <LazyPlot {...salary_by_hpw} />
 
