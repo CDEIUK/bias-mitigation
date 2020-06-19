@@ -23,7 +23,7 @@ jobs:
           if [ "${STATUSES_URL}" = "null" ]; then echo "Invalid Statuses URL, stop here to avoid issues further down."; echo $API_RESPONSE | jq . ; exit 1; fi
           echo "::set-output name=statuses_url::$STATUSES_URL"
 
-      - name: Cache Python packages
+      - name: Cache Python
         id: cache-python
         uses: actions/cache@v2
         with:
@@ -59,8 +59,7 @@ jobs:
           source venv/bin/activate
           make -j $(nproc) figures
 
-
-      - name: Cache Node.js packages
+      - name: Cache Node
         id: cache-node
         uses: actions/cache@v2
         with:
