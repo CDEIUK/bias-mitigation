@@ -12,7 +12,7 @@ export default function Collapse({ children, label }) {
         onClick={() => setIsOpen(!isOpen)}
         role="button"
         tabIndex={0}
-        onKeyDown={ () => {
+        onKeyDown={() => {
           setIsOpen(!isOpen)
         }}
       >
