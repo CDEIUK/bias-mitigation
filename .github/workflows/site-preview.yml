@@ -33,9 +33,7 @@ jobs:
         id: cache-python
         uses: actions/cache@v2
         with:
-          # This pip path is specific to Ubuntu
           path: |
-            ~/.cache/pip
             src/venv
           # Look to see if there is a cache hit for the corresponding requirements file
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}-${{ hashFiles('src/helpers/**') }}
