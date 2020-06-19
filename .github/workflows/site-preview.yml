@@ -18,7 +18,7 @@ jobs:
         id: deployment
         run: |
           echo "Creating deployment for ref: $GITHUB_REF"
-          API_RESPONSE=$(curl -H "Accept: application/vnd.github.ant-man-preview+json" -H "Authorization: token ${{ github.token }}" -X POST -H 'Content-Type: application/json' -d '{"ref": "'"$GITHUB_REF"'", "environment": "preview", "transient_environment": true, "description": "Pages preview", "required_contexts": []}' "https://api.github.com/repos/$GITHUB_REPOSITORY/deployments")
+          API_RESPONSE=$(curl -H "Accept: application/vnd.github.ant-man-preview+json" -H "Authorization: token ${{ github.token }}" -X POST -H 'Content-Type: application/json' -d '{"ref": "'"$GITHUB_REF"'", "environment": "preview", "transient_environment": true, "description": "Pages preview", "required_contexts": [], "auto_merge": false}' "https://api.github.com/repos/$GITHUB_REPOSITORY/deployments")
           STATUSES_URL=$(echo $API_RESPONSE | jq .statuses_url)
           if [ "${STATUSES_URL}" = "null" ]; then echo "Invalid Statuses URL, stop here to avoid issues further down."; echo $API_RESPONSE | jq . ; exit 1; fi
           echo "::set-output name=statuses_url::$STATUSES_URL"
@@ -29,9 +29,26 @@ jobs:
           python-version: '3.8'
           architecture: 'x64'
 
+      - name: Cache Python
+        id: cache-python
+        uses: actions/cache@v2
+        with:
+          path: |
+            src/venv
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}-${{ hashFiles('**/src/helpers/**') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Setup Virtualenv
+        run: |
+          python3 -m pip install --upgrade pip virtualenv
+          virtualenv src/venv
+
       - name: Install dependencies
         working-directory: src/
         run: |
+          source venv/bin/activate
           make preinstall
           make install
           make install-pipeline
@@ -39,7 +56,8 @@ jobs:
       - name: Build Plots
         working-directory: src/
         run: |
-          make figures
+          source venv/bin/activate
+          make -j $(nproc) figures
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
