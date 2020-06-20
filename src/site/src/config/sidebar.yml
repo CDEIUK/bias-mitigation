@@ -1,6 +1,6 @@
 # Sidebar navigation
 
-- label: Use cases
+- label: Use Cases
   items:
     - label: Finance
       link: /finance
@@ -8,9 +8,11 @@
       link: /recruiting
 - label: Modelling
   items:
-    - label: Unfair baseline
+    - label: Unfair Baseline
       link: /baseline
     - label: Interventions
       link: /interventions
 - label: Conclusions
-  link: /conclusion
+  link: /conclusions
+- label: Additional Resources
+  link: /additional-resources
