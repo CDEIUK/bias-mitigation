@@ -1,5 +1,5 @@
 ---
-title: The Adult data set
+title: Finance - the Adult data set
 ---
 
 import Collapse from "../components/collapse"
@@ -9,34 +9,26 @@ import salary_by_sex from "../figures/finance/salary_by_sex.json"
 import salary_by_race from "../figures/finance/salary_by_race.json"
 import salary_by_hpw from "../figures/finance/salary_by_hours_per_week.json"
 
-Before we do any modelling, we should think about what we are trying to achieve and identify possible bias-related risks, as well as whether the data we have available to us is appropriate for the task.
-
-## Purpose identification
-
-Our goal is to try and predict an individual's annual income in order to target marketing for a premium credit card. Since our model is based on demographic information, it is at risk of perpetuating or exacerbating demographic inequality. In particular we should be mindful of possible racial disparities present in the data, which the model could then use for classification. Similarly there is a gender pay gap which is likely to manifest in the data we have available to us, so we are vulnerable to gender bias.
-
-## Data identification
-
-The data we have available to us is the Adult data set from the [UCI Machine learning repository][adult-data]. The task is to predict whether or not an individual is a high earner from their demographics.
+The first data set we will be considering is the Adult data set from the [UCI Machine learning repository][adult-data]. It was derived from the US Census, and contains demographic information from several thousand individuals. The typical task on this data set is to predict whether or not an individual is a high earner from their demographics. We will assume that we are a credit card company that wants to target marketing of a new premium credit card to high earning individuals using a machine learning model. We have found the Adult data set and want to use it to train a first version of the model.
 
 <Collapse label="Features in the adult data set">
 
 The Adult data set contains the following features.
 
-- `age`: The age of the individual in years,
-- `capital_gain`: Capital gain in the previous year,
-- `capital_loss`: Capital loss in the previous year,
-- `education`: Highest level of education achieved by the individual,
-- `education-num`: A numeric form of the highest level of education achieved,
-- `fnlwgt`: An estimate of the number of individuals in the population with the same demographics as this individual,
-- `hours_per_week`: Hours worked per week,
-- `marital_status`: The marital status of the individual,
-- `native_country`: The native country of the individual,
-- `occupation`: The occupation of the individual,
-- `race`: The individual's race,
-- `relationship`: The individual's relationship status,
-- `sex`: The individual's sex,
-- `workclass`: The industry / sector that the individual works in.
+- `age`: the age of the individual in years,
+- `capital_gain`: capital gain in the previous year,
+- `capital_loss`: capital loss in the previous year,
+- `education`: highest level of education achieved by the individual,
+- `education-num`: a numeric form of the highest level of education achieved,
+- `fnlwgt`: an estimate of the number of individuals in the population with the same demographics as this individual,
+- `hours_per_week`: hours worked per week,
+- `marital_status`: the marital status of the individual,
+- `native_country`: the native country of the individual,
+- `occupation`: the occupation of the individual,
+- `race`: the individual's race,
+- `relationship`: the individual's relationship status,
+- `sex`: the individual's sex,
+- `workclass`: the industry / sector that the individual works in.
 
 In addition to this, the binary label `salary` encodes whether individual earns more or less than \$50,000. We refer to those that earn more than \$50,000 as "high earners" and those who don't as "low earners".
 
@@ -44,7 +36,17 @@ We drop the `fnlwgt` feature, as it is not relevant to the prediction task at ha
 
 </Collapse>
 
-In this case we don't have the means to collect different data. In the real world we would always consider whether we could have access to better data that is more representative. For example, the data we are using was collected in 1994, so it's quite likely that the demographic patterns captured in the data are no longer representative. If we were performing this task for real we would likely recommend that more up to date data is collected, that better reflects demographic shifts in the intervening 26 years.
+We have selected this data set as it is open access, and well known in the machine learning community. Moreover it is commonly used in experiments in the academic literature on fairness, which means we can compare our findings here to those published in many of the original papers.
+
+Before we proceed with modelling, we should think about what we are trying to achieve and identify possible bias-related risks, as well as whether the data we have available to us is appropriate for the task.
+
+## Purpose identification
+
+Our goal is to try and predict an individual's annual income in order to target marketing for a premium credit card. Since our model is based on demographic information, it is at risk of perpetuating or exacerbating demographic inequality. In particular we should be mindful of possible racial or sex-based disparities present in the data, which the model could then use for classification.
+
+## Data identification
+
+In the case of this hypothetical example we don't have the means to collect different data. In the real world we would always consider whether we could have access to better data that is more representative. For example, the data we are using was collected in 1994, so it's quite likely that the demographic patterns captured in the data are no longer representative. If we were performing this task for real we would likely recommend that more up to date data is collected, that better reflects demographic shifts in the intervening 26 years. Moreover the data was collected in the US, if the model we are training is intended for UK use this would be a further reason to try and collect more data.
 
 Another consideration is the representation of different groups in the data. Men outnumber women almost two to one, white respondents outnumber black respondents nine to one, and asian respondents almost thirty to one. This means that our data is not representative of the overall population which isn't ideal, but the bigger problem is that there are relatively few observations of precisely those individuals who are at risk of mistreatment. In order to minimise the risk of bias we should make sure that all groups are well represented in our data.
 
@@ -58,11 +60,13 @@ Similarly, there is a large disparity in proportion of high earners across diffe
 
 <LazyPlot {...salary_by_race} />
 
-Finally, we identify a possible "legitimate risk factor" in the `hours_per_week` feature. There is a clear relationship between the number of hours worked per week and the chances that the individual is a high earner, which stands to reason. Of course we should be careful, because the number of hours worked per week by any one person is itself influenced by societal factors. For example, women are more often than men expected to play the role of a home-maker, and so may not work as many hours.
+Finally there is, perhaps unsurprisingly, a clear relationship between the number of hours worked per week and the chances that the individual is a high earner. We will consider this as a "legitimate risk factor" when we investigate imposing conditional demographic parity. This means that we would allow ourselves to target protected groups at different rates, if the disparity is due to those groups working different numbers of hours per week on average.
+
+Whether this is the right notion of fairness is unclear. On the one hand basing our decision on the hours worked per week feature seems reasonable, on the other hand the number of hours an individual works each week could itself be a manifestation of systemic biases, such as societal pressure for women to stay home and raise children. When selecting legitimate risk factors for analysing fairness it is important we consider whether they are themselves just a proxy for systemic bias.
 
 <LazyPlot {...salary_by_hpw} />
 
-Next we'll try training a model without any attempt to mitigate bias and investigate the results.
+Next we'll look at the data we use for the recruiting use case.
 
 [adult-data]: https://archive.ics.uci.edu/ml/datasets/Adult
 [binder-data]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Fdata.ipynb "Open notebook on Binder"

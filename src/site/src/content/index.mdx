@@ -2,17 +2,14 @@
 title: Introduction
 ---
 
-This website is a companion to the CDEI's review of bias in decision making algorithms. As part of that report we reviewed the academic literature and current best practices in industry to propose some best practice recommendations for mitigating unfairness.
+This website is a companion to the CDEI's review of bias in decision making algorithms. We use two datasets, representing applications in two industries where automated decision making is already having a big impact, namely finance and recruiting. On each data set we train models and explore algorithms for bias mitigation in machine learning algorithms. Where possible we use existing open source implementations of the interventions. If none are available we supply our own minimal implementations.
 
-We here present the results of experimentation with a number of interventions from the academic literature on two data sets, one representing an application in finance, the other in recruiting.
+Our goal is to both demonstrate how such interventions can be carried out, and to compare the different approaches and their implementations. We will also use our experiments to discuss some of the ethical and technical considerations that are important for mitigating bias effectively.
 
-## Finance
+All of our analysis is available in the form of [Jupyter notebooks][jupyter] which can be run in the browser on Binder **BINDER LINK**, or run locally by cloning from the accompanying GitHub repository **GITHUB LINK**. The supplied notebooks can be used to regenerate the data and retrain the models, but for full reproducibility we also include our trained models and processed data in the repository.
 
-We train fair models on the well known [Adult data set][adult-data] from the UCI machine learning repository. Click [here](finance/intro) for more details including an overview of the data.
-
-## Recruiting
-
-For the recruiting application we train models on a synthetic data set of job applicants. Click [here](recruiting/intro) for more details, including an overview of the data generation process.
+We will start be introducing the two data sets that will be used throughout to compare the different interventions.
 
 [adult-data]: https://archive.ics.uci.edu/ml/datasets/Adult
 [binder-data]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Fdata.ipynb "Open notebook on Binder"
+[jupyter]: https://jupyter.org/
