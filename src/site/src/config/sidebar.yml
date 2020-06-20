@@ -1,7 +1,5 @@
 # Sidebar navigation
 
-- label: Overview
-  link: /
 - label: Use cases
   items:
     - label: Finance
@@ -10,8 +8,8 @@
       link: /recruiting
 - label: Modelling
   items:
-    - label: Biased models
-      link: /biased-models
+    - label: Unfair baseline
+      link: /baseline
     - label: Interventions
       link: /interventions
 - label: Conclusions
