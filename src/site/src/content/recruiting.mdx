@@ -1,0 +1,62 @@
+---
+title: Creating synthetic recruiting data
+---
+
+import Collapse from "../components/collapse"
+import { LazyPlot } from "../components/siteplotly"
+
+import employed_by_sex from "../figures/recruiting/employed_by_sex.json"
+import employed_by_race from "../figures/recruiting/employed_by_race.json"
+import employed_by_experience from "../figures/recruiting/employed_by_experience.json"
+
+The second data set we wil be considering is one that we have generated ourselves. We chose this approach as there are relatively few open access recruiting data sets available, and of those either we had some data quality concerns, or there was no sensitive information available to assess bias with. The full details of our data generation process can be seen in [this notebook][binder-data]. We will assume that we are a large corporation that wants to automate part of its hiring pipeline using a machine learning model trained to predict hiring decisions on historical applicants.
+
+<Collapse label="Features in the synthetic data">
+
+The synthetic data we generate contains the following features, which we chose by drawing on real-life hiring data.
+
+- `sex_male`: the sex of the applicant,
+- `race_white`: the race of the applicant,
+- `years_experience`: the number of years of relevant work experience the applicant has,
+- `referred`: whether the applicant was referred for the position or not,
+- `gcse`: number of GCSEs,
+- `a_level`: number of A-level qualifications,
+- `russell_group`: whether the applicant attended a Russell Group university,
+- `honours`: whether the applicant graduated with honours,
+- `years_volunteer`: number of years of volunteering experience,
+- `income`: the applicant's current income,
+- `it_skills`: the applicant's IT skill,
+- `years_gaps`: number of years of gaps in the applicant's CV,
+- `quality_cv`: quality of the written CV,
+
+In addition to this, the binary label `employed_yes` encodes whether the applicant was employed or not.
+
+</Collapse>
+
+Before we do any modelling, we should think about what we are trying to achieve and identify possible bias-related risks, as well as whether the data we have available to us is appropriate for the task.
+
+## Purpose identification
+
+Our goal is to try and predict whether an individual should receive a job offer based on their experience, qualifications and demographics. We will do so by training a model on historical job applicants to predict whether they received an offer or not. We assume that the historical decisions will contain biases against certain groups that we do not wish to perpetuate. Moreover, many of the features such as the individual's qualifications will reflect systemic biases which could negatively influence our decision making. We expect our model will be vulnerable to discrimination both by race and sex.
+
+## Data identification
+
+Since we have generated the data, we have ensured that we only generated relevant features to the task of predicting whether an applicant was employed or not. Moreover we have ensured that the data is balanced across the protected groups, i.e. the data is evenly split between male and female, and white and non-white applicants. Of course in general this won't be true, but ensuring different protected groups are well represented is often an easy way to reduce bias, and hence if the data were not balanced we should investigate whether it's possible to collect more data.
+
+Once the data has been preprocessed, we can look at bias that is present in the data, before we have even trained a model. First, we look at the proportion of male and female applicants employed, we see that the proportion is much higher for men.
+
+<LazyPlot {...employed_by_sex} />
+
+Similarly, there is a large disparity in proportion of successful applicants across different races.
+
+<LazyPlot {...employed_by_race} />
+
+Finally there is, perhaps unsurprisingly, a clear relationship between the number of years of experience and the chances that the individual is a high earner. We will consider this as a "legitimate risk factor" when we investigate imposing conditional demographic parity. This means that we would allow ourselves to target protected groups at different rates, if the disparity is due to those groups having differing amounts of experience on average.
+
+Whether this is the right notion of fairness is unclear. On the one hand basing our decision on the experience of the applicant seems reasonable, on the other hand the number of years of experience the applicant has could itself be a manifestation of systemic biases, and merely reflect the exact historical hiring biases we want to mitigate. When selecting legitimate risk factors for analysing fairness it is important we consider whether they are themselves just a proxy for systemic bias.
+
+<LazyPlot {...employed_by_experience} />
+
+Next we'll try training a model without any attempt to mitigate bias and investigate the results.
+
+[binder-data]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Fdata.ipynb "Open notebook on Binder"

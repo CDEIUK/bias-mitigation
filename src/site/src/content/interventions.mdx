@@ -2,13 +2,16 @@
 title: Interventions
 ---
 
-import Collapse from "../../components/collapse"
+import Collapse from "../components/collapse"
+import { LazyPlot } from "../components/siteplotly"
+
+import adv_dp from "../figures/finance/interventions/adversarial-dp.json"
+import adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
+import adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
+import adv_eo from "../figures/finance/interventions/adversarial-eo.json"
+import adv_bleo from "../figures/finance/interventions/bl-adversarial-eo.json"
 
 Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on **BINDER** and the code is all available on GitHub **LINK TO CDEI GITHUB**.
-
-## Summary
-
-High-level comparison of methods goes here?
 
 ## Feldman
 
@@ -34,6 +37,8 @@ The algorithm is very widely applicable, as it only needs access to the model ou
 
 ## Kamiran
 
+Here we give details on the fairness intervention by Kamiran et al. (2012) which relabels data points for which the model prediction is not decisive. Such data points are assigned the positive label if they belong to the unprivileged group and the negative label otherwise.
+
 ## Kamiran - Calders
 
 ## Kamishima
@@ -53,6 +58,26 @@ The model is trained in tandem with an adversary, which we refer to as the discr
 To achieve conditional demographic parity we additionally pass legitimate risk factors to the discriminator, so that the model receives no benefit from removing information about the protected attributes from its output that is contained in those factors. Similarly to achieve equalised odds we allow the discriminator to additionally see the labels during training, so that the model is not incentivised to remove from its output any information about the sensitive data that is contained in the labels.
 
 </Collapse>
+
+### Demographic parity
+
+This algorithm is very effective at imposing demographic parity. With minimal tuning we saw a significant increase in demographic parity and a minimal decrease in accuracy.
+
+<LazyPlot {...adv_dp} />
+
+### Conditional demographic parity
+
+Similarly imposing conditional demographic parity with respect to `hours_per_week` with this approach proved very effective. Again without much tuning we saw a significant improvement.
+
+<LazyPlot {...adv_blcdp} />
+<LazyPlot {...adv_cdp} />
+
+### Equal opportunity
+
+Equal opportunity proved more challenging. We saw some improvement, but if anything the model somewhat over-corrected. The core problem appears to be that the tension between performance and fairness constraints leads to some instability during training that is typical of adversarial methods. Zhang et al. recommend a few possible strategies for addressing these problems, such as modifying the discriminator loss weight over time so as to slowly increase the penalty for unfairness. In our implementation we warm up without a fairness constraint, but then turn on the fairness constraint suddenly rather than slowly increase it, so there are things we could have done differently to address some of the training issues, however it's clear that imposing equalised odds with this algorithm is more delicate than other definitions of fairness.
+
+<LazyPlot {...adv_bleo} />
+<LazyPlot {...adv_eo} />
 
 ## Conclusions
 

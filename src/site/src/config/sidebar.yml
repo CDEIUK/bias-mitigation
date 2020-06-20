@@ -1,22 +1,16 @@
 # Sidebar navigation
 
-- label: 'Introduction'
-  link: '/'
-- label: Finance
+- label: Use cases
   items:
-    - label: 'Intro'
-      link: '/finance/intro'
-    - label: 'Dataset'
-      link: '/finance/data'
-    - label: 'Biased model'
-      link: '/finance/biased-model'
-    - label: 'Interventions'
-      link: '/finance/interventions'
-    - label: 'Conclusion'
-      link: '/finance/conclusion'
-- label: Recruiting
+    - label: Finance
+      link: /finance
+    - label: Recruiting
+      link: /recruiting
+- label: Modelling
   items:
-    - label: 'Intro'
-      link: '/recruiting/intro'
-    - label: 'Dataset'
-      link: '/recruiting/data'
+    - label: Unfair baseline
+      link: /baseline
+    - label: Interventions
+      link: /interventions
+- label: Conclusions
+  link: /conclusion
