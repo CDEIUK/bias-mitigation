@@ -5,27 +5,77 @@ title: Interventions
 import Collapse from "../components/collapse"
 import { LazyPlot } from "../components/siteplotly"
 
-import adv_dp from "../figures/finance/interventions/adversarial-dp.json"
-import adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
-import adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
-import adv_eo from "../figures/finance/interventions/adversarial-eo.json"
-import adv_bleo from "../figures/finance/interventions/bl-adversarial-eo.json"
+import fin_feld_dp from "../figures/finance/interventions/feldman-dp.json"
+import rec_feld_dp from "../figures/recruiting/interventions/feldman-dp.json"
+
+import fin_hardt_eo from "../figures/finance/interventions/hardt-eo.json"
+import rec_hardt_eo from "../figures/recruiting/interventions/hardt-eo.json"
+
+import fin_adv_dp from "../figures/finance/interventions/adversarial-dp.json"
+import fin_adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
+import fin_adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
+import fin_adv_eo from "../figures/finance/interventions/adversarial-eo.json"
+import fin_adv_bleo from "../figures/finance/interventions/bl-adversarial-eo.json"
 
 Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on **BINDER** and the code is all available on GitHub **LINK TO CDEI GITHUB**.
 
-## Feldman
+## Feature modification - Feldman et al.
 
-Feldman et. al introduce a pre-processing technique for imposing demographic parity. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+[Feldman et. al][feldman] introduce a pre-processing technique for imposing demographic parity. It is implemented in [IBM's AI Fairness 360][aif-360] library.
 
 <Collapse label="How it works">
 
-The algorithm assumes a binary or categorical protected attribute. It adjusts the distributions of the features so that they are similar for each protected group. For example, if `hours_per_week` is different for men and women, the disparate impact remover would adjust the data to bring the two distributions in line. This can be done for example by inverting the cumulative distribution function.
+The algorithm assumes a binary or categorical protected attribute. It adjusts the distributions of the features so that they are the same in each protected group. For example, in the Adult data set `hours_per_week` is generally lower for women than for men. In this case the algorithm would increase the hours worked per week slightly for women in the dataset, and reduce hours worked per week for men in the data set, in such a way that the two distributions look the same.
+
+The result of applying the algorithm is a modified dataset, such that each feature in the data has been decorrelated from the protected attribute. The idea is that a model trained on this data, should not be able to learn to discriminate based on the protected attributes.
 
 </Collapse>
 
-## Hardt
+<Collapse label="Experimental results">
 
-Hardt et al introduce a post-processing technique for imposing equalised odds and equal opportunity. It is implemented in [IBM's AI Fairness 360][aif-360] library, and [Microsoft's FairLearn][fairlearn] library.
+### Finance
+
+We applied Feldman to the adult dataset in order to impose demographic parity with respect to sex. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_feld_dp} />
+</div>
+
+This is likely because features that are highly correlated with `sex` remain in the data such as `marital-status`.
+
+### Recruiting
+
+We also applied it to the synethetic recruiting data, this time trying to impose demographic parity with respect to race. In this case the intervention was marginally more effective, but still didn't come close to actually achieving fairness. Demographic parity difference decreased from 0.327 in the baseline model to 0.269 for the model trained on fair data. The bar chart of scores shows a modest improvement, but a significant disparity between the races remains.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_feld_dp} />
+</div>
+
+</Collapse>
+
+### Summary
+
+In our experiments this intervention was not very effective. Other experiments we have seen with this method achieve better results by doing additional feature selection, possibly there was too much correlation between our features for data modification to work well.
+
+We note that Feldman can be adapted to work as a post-processing technique. This is an unpublished idea that has been [observed by Hardt][hardt-neurips]. The distribution modification algorithm is applied to the scores of an existing model rather than the data. This is a simple but effective strategy for imposing demographic parity.
+
+## Decision threshold modification - Hardt et al.
+
+[Hardt et al.][hardt] introduce a post-processing technique for imposing equalised odds and equal opportunity. It is implemented in [IBM's AI Fairness 360][aif-360] library, and [Microsoft's FairLearn][fairlearn] library.
 
 <Collapse label="How it works">
 
@@ -34,6 +84,46 @@ Equalised odds requires that the true and false positive rates are equal for eac
 The algorithm is very widely applicable, as it only needs access to the model outputs and the protected attribute. Moreover Hardt et al. show that their algorithm is optimal among post-processing algorithms for equalised odds. However, the possible randomness present in predictions may not be satisfactory when individual fairness is a concern, as two identical individuals could receive different predictions due to the stochasticity.
 
 </Collapse>
+
+<Collapse label="Experimental results">
+
+### Finance
+
+We applied Hardt to the adult dataset in order to impose equalised odds with respect to sex. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_hardt_eo} />
+</div>
+
+### Recruiting
+
+We also applied it to the synethetic recruiting data, this time trying to impose equalised odds with respect to race. Again it was extremely effective, with test set equalised odds difference being negligible, and test set accuracy falling about three percentage points.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_hardt_eo} />
+</div>
+
+</Collapse>
+
+### Summary
+
+The algorithm of Hardt et al. is extremely effective, which is not surprising as they prove in their paper that their intervention is optimal among post-processing algorithms for equalised odds.
+
+There are perhaps two drawbacks. The first is that it achieves fairness through some randomisation of decision thresholds, which means that the post-processed classifier can fail individual fairness badly. In fact two identical individuals could receive different outcomes. The second is that it fully mitigates bias, which can have a negative performance implications. It is not possible to balance fairness and accuracy requirements by reducing the bias partially but not fully.
 
 ## Kamiran
 
@@ -85,4 +175,7 @@ Say something really smart here.
 
 [aif-360]: https://aif360.readthedocs.io/en/latest/
 [fairlearn]: https://fairlearn.github.io/
+[feldman]: https://dl.acm.org/doi/10.1145/2783258.2783311
+[hardt]: https://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf
+[hardt-neurips]: https://mrtz.org/nips17/#/41
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
