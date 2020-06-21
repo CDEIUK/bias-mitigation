@@ -2,76 +2,86 @@
 Helper functions for computing various fairness measures
 """
 import numpy as np
+from fairlearn.metrics import (
+    demographic_parity_difference,
+    demographic_parity_ratio,
+)
 
 
-def accuracy(scores, labels):
+def accuracy(labels, scores, threshold=0.5):
     """
-    Computes accuracy
+    Computes accuracy from scores and labels. Assumes binary classification.
     """
-    return ((scores >= 0.5) == labels).mean()
+    return ((scores >= threshold) == labels).mean()
 
 
-def disparate_impact_p(scores, attr):
+def demographic_parity_prob(scores, attr):
     """
-    Computes disparate impact on probability level
+    Computes demographic parity on probability level.
     """
     a_mask = attr == 1
     return np.abs(scores[~a_mask].mean() - scores[a_mask].mean())
 
 
-def disparate_impact_d(scores, attr):
+def conditional_demographic_parity_difference(labels, pred, attr, groups):
     """
-    Computes disparate impact on decision level
+    Calculate conditional demographic parity by calculating the average
+    demographic parity difference across bins defined by `groups`.
     """
-    a_mask = attr == 1
-    return np.abs(
-        (scores[~a_mask] >= 0.5).mean() - (scores[a_mask] >= 0.5).mean()
-    )
+    diffs = []
+
+    for group in set(groups):
+        mask = groups == group
+
+        diffs.append(
+            demographic_parity_difference(
+                labels[mask], pred[mask], sensitive_features=attr[mask]
+            )
+        )
+
+    return np.mean(diffs)
 
 
-def equal_opportunity_p(scores, attr, labels):
+def conditional_demographic_parity_ratio(labels, pred, attr, groups):
+    """
+    Calculate conditional demographic parity by calculating the average
+    demographic parity ratio across bins defined by `groups`.
+    """
+    ratios = []
+
+    for group in set(groups):
+        mask = groups == group
+
+        ratios.append(
+            demographic_parity_ratio(
+                labels[mask], pred[mask], sensitive_features=attr[mask]
+            )
+        )
+
+    return np.mean(ratios)
+
+
+def equal_opportunity_prob(labels, scores, attr):
     """
     Computes equal opportunity on probability level
     """
-    a_mask = attr == 1
     y_mask = labels == 1
-    return disparate_impact_p(scores[y_mask], a_mask[y_mask])
+    return demographic_parity_prob(scores[y_mask], attr[y_mask])
 
 
-def equal_opportunity_d(scores, attr, labels):
-    """
-    Computes equal opportunity on decision level
-    """
-    a_mask = attr == 1
-    y_mask = labels == 1
-    return disparate_impact_d(scores[y_mask], a_mask[y_mask])
-
-
-def equalised_odds_p(scores, attr, labels):
+def equalised_odds_prob(labels, scores, attr):
     """
     Computes equalised odds on probability level
     """
     a_mask = attr == 1
     y_mask = labels == 1
 
-    eo_0 = disparate_impact_p(scores[~y_mask], a_mask[~y_mask])
-    eo_1 = disparate_impact_p(scores[y_mask], a_mask[y_mask])
+    eo_0 = demographic_parity_prob(scores[~y_mask], a_mask[~y_mask])
+    eo_1 = demographic_parity_prob(scores[y_mask], a_mask[y_mask])
     return np.mean([eo_0, eo_1])
 
 
-def equalised_odds_d(scores, attr, labels):
-    """
-    Computes equalised odds on decision level
-    """
-    a_mask = attr == 1
-    y_mask = labels == 1
-
-    eo_0 = disparate_impact_d(scores[~y_mask], a_mask[~y_mask])
-    eo_1 = disparate_impact_d(scores[y_mask], a_mask[y_mask])
-    return np.mean([eo_0, eo_1])
-
-
-def calibration(scores, attr, labels, n):
+def calibration(labels, scores, attr, n_bins=10):
     """
     Computes calibration
     """
@@ -79,7 +89,7 @@ def calibration(scores, attr, labels, n):
     y_mask = labels == 1
 
     # Count differences between two groups within bins
-    bins = np.linspace(0, 1, n + 1)
+    bins = np.linspace(0, 1, n_bins + 1)
 
     cal_y1 = 0
     cal_y0 = 0
@@ -125,4 +135,4 @@ def calibration(scores, attr, labels, n):
         )
         cal_y0 += 1.0 - np.abs(proportion_y0_a0 - proportion_y0_a1)
 
-    return np.mean([cal_y1, cal_y0]) / n
+    return np.mean([cal_y1, cal_y0]) / n_bins

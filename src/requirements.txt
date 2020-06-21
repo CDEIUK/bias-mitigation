@@ -1,4 +1,5 @@
 aif360[DisparateImpactRemover]==0.3.0
+fairlearn==0.4.6
 joblib==0.15.1
 matplotlib==3.2.1
 numba==0.48.0
