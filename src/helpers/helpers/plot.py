@@ -62,6 +62,50 @@ def group_box_plots(
     )
 
 
+def group_bar_plots(
+    scores,
+    attr,
+    groups=None,
+    group_names=None,
+    title="",
+    xlabel="",
+    ylabel="",
+):
+    if groups is None:
+        groups = np.zeros_like(scores)
+        group_names = [""]
+
+    unique_groups = sorted(set(groups))
+
+    return go.Figure(
+        data=[
+            go.Bar(
+                x=[
+                    scores[(attr == a) & (groups == group)].mean()
+                    for group in unique_groups
+                ],
+                y=unique_groups,
+                name=a,
+                orientation="h",
+                hoverinfo="name+x",
+            )
+            for a in sorted(set(attr))
+        ],
+        layout={
+            "barmode": "group",
+            "height": 200 + 40 * len(set(attr)) * len(set(groups)),
+            "hovermode": "closest",
+            "title": title,
+            "xaxis": {"hoverformat": ".3f", "title": xlabel, "range": [0, 1]},
+            "yaxis": {
+                "tickvals": unique_groups,
+                "ticktext": group_names or unique_groups,
+                "title": ylabel,
+            },
+        },
+    )
+
+
 def group_roc_curves(labels, scores, attr):
     """
     Helper function for plotting group ROC curves. Assumes binary labels.
