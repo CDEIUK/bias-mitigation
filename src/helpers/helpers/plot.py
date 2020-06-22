@@ -34,6 +34,16 @@ def group_box_plots(
 
     unique_groups = sorted(set(groups))
 
+    ## Colors predefined for adjustability
+    transparent_color = "rgba(0,0,0,0)"
+    # Outlines
+    grid_color = "rgb(159, 197, 232)"
+    x_zero_line_color = grid_color
+    y_zero_line_color = transparent_color
+    # Background
+    paper_bgcolor = transparent_color
+    plot_bgcolor = transparent_color
+
     return go.Figure(
         data=[
             go.Box(
@@ -48,16 +58,26 @@ def group_box_plots(
             for i, a in enumerate(sorted(set(attr)))
         ],
         layout={
+            "autosize": True,
             "boxmode": "group",
             "height": 200 + 40 * len(set(attr)) * len(set(groups)),
             "hovermode": "closest",
             "title": title,
-            "xaxis": {"hoverformat": ".3f", "title": xlabel},
+            "xaxis": {
+                "hoverformat": ".3f",
+                "title": xlabel,
+                "gridcolor": grid_color,
+                "zerolinecolor": x_zero_line_color,
+            },
             "yaxis": {
                 "tickvals": unique_groups,
                 "ticktext": group_names or unique_groups,
                 "title": ylabel,
+                "gridcolor": grid_color,
+                "zerolinecolor": y_zero_line_color,
             },
+            "paper_bgcolor": paper_bgcolor,
+            "plot_bgcolor": plot_bgcolor,
         },
     )
 
