@@ -34,7 +34,7 @@ def group_box_plots(
 
     unique_groups = sorted(set(groups))
 
-    ## Colors predefined for adjustability
+    # Colors predefined for adjustability
     transparent_color = "rgba(0,0,0,0)"
     # Outlines
     grid_color = "rgb(159, 197, 232)"
