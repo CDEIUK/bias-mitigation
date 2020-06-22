@@ -11,6 +11,13 @@ import rec_feld_dp from "../figures/recruiting/interventions/feldman-dp.json"
 import fin_hardt_eo from "../figures/finance/interventions/hardt-eo.json"
 import rec_hardt_eo from "../figures/recruiting/interventions/hardt-eo.json"
 
+import fin_kamiran_dp from "../figures/finance/interventions/kamiran-dp.json"
+import fin_kamiran_eo from "../figures/finance/interventions/kamiran-eo.json"
+import fin_kamiran_eopp from "../figures/finance/interventions/kamiran-eopp.json"
+import rec_kamiran_dp from "../figures/recruiting/interventions/kamiran-dp.json"
+import rec_kamiran_eo from "../figures/recruiting/interventions/kamiran-eo.json"
+import rec_kamiran_eopp from "../figures/recruiting/interventions/kamiran-eopp.json"
+
 import fin_adv_dp from "../figures/finance/interventions/adversarial-dp.json"
 import fin_adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
 import fin_adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
@@ -35,7 +42,7 @@ The result of applying the algorithm is a modified dataset, such that each featu
 
 ### Finance
 
-We applied Feldman to the adult dataset in order to impose demographic parity with respect to sex. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
 
 <div
   style={{
@@ -89,7 +96,7 @@ The algorithm is very widely applicable, as it only needs access to the model ou
 
 ### Finance
 
-We applied Hardt to the adult dataset in order to impose equalised odds with respect to sex. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
+We applied the intervention to the adult dataset in order to impose equalised odds with respect to sex. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
 
 <div
   style={{
@@ -123,11 +130,111 @@ We also applied it to the synethetic recruiting data, this time trying to impose
 
 The algorithm of Hardt et al. is extremely effective, which is not surprising as they prove in their paper that their intervention is optimal among post-processing algorithms for equalised odds.
 
-There are perhaps two drawbacks. The first is that it achieves fairness through some randomisation of decision thresholds, which means that the post-processed classifier can fail individual fairness badly. In fact two identical individuals could receive different outcomes. The second is that it fully mitigates bias, which can have a negative performance implications. It is not possible to balance fairness and accuracy requirements by reducing the bias partially but not fully.
+There are perhaps two drawbacks. The first is that it achieves fairness through some randomisation of decision thresholds, which means that the post-processed classifier can fail individual fairness. In fact two identical individuals could receive different outcomes. The second is that it fully mitigates bias, which can have a negative performance implications. It is not possible to balance fairness and accuracy requirements by reducing the bias partially but not fully.
 
-## Kamiran
+## Label modification - Kamiran et al.
 
-Here we give details on the fairness intervention by Kamiran et al. (2012) which relabels data points for which the model prediction is not decisive. Such data points are assigned the positive label if they belong to the unprivileged group and the negative label otherwise.
+[Kamiran et al.][kamiran] introduce a post-processing technique for imposing multiple notions of fairness, including demographic parity, equalised odds and equal opportunity. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+
+<Collapse label="How it works">
+
+In their paper Kamiran et al. introduce two algorithms, the one implemented by IBM that we benchmark they call Reject Option Classification. The algorithm takes any points which the model is unsure about, i.e. where the probabilities it assigns to different outcomes are not significantly different. Of those points it assigns the favourable outcome to the disadvantaged protected class, and the negative outcome to the advantaged class. In effect, we make an intervention at the margin to balance outcomes overall. Individuals about whom the model is confident are unaffected by the intervention.
+
+</Collapse>
+
+<Collapse label="Experimental results">
+
+### Finance
+
+We applied the intervention to the adult dataset in order to impose demographic parity, equalised odds and equal opportunity with respect to sex. The interventions are largely effective, demographic parity difference is reduced from 0.193 to 0.025 from the baseline, while accuracy decreased from 85.3% to 79.3%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_kamiran_dp} />
+</div>
+
+The intervention was less effective for equalised odds, only reducing the difference from 0.128 to 0.079 while similarly decreasing accuracy from 85.3% to 79.0%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_kamiran_eo} />
+</div>
+
+Imposing equal opportunity was slightly more effective, reducing the difference from 0.128 to 0.043 and reducing accuracy from 85.3% to 80.7%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_kamiran_eopp} />
+</div>
+
+### Recruiting
+
+We also applied it to the synethetic recruiting data, this time trying to impose demographic parity, equalised odds and equal opportunity with respect to race. Again it was largely effective, with test set test set fairness improving under each intervention, but in some cases sacrificing a lot of accuracy.
+
+First for demographic parity we saw demographic parity difference decrease from 0.327 to 0.055, while accuracy fell from 86.2% to 79.4%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_kamiran_dp} />
+</div>
+
+Imposing equalised odds was more successful, we saw the equalised odds difference fall from 0.133 to 0.032 while accuracy only fell from 86.2% to 84.1%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_kamiran_eo} />
+</div>
+
+Imposing equal opportunity was similarly effective, with equal opportunity difference falling from 0.133 to 0.010 and accuracy falling from 86.2% to 84.1%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_kamiran_eopp} />
+</div>
+
+</Collapse>
+
+### Summary
+
+This intervention is attractive because it can address multiple notions of fairness, and since it is a post-processing algorithm it is model agnostic and relatively straightforward to apply to existing models. Moreover the intervention that is being taken can be easily understood and audited, as it corresponds to a deterministic intervention on ambigious decisions from the existing model.
+
+It does however sacrifice accuracy more than some other methods, which in certain situations might be unacceptable. Furthermore, as noted above, the decision threshold modification algorithm of Hardt et al. is optimal among post-processing algorithms for equalised odds and equal opportunity, which means we can't expect better performance from this intervention. That said, since the intervention of Hardt et al. introduces some stochasticity to predictions, if that is unacceptable then this might be a viable alternative.
 
 ## Kamiran - Calders
 
@@ -153,21 +260,21 @@ To achieve conditional demographic parity we additionally pass legitimate risk f
 
 This algorithm is very effective at imposing demographic parity. With minimal tuning we saw a significant increase in demographic parity and a minimal decrease in accuracy.
 
-<LazyPlot {...adv_dp} />
+<LazyPlot {...fin_adv_dp} />
 
 ### Conditional demographic parity
 
 Similarly imposing conditional demographic parity with respect to `hours_per_week` with this approach proved very effective. Again without much tuning we saw a significant improvement.
 
-<LazyPlot {...adv_blcdp} />
-<LazyPlot {...adv_cdp} />
+<LazyPlot {...fin_adv_blcdp} />
+<LazyPlot {...fin_adv_cdp} />
 
 ### Equal opportunity
 
 Equal opportunity proved more challenging. We saw some improvement, but if anything the model somewhat over-corrected. The core problem appears to be that the tension between performance and fairness constraints leads to some instability during training that is typical of adversarial methods. Zhang et al. recommend a few possible strategies for addressing these problems, such as modifying the discriminator loss weight over time so as to slowly increase the penalty for unfairness. In our implementation we warm up without a fairness constraint, but then turn on the fairness constraint suddenly rather than slowly increase it, so there are things we could have done differently to address some of the training issues, however it's clear that imposing equalised odds with this algorithm is more delicate than other definitions of fairness.
 
-<LazyPlot {...adv_bleo} />
-<LazyPlot {...adv_eo} />
+<LazyPlot {...fin_adv_bleo} />
+<LazyPlot {...fin_adv_eo} />
 
 ## Conclusions
 
@@ -177,5 +284,6 @@ Say something really smart here.
 [fairlearn]: https://fairlearn.github.io/
 [feldman]: https://dl.acm.org/doi/10.1145/2783258.2783311
 [hardt]: https://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf
+[kamiran]: https://web.lums.edu.pk/~akarim/pub/decision_theory_icdm2012.pdf
 [hardt-neurips]: https://mrtz.org/nips17/#/41
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
