@@ -1,5 +1,6 @@
 # Sidebar navigation
-
+- label: Home
+  link: /
 - label: Use Cases
   items:
     - label: Finance
@@ -12,7 +13,9 @@
       link: /baseline
     - label: Interventions
       link: /interventions
-- label: Conclusions
-  link: /conclusions
-- label: Additional Resources
-  link: /additional-resources
+- label: Summary
+  items:
+    - label: Conclusions
+      link: /conclusions
+    - label: Additional Resources
+      link: /additional-resources
