@@ -1,42 +1,22 @@
-import React, { useState } from "react"
-import { MdChevronRight } from "react-icons/md"
-import { Collapse as ReactCollapse } from "react-collapse"
-import style from "./collapse.module.css"
+import React from "react"
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from "react-accessible-accordion"
+import "./accordion.css"
 
 export default function Collapse({ children, label }) {
-  const [isOpen, setIsOpen] = useState(false)
   return (
-    <div className={style.wrapper}>
-      <div
-        className={style.toggle}
-        onClick={() => setIsOpen(!isOpen)}
-        role="button"
-        tabIndex={0}
-        onKeyPress={event => {
-          // Checking for a Return/Enter press
-          if (event.which === 13) {
-            setIsOpen(!isOpen)
-          }
-        }}
-      >
-        <MdChevronRight
-          size="1.5em"
-          className={
-            isOpen ? `${style.chevron} ${style.chevronOpen}` : style.chevron
-          }
-        />
-        <span className={style.label}>{label}</span>
-      </div>
-      <ReactCollapse
-        theme={{ collapse: style.collapse, content: style.content }}
-        isOpened={isOpen}
-      >
-        {children}
-      </ReactCollapse>
-    </div>
+    <Accordion allowZeroExpanded={true}>
+      <AccordionItem>
+        <AccordionItemHeading>
+          <AccordionItemButton>{label}</AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel>{children}</AccordionItemPanel>
+      </AccordionItem>
+    </Accordion>
   )
-}
-
-Collapse.defaultProps = {
-  label: "Click here",
 }
