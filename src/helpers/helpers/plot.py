@@ -199,7 +199,7 @@ def group_roc_curves(labels, scores, attr):
     )
 
 
-def bar_plot(
+def bar_chart(
     x, y, title="", xlabel="", ylabel="", xticks=None, yrange=[0, 1],
 ):
     """
