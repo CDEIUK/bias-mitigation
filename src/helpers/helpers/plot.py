@@ -142,13 +142,7 @@ def group_roc_curves(labels, scores, attr):
 
 
 def calibration_curves(
-    labels,
-    scores,
-    attr,
-    title="",
-    xlabel="",
-    ylabel="",
-    n_bins=10,
+    labels, scores, attr, title="", xlabel="", ylabel="", n_bins=10,
 ):
     bins = np.linspace(0, 1, n_bins + 1)
     x = (bins[1:] + bins[:-1]) / 2
@@ -228,9 +222,7 @@ def eo_plots(labels, scores, attr, group_names):
                 go.Bar(
                     x=[scores[i][(attr == 0) & (labels == j)].mean()],
                     y=[""],
-                    name=group_names[1]
-                    if j == 1
-                    else group_names[0],
+                    name=group_names[1] if j == 1 else group_names[0],
                     showlegend=False if i == 1 else True,
                     marker_color="firebrick" if j == 1 else "red",
                     width=[0.2, 0.2],
@@ -243,9 +235,7 @@ def eo_plots(labels, scores, attr, group_names):
                 go.Bar(
                     x=[scores[i][(attr == 1) & (labels == j)].mean()],
                     y=[""],
-                    name=group_names[3]
-                    if j == 1
-                    else group_names[2],
+                    name=group_names[3] if j == 1 else group_names[2],
                     showlegend=False if i == 1 else True,
                     marker_color="royalblue" if j == 1 else "blue",
                     width=[0.2, 0.2],
