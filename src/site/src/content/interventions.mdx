@@ -39,6 +39,11 @@ import fin_adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
 import fin_adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
 import fin_adv_eo from "../figures/finance/interventions/adversarial-eo.json"
 import fin_adv_bleo from "../figures/finance/interventions/bl-adversarial-eo.json"
+import rec_adv_dp from "../figures/recruiting/interventions/adversarial-dp.json"
+import rec_adv_cdp from "../figures/recruiting/interventions/adversarial-cdp.json"
+import rec_adv_blcdp from "../figures/recruiting/interventions/bl-adversarial-cdp.json"
+import rec_adv_eo from "../figures/recruiting/interventions/adversarial-eo.json"
+import rec_adv_bleo from "../figures/recruiting/interventions/bl-adversarial-eo.json"
 
 Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on **BINDER** and the code is all available on GitHub **LINK TO CDEI GITHUB**.
 
@@ -513,7 +518,7 @@ We also applied the intervention to our synthetic recruiting data to impose demo
 
 While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
 
-## Zhang
+## Adversarial debiasing - Zhang et al.
 
 The paper [Mitigating Unwanted Biases with Adversarial Learning][zhang] of Zhang et al. introduces a method for mitigating bias in a model using adversarial learning. Their approach is able to impose demographic parity, conditional demographic parity, and equalised odds with only minor modifications. There is an implementation in [IBM's AI Fairness 360][aif-360] library, but it can only address demographic parity. Hence we provide our own implementation for comparing its performance across different definitions of fairness.
 
@@ -527,27 +532,61 @@ To achieve conditional demographic parity we additionally pass legitimate risk f
 
 <Collapse label="Experimental results">
 
-### Demographic parity
+### Finance
 
-This algorithm is very effective at imposing demographic parity. With minimal tuning we saw a significant increase in demographic parity and a minimal decrease in accuracy.
+We attempt to enforce demographic parity, conditional demographic parity and equalised odds on the Adult data set with respect to sex.
+
+#### Demographic parity
+
+This algorithm is very effective at imposing demographic parity. With minimal tuning we saw a demographic parity difference fall from 0.193 to 0.025, while accuracy only fell from 85.3% to 83.4%
 
 <LazyPlot {...fin_adv_dp} />
 
-### Conditional demographic parity
+#### Conditional demographic parity
 
-Similarly imposing conditional demographic parity with respect to `hours_per_week` with this approach proved very effective. Again without much tuning we saw a significant improvement.
+Similarly imposing conditional demographic parity with respect to `hours_per_week` with this approach proved very effective. We saw conditional demographic parity difference fall from 0.173 to 0.031 while accuracy fell from 85.3% to 83.4%.
 
 <LazyPlot {...fin_adv_blcdp} />
 <LazyPlot {...fin_adv_cdp} />
 
-### Equal opportunity
+#### Equal opportunity
 
-Equal opportunity proved more challenging. We saw some improvement, but if anything the model somewhat over-corrected. The core problem appears to be that the tension between performance and fairness constraints leads to some instability during training that is typical of adversarial methods. Zhang et al. recommend a few possible strategies for addressing these problems, such as modifying the discriminator loss weight over time so as to slowly increase the penalty for unfairness. In our implementation we warm up without a fairness constraint, but then turn on the fairness constraint suddenly rather than slowly increase it, so there are things we could have done differently to address some of the training issues, however it's clear that imposing equalised odds with this algorithm is more delicate than other definitions of fairness.
+Equal opportunity proved more challenging. We saw some improvement, with equalised odds difference falling from 0.128 to 0.094 and accuracy only falling a small amount from 85.3% to 84.9%. If anything the model somewhat over-corrected. The core problem appears to be that the tension between performance and fairness constraints leads to some instability during training that is typical of adversarial methods. Zhang et al. recommend a few possible strategies for addressing these problems, such as modifying the discriminator loss weight over time so as to slowly increase the penalty for unfairness. In our implementation we warm up without a fairness constraint, but then turn on the fairness constraint suddenly rather than slowly increase it, so there are things we could have done differently to address some of the training issues, however it's clear that imposing equalised odds with this algorithm is more delicate than other definitions of fairness.
+
+<LazyPlot {...fin_adv_bleo} />
+<LazyPlot {...fin_adv_eo} />
+
+### Recruiting
+
+Similarly we impose all three definitions of fairness on the recruiting data set.
+
+#### Demographic parity
+
+This was again very effective, reducing demographic parity difference from 0.173 to 0.007, while accuracy fell from 0.862 to 0.845.
+
+<LazyPlot {...rec_adv_dp} />
+
+#### Conditional demographic parity
+
+This was similarly effective, reducing conditional demographic parity difference from 0.127 to 0.014, and accuracy from 86.2% to 84.5%.
+
+<LazyPlot {...rec_adv_blcdp} />
+<LazyPlot {...rec_adv_cdp} />
+
+#### Equal opportunity
+
+Equal opportunity once again proved more challenging. This time the equalised odds difference actually got slightly worse, increasing from 0.088 to 0.119. The initial value equalised odds difference is fairly small though which doesn't leave much room for improvement. Nevertheless, imposing equalised odds with this method appears more challenging.
 
 <LazyPlot {...fin_adv_bleo} />
 <LazyPlot {...fin_adv_eo} />
 
 </Collapse>
+
+### Summary
+
+The adversarial debiasing technique is extremely effective for demographic parity and conditional demographic parity. It is less effective for equalised odds, likely due to a combination of the fact that the model of course does not see the labels which get passed to the discriminator, which means it's hard for it to know what information it can use, and because adversarial methods are inherently unstable.
+
+We showed with out implementation that it is straightforward to implement this algorithm yourself, but there is also an implementation in AI Fairness 360 that can impose demographic parity but not other notions of fairness.
 
 [aif-360]: https://aif360.readthedocs.io/en/latest/
 [fairlearn]: https://fairlearn.github.io/
