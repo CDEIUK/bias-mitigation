@@ -23,6 +23,13 @@ import rec_kam_cal_dp from "../figures/recruiting/interventions/kamiran-calders-
 
 import fin_kamishima_dp from "../figures/finance/interventions/kamishima-dp.json"
 
+import fin_pleiss_eopp from "../figures/finance/interventions/pleiss-eopp.json"
+import fin_pleiss_eo from "../figures/finance/interventions/pleiss-eo.json"
+import fin_pleiss_bl_eo from "../figures/finance/interventions/pleiss-bl-eo.json"
+import rec_pleiss_eopp from "../figures/recruiting/interventions/pleiss-eopp.json"
+import rec_pleiss_bl_eo from "../figures/recruiting/interventions/pleiss-bl-eo.json"
+import rec_pleiss_eo from "../figures/recruiting/interventions/pleiss-eo.json"
+
 import fin_zemel_race_dp from "../figures/finance/interventions/zemel-race-dp.json"
 import fin_zemel_sex_dp from "../figures/finance/interventions/zemel-sex-dp.json"
 import rec_zemel_dp from "../figures/recruiting/interventions/zemel-dp.json"
@@ -343,7 +350,107 @@ We also applied the intervention to our synthetic recruiting data to impose demo
 
 While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
 
-## Pleiss
+## Information witholding - Pleiss et al.
+
+[Pleiss et al.][pleiss] introduce a post-processing algorithm that imposes a relaxed notion of equalised odds while preserving calibration. It is one of the few methods available that targets multiple notions of fairness simultaenously. It is implemented in [IBM's AI Fairness 360][aif-360].
+
+<Collapse label="How it works">
+
+The first component of the algorithm is an information witholding procedure. For a fixed proportion of randomly chosen points in each protected group in the data set, we will predict the in-group class balance of the labels rather than return the output of the model. The observation Pleiss make is that that this procedure preserves calibration.
+
+Since we have control over the proportion of data from each protected group that is classified without using the features, we can choose these proportion to optimise fairness. Pleiss et al. introduce a relaxation of equalised odds, which rather than requiring parity between the true and false positive rates, instead requires that a weighted average of the true and false positive rates is equal between the two groups. Thus within each group it is possible to trade true and false positives to achieve equality. The optimal proportion can be calculated directly from the data.
+
+</Collapse>
+
+<Collapse label="Experimental results">
+
+On both data sets we had success imposing equal opportunity, but were unsuccessful imposing equalised odds.
+
+### Finance
+
+We applied the intervention to the adult dataset in order to impose equal opportunity with respect to sex. The intervention reduced equal opportunity difference from 0.128 to 0.035, and only slightly decreased accuracy from 85.3% to 83.2%. In addition, calibration of the original model was preserved.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_pleiss_eopp} />
+</div>
+
+The intervention was however unsuccessful at imposing equalised odds, the algorithm returns the constant predictor for women, meaning every prediction for women is made with information witheld, and the prediction is made according to the class balance. This results in a large increase in the equalised odds difference, from 0.128 to 0.644.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_pleiss_bl_eo} />
+</div>
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_pleiss_eo} />
+</div>
+
+### Recruiting
+
+We also applied the intervention to our synthetic recruiting data to impose equal opportunity and equalised odds with respect to race. When imposing equal opportunity we saw equal opportunity difference increase from 0.133 to 0.245, and accuracy fell significantly from 86.2% to 77.9%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_pleiss_eopp} />
+</div>
+
+Our attempt to impose equalised odds also failed, with the difference increasing from 0.133 to 0.346, though the decrease in accuracy was less severe, falling from 86.2% to only 84.5%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_pleiss_bl_eo} />
+</div>
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_pleiss_eo} />
+</div>
+
+</Collapse>
+
+### Summary
+
+We had mixed success imposing equal opportunity while preserving calibration. The intervention worked well on the adult data, but didn't really help on the recruiting data.
+
+Imposing equalised odds was unsuccessful on both data sets. It may be possible to do better by controlling the weights in the relaxed definition of equalised odds, but as far as we can tell this option is not exposed to us by the implementation in AI Fairness 360.
 
 ## Optimal Clustering - Zemel et al.
 
@@ -418,6 +525,8 @@ To achieve conditional demographic parity we additionally pass legitimate risk f
 
 </Collapse>
 
+<Collapse label="Experimental results">
+
 ### Demographic parity
 
 This algorithm is very effective at imposing demographic parity. With minimal tuning we saw a significant increase in demographic parity and a minimal decrease in accuracy.
@@ -438,9 +547,7 @@ Equal opportunity proved more challenging. We saw some improvement, but if anyth
 <LazyPlot {...fin_adv_bleo} />
 <LazyPlot {...fin_adv_eo} />
 
-## Conclusions
-
-Say something really smart here.
+</Collapse>
 
 [aif-360]: https://aif360.readthedocs.io/en/latest/
 [fairlearn]: https://fairlearn.github.io/
@@ -450,5 +557,6 @@ Say something really smart here.
 [kamiran-calders]: https://link.springer.com/content/pdf/10.1007/s10115-011-0463-8.pdf
 [kamishima]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-33486-3_3.pdf
 [hardt-neurips]: https://mrtz.org/nips17/#/41
+[pleiss]: https://papers.nips.cc/paper/7151-on-fairness-and-calibration.pdf
 [zemel]: http://proceedings.mlr.press/v28/zemel13.pdf
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
