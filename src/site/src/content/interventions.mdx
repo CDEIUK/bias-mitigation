@@ -23,6 +23,10 @@ import rec_kam_cal_dp from "../figures/recruiting/interventions/kamiran-calders-
 
 import fin_kamishima_dp from "../figures/finance/interventions/kamishima-dp.json"
 
+import fin_zemel_race_dp from "../figures/finance/interventions/zemel-race-dp.json"
+import fin_zemel_sex_dp from "../figures/finance/interventions/zemel-sex-dp.json"
+import rec_zemel_dp from "../figures/recruiting/interventions/zemel-dp.json"
+
 import fin_adv_dp from "../figures/finance/interventions/adversarial-dp.json"
 import fin_adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
 import fin_adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
@@ -341,7 +345,66 @@ While the intervention improved fairness on both data sets, the resulting drop i
 
 ## Pleiss
 
-## Zemel
+## Optimal Clustering - Zemel et al.
+
+[Zemel et al.][zemel] introduce a pre-processing technique that learns fair representations of the data based on clustering. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+
+<Collapse label="How it works">
+
+The approach described by Zemel et al. proceeds by clustering the data in such a way that the probability of being allocated to any particular cluster does not depend on the protected data. The cluster centers can then be used for classification, and so each data point is classified according to the classification received by the corresponding cluster center.
+
+</Collapse>
+
+<Collapse label="Experimental results">
+
+### Finance
+
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_zemel_race_dp} />
+</div>
+
+When imposing demographic parity with respect to sex we had less success, seeing the accuracy fall from 85.3% to 79.2% and demographic parity difference _increase_ from 0.193 to 0.370.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_zemel_sex_dp} />
+</div>
+
+### Recruiting
+
+We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_zemel_dp} />
+</div>
+
+</Collapse>
+
+### Summary
+
+While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
 
 ## Zhang
 
@@ -387,4 +450,5 @@ Say something really smart here.
 [kamiran-calders]: https://link.springer.com/content/pdf/10.1007/s10115-011-0463-8.pdf
 [kamishima]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-33486-3_3.pdf
 [hardt-neurips]: https://mrtz.org/nips17/#/41
+[zemel]: http://proceedings.mlr.press/v28/zemel13.pdf
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
