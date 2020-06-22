@@ -37,11 +37,13 @@
     border-bottom: 2px solid currentColor;
     border-right: 2px solid currentColor;
     transform: rotate(-45deg);
+    transition: transform 0.3s ease;
 }
 
 .accordion__button[aria-expanded='true']::before,
 .accordion__button[aria-selected='true']::before {
     transform: rotate(45deg);
+    transition: transform 0.3s ease;
 }
 
 .accordion__panel {
