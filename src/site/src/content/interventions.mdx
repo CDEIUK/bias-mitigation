@@ -18,6 +18,11 @@ import rec_kamiran_dp from "../figures/recruiting/interventions/kamiran-dp.json"
 import rec_kamiran_eo from "../figures/recruiting/interventions/kamiran-eo.json"
 import rec_kamiran_eopp from "../figures/recruiting/interventions/kamiran-eopp.json"
 
+import fin_kam_cal_dp from "../figures/finance/interventions/kamiran-calders-dp.json"
+import rec_kam_cal_dp from "../figures/recruiting/interventions/kamiran-calders-dp.json"
+
+import fin_kamishima_dp from "../figures/finance/interventions/kamishima-dp.json"
+
 import fin_adv_dp from "../figures/finance/interventions/adversarial-dp.json"
 import fin_adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
 import fin_adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
@@ -236,9 +241,103 @@ This intervention is attractive because it can address multiple notions of fairn
 
 It does however sacrifice accuracy more than some other methods, which in certain situations might be unacceptable. Furthermore, as noted above, the decision threshold modification algorithm of Hardt et al. is optimal among post-processing algorithms for equalised odds and equal opportunity, which means we can't expect better performance from this intervention. That said, since the intervention of Hardt et al. introduces some stochasticity to predictions, if that is unacceptable then this might be a viable alternative.
 
-## Kamiran - Calders
+## Data reweighting - Kamiran & Calders
 
-## Kamishima
+[Kamiran and Calders][kamiran-calders] introduce a pre-processing technique for imposing demographic parity based on reweighting the training data. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+
+<Collapse label="How it works">
+
+Classifiers can learn bias because representatives of the disadvantaged group with positive outcomes are poorly represented in the training data. The reweighting algorithm proposed by Kamiran and Calders identifies such points and upweights them, so that they have a greater impact on model training.
+
+</Collapse>
+
+<Collapse label="Experimental results">
+
+### Finance
+
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. The intervention did improve fairness, reducing demographic parity difference from the baseline value of 0.193 to 0.099, and only slightly decreased accuracy from 85.3% to 84.2%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_kam_cal_dp} />
+</div>
+
+### Recruiting
+
+The intervention was slightly less effective on the recruiting data, reducing demographic parity difference from the baseline value of 0.327 to 0.190, and reducing accuracy from 86.2% to 84.3%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...rec_kam_cal_dp} />
+</div>
+
+</Collapse>
+
+### Summary
+
+This intervention does improve fairness without significantly impacting accuracy, but appears to not be enough by itself to address demographic disparity if that is the goal. However, since this is a pre-processing step, it could easily be combined with other interventions to fully achieve demographic parity.
+
+While the original paper is focussed on demographic parity, we observe that it's not clear that the intervention is directly addressing it. Indeed upweighting positive outcomes from the underprivelidged class would generally result in fewer false negatives on that class, and hence could improve the equalised odds difference. Equally, improving performance on the underprivelidged class may be more directly addressing calibration. It seems that this intervention doesn't perfectly align with any of the notions of fairness we have at our disposal. Nevertheless, improving representation of underrepresented groups by reweighting the data is likely a reasonable thing to do.
+
+## Regularisation - Kamishima et al.
+
+[Kamishima et al.][kamishima] introduce an in-processing technique for imposing demographic parity based on adding a regularising term to the objective function that is being minimised. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+
+<Collapse label="How it works">
+
+Kamishima et al. propose a regularisation term, which approximately represents the mutual information in the predictions and the sensitive attributes, that is incorporated in the optimisation objective. Minimising the objective function thus encourages both accurate prediction while not allowing too extreme a relationship between predictions and the the protected attributes, thus imposing demographic parity.
+
+</Collapse>
+
+<Collapse label="Experimental results">
+
+### Finance
+
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. The intervention reduced demographic parity difference from the baseline value of 0.193 to 0.059, and decreased accuracy from 85.3% to 80.6%. We can see from the box plots of the scores, that the improvement in demographic parity difference appears to be driven by the scores for both protected groups being squeezed towards zero, and so the classifier is closer to a constant classifier that predicts nobody is a high-earner. This doesn't seem to be much of an improvement.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_kamishima_dp} />
+</div>
+
+### Recruiting
+
+We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, and saw the demographic parity difference decrease from 0.327 to 0.067, but we also observed a major drop in accuracy from 86.2% to 77.7%.
+
+<div
+  style={{
+    padding: "0 10px",
+    margin: "1em 0",
+    backgroundColor: "white",
+    borderRadius: "8px",
+  }}
+>
+  <LazyPlot {...fin_kamishima_dp} />
+</div>
+
+</Collapse>
+
+### Summary
+
+While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
 
 ## Pleiss
 
@@ -285,5 +384,7 @@ Say something really smart here.
 [feldman]: https://dl.acm.org/doi/10.1145/2783258.2783311
 [hardt]: https://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf
 [kamiran]: https://web.lums.edu.pk/~akarim/pub/decision_theory_icdm2012.pdf
+[kamiran-calders]: https://link.springer.com/content/pdf/10.1007/s10115-011-0463-8.pdf
+[kamishima]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-33486-3_3.pdf
 [hardt-neurips]: https://mrtz.org/nips17/#/41
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
