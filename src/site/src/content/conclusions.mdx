@@ -2,6 +2,37 @@
 title: Conclusions
 ---
 
+We have applied multiple intervention strategies to two different data sets, we gather here some over-arching thoughts based on our experiences.
+
 ## Interventions
 
+It's clear that not all interventions are created equally. In part this is just because some of the interventions we tried are old and have been superceded with more effective approaches.
+
+Overall post-processing techniques tend to be the easiest to apply, as they do not impose restrictions on the type of model that can be used, and usually aren't very computationally intensive. For demographic parity the reject option classification method of [Kamrian et al.](/interventions#label-modification---kamiran-et-al) proved effective. For equalised odds the post-processing intervention of [Hardt et al.](/interventions#decision-threshold-modification---hardt-et-al) proved very effective.
+
+Post-processing techniques are attractive for their simplicity, but for optimal performance we find that in-processing techniques had the potential for better performance, though sometimes could be tricky to tune. For demographic parity and conditional demographic parity the adversrial debiasing approach of [Zhang et al.](/interventions#adversarial-debiasing---zhang-et-al) proved extremely effective. We were not able to get it to perform so well for equalised odds, though it's unclear if more careful tuning could overcome the difficulties we experienced with our simple implementation.
+
+Based on our experiences, pre-processing interventions could be used as a step in an overall pipeline, but they did not by themselves do enough to mitigate bias.
+
 ## Tooling
+
+There are a large number of open-source fairness libraries available, however many of them can only be used to measure bias in models, there are relatively few that actually implement any of these intervention strategies. The two most notable are [AI Fairness 360][aif-360] from IBM and [Fairlearn][fairlearn] from Microsoft.
+
+### AI Fairness 360
+
+This is easily the more comprehensive of the two offerings. At the time of writing they have implemented 10 different bias mitigation algorithms covering pre-processing, in-processing and post-processing techniques. Several of these implementation are ported from implementations that accompanied the original research papers, and as such the library offers a "one-stop shop" for fairness algorithms with a unified interface for each algorithm.
+
+There is perhaps a bit of a danger that arises from the comprehensive nature of the library which is that its creators seem relatively unopinionated about which interventions are the best and should be favoured over others.
+
+Furthermore, we found the interface to be a little awkward, requiring data to be passed to algorithms as custom data set types that they define. A recent release has updated the API to be scikit-learn compatible, so hopefully usability will continue to improve over time.
+
+### Fairlearn
+
+Fairlearn is a more recent library, having only been under active development for the last year or so. It currently has less functionality than IBM's offering, though seems to be more actively developed so may catch up.
+
+At the moment there are only three mitigation algorithms implemented, that of Hardt et al., and a couple of others that we didn't consider in this work. In our opinion the interface is a little more flexible and easier to integrate into an existing workflow.
+
+Fairlearn also includes an interactive dashboard for model exploration that can help assess and understand unfairness in your model. Given the need for contextual understanding in effectively mitigating bias this could prove a valuable component of a bias mitigation workflow.
+
+[aif-360]: https://aif360.readthedocs.io/en/latest/
+[fairlearn]: https://fairlearn.github.io/
