@@ -257,4 +257,3 @@ def eo_plots(labels, scores, attr, group_names):
     fig.update_xaxes(title_text="Mean score", row=2, col=1)
 
     return fig.update_layout(title_text="Equalised odds")
-=======
