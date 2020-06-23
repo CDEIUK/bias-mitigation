@@ -262,6 +262,15 @@ def calibration_curves(
     bins = np.linspace(0, 1, n_bins + 1)
     x = (bins[1:] + bins[:-1]) / 2
 
+    # Outline colours predefined for adjustability
+    x_grid_color = GRID_COLOR
+    y_grid_color = GRID_COLOR
+    x_zero_line_color = x_grid_color
+    y_zero_line_color = y_grid_color
+    # Background colours
+    paper_bgcolor = TRANSPARENT
+    plot_bgcolor = TRANSPARENT
+
     return go.Figure(
         data=[
             go.Scatter(
@@ -274,10 +283,22 @@ def calibration_curves(
             for a in sorted(set(attr))
         ],
         layout={
+            "autosize": True,
             "hovermode": "closest",
             "title": title,
-            "xaxis": {"hoverformat": ".3f", "title": xlabel},
-            "yaxis": {"title": ylabel},
+            "xaxis": {
+                "hoverformat": ".3f",
+                "title": xlabel,
+                "gridcolor": x_grid_color,
+                "zerolinecolor": x_zero_line_color,
+            },
+            "yaxis": {
+                "title": ylabel,
+                "gridcolor": y_grid_color,
+                "zerolinecolor": y_zero_line_color,
+            },
+            "paper_bgcolor": paper_bgcolor,
+            "plot_bgcolor": plot_bgcolor,
         },
     )
 
