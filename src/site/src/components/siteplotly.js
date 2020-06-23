@@ -60,6 +60,7 @@ export function PlotLoader({ source }) {
         `./../../static/figures/${source}.json`
       )
       if (mounted) {
+        data.divId = source
         setFigureData(data)
       }
     }
