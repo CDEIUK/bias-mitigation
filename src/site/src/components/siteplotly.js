@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { useState, useEffect } from "react"
 import Loadable from "react-loadable"
 import { MdAspectRatio } from "react-icons/md"
 
@@ -44,33 +44,29 @@ export const LazyPlot = ({ ...rest }) => (
   </div>
 )
 
-export class PlotLoader extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: false,
-      figureDate: undefined,
-    }
-  }
+export function PlotLoader({ source }) {
+  const [loading, setLoading] = useState(true)
+  const [figureData, setFigureData] = useState(null)
 
-  componentDidMount() {
-    import(
-      /* webpackInclude: /\.json$/ */
-      /* webpackChunkName: "figure" */
-      /* webpackMode: "lazy" */
-      /* webpackPrefetch: true */
-      /* webpackPreload: true */
-      `./../../static/figures/${this.props.source}.json`
-    ).then(module => {
-      this.setState({ loading: false, figureData: module })
-    })
-  }
-  render() {
-    const { loading, figureData } = this.state
-    if (loading) {
-      return <Loading />
-    } else {
-      return <LazyPlot {...figureData} />
+  useEffect(() => {
+    const getData = async () => {
+      const module = await import(
+        /* webpackInclude: /\.json$/ */
+        /* webpackChunkName: "figure" */
+        /* webpackMode: "lazy" */
+        /* webpackPrefetch: true */
+        /* webpackPreload: true */
+        `./../../static/figures/${source}.json`
+      )
+      setLoading(false)
+      setFigureData(module)
     }
+    getData()
+  }, [source])
+
+  if (loading) {
+    return <Loading />
+  } else {
+    return <LazyPlot {...figureData} />
   }
 }
