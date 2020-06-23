@@ -45,7 +45,7 @@ import rec_adv_blcdp from "../figures/recruiting/interventions/bl-adversarial-cd
 import rec_adv_eo from "../figures/recruiting/interventions/adversarial-eo.json"
 import rec_adv_bleo from "../figures/recruiting/interventions/bl-adversarial-eo.json"
 
-Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on **BINDER** and the code is all available on GitHub **LINK TO CDEI GITHUB**.
+Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on [Binder][binder] and the code is all available on [GitHub][github].
 
 ## Feature modification - Feldman et al.
 
@@ -63,7 +63,7 @@ The result of applying the algorithm is a modified dataset, such that each featu
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-feldman]. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
 
 <div
   style={{
@@ -80,7 +80,7 @@ This is likely because features that are highly correlated with `sex` remain in 
 
 ### Recruiting
 
-We also applied it to the synethetic recruiting data, this time trying to impose demographic parity with respect to race. In this case the intervention was marginally more effective, but still didn't come close to actually achieving fairness. Demographic parity difference decreased from 0.327 in the baseline model to 0.269 for the model trained on fair data. The bar chart of scores shows a modest improvement, but a significant disparity between the races remains.
+We also applied it to the synethetic recruiting data, this time trying to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-feldman]. In this case the intervention was marginally more effective, but still didn't come close to actually achieving fairness. Demographic parity difference decreased from 0.327 in the baseline model to 0.269 for the model trained on fair data. The bar chart of scores shows a modest improvement, but a significant disparity between the races remains.
 
 <div
   style={{
@@ -117,7 +117,7 @@ The algorithm is very widely applicable, as it only needs access to the model ou
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose equalised odds with respect to sex. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
+We applied the intervention to the adult dataset in order to impose equalised odds with respect to sex. Run our analysis yourself on [Binder][binder-finance-hardt]. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
 
 <div
   style={{
@@ -132,7 +132,7 @@ We applied the intervention to the adult dataset in order to impose equalised od
 
 ### Recruiting
 
-We also applied it to the synethetic recruiting data, this time trying to impose equalised odds with respect to race. Again it was extremely effective, with test set equalised odds difference being negligible, and test set accuracy falling about three percentage points.
+We also applied it to the synethetic recruiting data, this time trying to impose equalised odds with respect to race. Run our analysis yourself on [Binder][binder-recruiting-hardt]. Again it was extremely effective, with test set equalised odds difference being negligible, and test set accuracy falling about three percentage points.
 
 <div
   style={{
@@ -153,7 +153,7 @@ The algorithm of Hardt et al. is extremely effective, which is not surprising as
 
 There are perhaps two drawbacks. The first is that it achieves fairness through some randomisation of decision thresholds, which means that the post-processed classifier can fail individual fairness. In fact two identical individuals could receive different outcomes. The second is that it fully mitigates bias, which can have a negative performance implications. It is not possible to balance fairness and accuracy requirements by reducing the bias partially but not fully.
 
-## Label modification - Kamiran et al.
+## Reject Option Classification - Kamiran et al.
 
 [Kamiran et al.][kamiran] introduce a post-processing technique for imposing multiple notions of fairness, including demographic parity, equalised odds and equal opportunity. It is implemented in [IBM's AI Fairness 360][aif-360] library.
 
@@ -167,7 +167,7 @@ In their paper Kamiran et al. introduce two algorithms, the one implemented by I
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity, equalised odds and equal opportunity with respect to sex. The interventions are largely effective, demographic parity difference is reduced from 0.193 to 0.025 from the baseline, while accuracy decreased from 85.3% to 79.3%.
+We applied the intervention to the adult dataset in order to impose demographic parity, equalised odds and equal opportunity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamiran]. The interventions are largely effective, demographic parity difference is reduced from 0.193 to 0.025 from the baseline, while accuracy decreased from 85.3% to 79.3%.
 
 <div
   style={{
@@ -208,7 +208,7 @@ Imposing equal opportunity was slightly more effective, reducing the difference 
 
 ### Recruiting
 
-We also applied it to the synethetic recruiting data, this time trying to impose demographic parity, equalised odds and equal opportunity with respect to race. Again it was largely effective, with test set test set fairness improving under each intervention, but in some cases sacrificing a lot of accuracy.
+We also applied it to the synethetic recruiting data, this time trying to impose demographic parity, equalised odds and equal opportunity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamiran]. Again it was largely effective, with test set test set fairness improving under each intervention, but in some cases sacrificing a lot of accuracy.
 
 First for demographic parity we saw demographic parity difference decrease from 0.327 to 0.055, while accuracy fell from 86.2% to 79.4%.
 
@@ -271,7 +271,7 @@ Classifiers can learn bias because representatives of the disadvantaged group wi
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. The intervention did improve fairness, reducing demographic parity difference from the baseline value of 0.193 to 0.099, and only slightly decreased accuracy from 85.3% to 84.2%.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamiran-calders]. The intervention did improve fairness, reducing demographic parity difference from the baseline value of 0.193 to 0.099, and only slightly decreased accuracy from 85.3% to 84.2%.
 
 <div
   style={{
@@ -286,7 +286,7 @@ We applied the intervention to the adult dataset in order to impose demographic 
 
 ### Recruiting
 
-The intervention was slightly less effective on the recruiting data, reducing demographic parity difference from the baseline value of 0.327 to 0.190, and reducing accuracy from 86.2% to 84.3%.
+We also applied the intervention to the synthetic recruiting data in order to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamiran-calders]. The intervention was slightly less effective on the recruiting data, reducing demographic parity difference from the baseline value of 0.327 to 0.190, and reducing accuracy from 86.2% to 84.3%.
 
 <div
   style={{
@@ -321,7 +321,7 @@ Kamishima et al. propose a regularisation term, which approximately represents t
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. The intervention reduced demographic parity difference from the baseline value of 0.193 to 0.059, and decreased accuracy from 85.3% to 80.6%. We can see from the box plots of the scores, that the improvement in demographic parity difference appears to be driven by the scores for both protected groups being squeezed towards zero, and so the classifier is closer to a constant classifier that predicts nobody is a high-earner. This doesn't seem to be much of an improvement.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamishima]. The intervention reduced demographic parity difference from the baseline value of 0.193 to 0.059, and decreased accuracy from 85.3% to 80.6%. We can see from the box plots of the scores, that the improvement in demographic parity difference appears to be driven by the scores for both protected groups being squeezed towards zero, and so the classifier is closer to a constant classifier that predicts nobody is a high-earner. This doesn't seem to be much of an improvement.
 
 <div
   style={{
@@ -336,7 +336,7 @@ We applied the intervention to the adult dataset in order to impose demographic 
 
 ### Recruiting
 
-We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, and saw the demographic parity difference decrease from 0.327 to 0.067, but we also observed a major drop in accuracy from 86.2% to 77.7%.
+We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamishima]. We saw the demographic parity difference decrease from 0.327 to 0.067, but we also observed a major drop in accuracy from 86.2% to 77.7%.
 
 <div
   style={{
@@ -373,7 +373,7 @@ On both data sets we had success imposing equal opportunity, but were unsuccessf
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose equal opportunity with respect to sex. The intervention reduced equal opportunity difference from 0.128 to 0.035, and only slightly decreased accuracy from 85.3% to 83.2%. In addition, calibration of the original model was preserved.
+We applied the intervention to the adult dataset in order to impose equal opportunity with respect to sex. Run our analysis yourself on [Binder][binder-finance-pleiss]. The intervention reduced equal opportunity difference from 0.128 to 0.035, and only slightly decreased accuracy from 85.3% to 83.2%. In addition, calibration of the original model was preserved.
 
 <div
   style={{
@@ -412,7 +412,7 @@ The intervention was however unsuccessful at imposing equalised odds, the algori
 
 ### Recruiting
 
-We also applied the intervention to our synthetic recruiting data to impose equal opportunity and equalised odds with respect to race. When imposing equal opportunity we saw equal opportunity difference increase from 0.133 to 0.245, and accuracy fell significantly from 86.2% to 77.9%.
+We also applied the intervention to our synthetic recruiting data to impose equal opportunity and equalised odds with respect to race. Run our analysis yourself on [Binder][binder-recruiting-pleiss]. When imposing equal opportunity we saw equal opportunity difference increase from 0.133 to 0.245, and accuracy fell significantly from 86.2% to 77.9%.
 
 <div
   style={{
@@ -471,7 +471,7 @@ The approach described by Zemel et al. proceeds by clustering the data in such a
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. Run our analysis yourself on Binder [here][binder-finance-zemel-race] and [here][binder-finance-zemel-sex]. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
 
 <div
   style={{
@@ -499,7 +499,7 @@ When imposing demographic parity with respect to sex we had less success, seeing
 
 ### Recruiting
 
-We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
+We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. Run our analysis yourself on [Binder][binder-recruiting-zemel]. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
 
 <div
   style={{
@@ -534,7 +534,7 @@ To achieve conditional demographic parity we additionally pass legitimate risk f
 
 ### Finance
 
-We attempt to enforce demographic parity, conditional demographic parity and equalised odds on the Adult data set with respect to sex.
+We attempt to enforce demographic parity, conditional demographic parity and equalised odds on the Adult data set with respect to sex. Run our analysis yourself on [Binder][binder-finance-zhang].
 
 #### Demographic parity
 
@@ -558,7 +558,7 @@ Equal opportunity proved more challenging. We saw some improvement, with equalis
 
 ### Recruiting
 
-Similarly we impose all three definitions of fairness on the recruiting data set.
+Similarly we impose all three definitions of fairness on the recruiting data set. Run our analysis yourself on [Binder][binder-recruiting-zhang].
 
 #### Demographic parity
 
@@ -599,3 +599,22 @@ We showed with out implementation that it is straightforward to implement this a
 [pleiss]: https://papers.nips.cc/paper/7151-on-fairness-and-calibration.pdf
 [zemel]: http://proceedings.mlr.press/v28/zemel13.pdf
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
+[binder]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks "Open notebooks on Binder"
+[github]: https://github.com/imrehg/cdei-development
+[binder-finance-feldman]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Ffeldman.ipynb "Open notebook on Binder"
+[binder-finance-hardt]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fhardt.ipynb "Open notebook on Binder"
+[binder-finance-kamiran]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamiran.ipynb "Open notebook on Binder"
+[binder-finance-kamiran-calders]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamiran_calders.ipynb "Open notebook on Binder"
+[binder-finance-kamishima]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamishima.ipynb "Open notebook on Binder"
+[binder-finance-pleiss]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fpleiss.ipynb "Open notebook on Binder"
+[binder-finance-zemel-race]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_race.ipynb "Open notebook on Binder"
+[binder-finance-zemel-sex]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_sex.ipynb "Open notebook on Binder"
+[binder-finance-zhang]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzhang.ipynb "Open notebook on Binder"
+[binder-recruiting-feldman]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Ffeldman.ipynb "Open notebook on Binder"
+[binder-recruiting-hardt]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fhardt.ipynb "Open notebook on Binder"
+[binder-recruiting-kamiran]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamiran.ipynb "Open notebook on Binder"
+[binder-recruiting-kamiran-calders]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamiran_calders.ipynb "Open notebook on Binder"
+[binder-recruiting-kamishima]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamishima.ipynb "Open notebook on Binder"
+[binder-recruiting-pleiss]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fpleiss.ipynb "Open notebook on Binder"
+[binder-recruiting-zemel]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fzemel.ipynb "Open notebook on Binder"
+[binder-recruiting-zhang]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fzhang.ipynb "Open notebook on Binder"
