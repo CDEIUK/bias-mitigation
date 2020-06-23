@@ -2,21 +2,7 @@
 title: Training a biased model
 ---
 
-import { LazyPlot } from "../components/siteplotly"
-
-import fin_dp_by_race from "../figures/finance/bl_dp_by_race.json"
-import fin_dp_by_sex from "../figures/finance/bl_dp_by_sex.json"
-import fin_cdp_by_race from "../figures/finance/bl_cdp_by_race.json"
-import fin_cdp_by_sex from "../figures/finance/bl_cdp_by_sex.json"
-import fin_eo_by_race from "../figures/finance/bl_eo_by_race.json"
-import fin_eo_by_sex from "../figures/finance/bl_eo_by_sex.json"
-
-import rec_dp_by_race from "../figures/recruiting/bl_dp_by_race.json"
-import rec_dp_by_sex from "../figures/recruiting/bl_dp_by_sex.json"
-import rec_cdp_by_race from "../figures/recruiting/bl_cdp_by_race.json"
-import rec_cdp_by_sex from "../figures/recruiting/bl_cdp_by_sex.json"
-import rec_eo_by_race from "../figures/recruiting/bl_eo_by_race.json"
-import rec_eo_by_sex from "../figures/recruiting/bl_eo_by_sex.json"
+import { PlotLoader } from "../components/siteplotly"
 
 We train simple models on each data set to serve as a baseline before we try any of the possible interventions. You can run our analysis yourself on Binder, for the finance use case click [here][binder-finance-baseline] and the recruiting use case click [here][binder-recruiting-baseline].
 
@@ -28,31 +14,31 @@ We start by looking at the [Adult data set](/finance) for the finance use case.
 
 Demographic parity requires that we treat all demographic groups equally. We start by investigating the disparity between the sexes. We do this with box plots of the model scores. A higher score means the model thinks the individual is more likely to be a high earner. It's clear that there is a major disparity between men and women, with men being awarded systematically higher scores. This model therefore does not achieve demographic parity by some margin.
 
-<LazyPlot {...fin_dp_by_sex} />
+<PlotLoader source={"finance/bl_dp_by_sex"} />
 
 We do the same thing for race. Again we see that there is a major disparity between races, with white and asian individuals systematically receiving higher scores, and black and native Americans receiving much lower scores.
 
-<LazyPlot {...fin_dp_by_race} />
+<PlotLoader source={"finance/bl_dp_by_race"} />
 
 ### Conditional Demographic Parity
 
 Conditional demographic parity requires that all demographic groups are treated equally, once certain legitimate risk factors are taken into account. We will take hours worked per week as the legitimate risk factor. We bin individuals according to how many hours per week they work, and compare the distribution of scores within those bins first between the two sexes. As we can see in each bin women receive lower scores than the men. In other words, the model believes that women who work the same number of hours as men are less likely to be high-earners.
 
-<LazyPlot {...fin_cdp_by_sex} />
+<PlotLoader source={"finance/bl_cdp_by_sex"} />
 
 We repeat this, grouping individuals by race, and again see that the disadvantaged demographics are less likely to be high-earners, even if they work the same number of hours.
 
-<LazyPlot {...fin_cdp_by_race} />
+<PlotLoader source={"finance/bl_cdp_by_race"} />
 
 ### Equalised Odds
 
 Equalised odds requires that we treat groups equally once outcomes are taken into account. That is to say, among high earners the model predictions are similar or the same for all demographic groups. Likewise among low earners the model treats different groups equally. Once again we compare score distributions using box plots. We see that high earning women generally receive lower scores, and low earning women consistently receive lower scores.
 
-<LazyPlot {...fin_eo_by_sex} />
+<PlotLoader source={"finance/bl_eo_by_sex"} />
 
 We see a similar picture when comparing the different races. White and Asian high earners are likely to receive higher scores than high earners of other races, and similarly for low earners.
 
-<LazyPlot {...fin_eo_by_race} />
+<PlotLoader source={"finance/bl_eo_by_race"} />
 
 We notice something interesting when measuring equalised odds, which is that women under the baseline model actually receive higher accuracy predictions than men. This is ultimately because women are far less likely to be high earners, and so the model mostly predicts that they are low earners with confidence. This is reflected in the box plot above where we see the score distribution for low earning women is extremely narrow and concentrated around the low scores.
 
@@ -66,31 +52,31 @@ Next we repeat a similar analysis on the [synthetic recruiting data](/recruiting
 
 As we did for the Adult data, we use box plots to visualise the disparity between the sexes. In this data set women are also systematically given lower scores, indicating the model believes they are less likely to be hired.
 
-<LazyPlot {...rec_dp_by_sex} />
+<PlotLoader source={"recruiting/bl_dp_by_sex"} />
 
 We see a similar patter when splitting by race, with white individuals systematically more likely to be hired.
 
-<LazyPlot {...rec_dp_by_race} />
+<PlotLoader source={"recruiting/bl_dp_by_race"} />
 
 ### Conditional Demographic Parity
 
 For the recruiting data we use years of experience as the legitimate risk factor. We bin individuals according to how many years of experience they have, and compare the distirbution of scores withing those bins between the two sexes. As we can see in each bin women receive lower scores than men, showing that given a man and a woman with the same experience, the model will still be less confident that the woman should be hired.
 
-<LazyPlot {...rec_cdp_by_sex} />
+<PlotLoader source={"recruiting/bl_cdp_by_sex"} />
 
 Repeating this for race we again see a similar pattern, black applicants are more likely to be hired even if they have the same amount of experience.
 
-<LazyPlot {...rec_cdp_by_race} />
+<PlotLoader source={"recruiting/bl_cdp_by_race"} />
 
 ### Equalised odds
 
 Equalised odds requires that we treat groups equally once outcomes are taken into account. Here we plot the distributions of model predictions for successful applicants and unsuccessful applicants.
 
-<LazyPlot {...rec_eo_by_sex} />
+<PlotLoader source={"recruiting/bl_eo_by_sex"} />
 
 Once again we see a similar picture when comparing white and black applicants, with black successful applicants generally receiving lower scores and black unsuccessful also receiving lower scores.
 
-<LazyPlot {...rec_eo_by_race} />
+<PlotLoader source={"recruiting/bl_eo_by_race"} />
 
 ## Summary
 

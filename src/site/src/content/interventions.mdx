@@ -3,47 +3,7 @@ title: Interventions
 ---
 
 import Collapse from "../components/collapse"
-import { LazyPlot } from "../components/siteplotly"
-
-import fin_feld_dp from "../figures/finance/interventions/feldman-dp.json"
-import rec_feld_dp from "../figures/recruiting/interventions/feldman-dp.json"
-
-import fin_hardt_eo from "../figures/finance/interventions/hardt-eo.json"
-import rec_hardt_eo from "../figures/recruiting/interventions/hardt-eo.json"
-
-import fin_kamiran_dp from "../figures/finance/interventions/kamiran-dp.json"
-import fin_kamiran_eo from "../figures/finance/interventions/kamiran-eo.json"
-import fin_kamiran_eopp from "../figures/finance/interventions/kamiran-eopp.json"
-import rec_kamiran_dp from "../figures/recruiting/interventions/kamiran-dp.json"
-import rec_kamiran_eo from "../figures/recruiting/interventions/kamiran-eo.json"
-import rec_kamiran_eopp from "../figures/recruiting/interventions/kamiran-eopp.json"
-
-import fin_kam_cal_dp from "../figures/finance/interventions/kamiran-calders-dp.json"
-import rec_kam_cal_dp from "../figures/recruiting/interventions/kamiran-calders-dp.json"
-
-import fin_kamishima_dp from "../figures/finance/interventions/kamishima-dp.json"
-
-import fin_pleiss_eopp from "../figures/finance/interventions/pleiss-eopp.json"
-import fin_pleiss_eo from "../figures/finance/interventions/pleiss-eo.json"
-import fin_pleiss_bl_eo from "../figures/finance/interventions/pleiss-bl-eo.json"
-import rec_pleiss_eopp from "../figures/recruiting/interventions/pleiss-eopp.json"
-import rec_pleiss_bl_eo from "../figures/recruiting/interventions/pleiss-bl-eo.json"
-import rec_pleiss_eo from "../figures/recruiting/interventions/pleiss-eo.json"
-
-import fin_zemel_race_dp from "../figures/finance/interventions/zemel-race-dp.json"
-import fin_zemel_sex_dp from "../figures/finance/interventions/zemel-sex-dp.json"
-import rec_zemel_dp from "../figures/recruiting/interventions/zemel-dp.json"
-
-import fin_adv_dp from "../figures/finance/interventions/adversarial-dp.json"
-import fin_adv_cdp from "../figures/finance/interventions/adversarial-cdp.json"
-import fin_adv_blcdp from "../figures/finance/interventions/bl-adversarial-cdp.json"
-import fin_adv_eo from "../figures/finance/interventions/adversarial-eo.json"
-import fin_adv_bleo from "../figures/finance/interventions/bl-adversarial-eo.json"
-import rec_adv_dp from "../figures/recruiting/interventions/adversarial-dp.json"
-import rec_adv_cdp from "../figures/recruiting/interventions/adversarial-cdp.json"
-import rec_adv_blcdp from "../figures/recruiting/interventions/bl-adversarial-cdp.json"
-import rec_adv_eo from "../figures/recruiting/interventions/adversarial-eo.json"
-import rec_adv_bleo from "../figures/recruiting/interventions/bl-adversarial-eo.json"
+import { PlotLoader } from "../components/siteplotly"
 
 Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on [Binder][binder] and the code is all available on [GitHub][github].
 
@@ -65,16 +25,7 @@ The result of applying the algorithm is a modified dataset, such that each featu
 
 We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-feldman]. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_feld_dp} />
-</div>
+<PlotLoader source={"finance/interventions/feldman-dp"} />
 
 This is likely because features that are highly correlated with `sex` remain in the data such as `marital-status`.
 
@@ -82,16 +33,7 @@ This is likely because features that are highly correlated with `sex` remain in 
 
 We also applied it to the synethetic recruiting data, this time trying to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-feldman]. In this case the intervention was marginally more effective, but still didn't come close to actually achieving fairness. Demographic parity difference decreased from 0.327 in the baseline model to 0.269 for the model trained on fair data. The bar chart of scores shows a modest improvement, but a significant disparity between the races remains.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_feld_dp} />
-</div>
+<PlotLoader source={"recruiting/interventions/feldman-dp"} />
 
 </Collapse>
 
@@ -119,31 +61,13 @@ The algorithm is very widely applicable, as it only needs access to the model ou
 
 We applied the intervention to the adult dataset in order to impose equalised odds with respect to sex. Run our analysis yourself on [Binder][binder-finance-hardt]. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_hardt_eo} />
-</div>
+<PlotLoader source={"finance/interventions/hardt-eo"} />
 
 ### Recruiting
 
 We also applied it to the synethetic recruiting data, this time trying to impose equalised odds with respect to race. Run our analysis yourself on [Binder][binder-recruiting-hardt]. Again it was extremely effective, with test set equalised odds difference being negligible, and test set accuracy falling about three percentage points.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_hardt_eo} />
-</div>
+<PlotLoader source={"recruiting/interventions/hardt-eo"} />
 
 </Collapse>
 
@@ -169,42 +93,15 @@ In their paper Kamiran et al. introduce two algorithms, the one implemented by I
 
 We applied the intervention to the adult dataset in order to impose demographic parity, equalised odds and equal opportunity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamiran]. The interventions are largely effective, demographic parity difference is reduced from 0.193 to 0.025 from the baseline, while accuracy decreased from 85.3% to 79.3%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_kamiran_dp} />
-</div>
+<PlotLoader source={"finance/interventions/kamiran-dp"} />
 
 The intervention was less effective for equalised odds, only reducing the difference from 0.128 to 0.079 while similarly decreasing accuracy from 85.3% to 79.0%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_kamiran_eo} />
-</div>
+<PlotLoader source={"finance/interventions/kamiran-eo"} />
 
 Imposing equal opportunity was slightly more effective, reducing the difference from 0.128 to 0.043 and reducing accuracy from 85.3% to 80.7%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_kamiran_eopp} />
-</div>
+<PlotLoader source={"finance/interventions/kamiran-eopp"} />
 
 ### Recruiting
 
@@ -212,42 +109,15 @@ We also applied it to the synethetic recruiting data, this time trying to impose
 
 First for demographic parity we saw demographic parity difference decrease from 0.327 to 0.055, while accuracy fell from 86.2% to 79.4%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_kamiran_dp} />
-</div>
+<PlotLoader source={"recruiting/interventions/kamiran-dp"} />
 
 Imposing equalised odds was more successful, we saw the equalised odds difference fall from 0.133 to 0.032 while accuracy only fell from 86.2% to 84.1%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_kamiran_eo} />
-</div>
+<PlotLoader source={"recruiting/interventions/kamiran-eo"} />
 
 Imposing equal opportunity was similarly effective, with equal opportunity difference falling from 0.133 to 0.010 and accuracy falling from 86.2% to 84.1%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_kamiran_eopp} />
-</div>
+<PlotLoader source={"recruiting/interventions/kamiran-eopp"} />
 
 </Collapse>
 
@@ -273,31 +143,13 @@ Classifiers can learn bias because representatives of the disadvantaged group wi
 
 We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamiran-calders]. The intervention did improve fairness, reducing demographic parity difference from the baseline value of 0.193 to 0.099, and only slightly decreased accuracy from 85.3% to 84.2%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_kam_cal_dp} />
-</div>
+<PlotLoader source={"finance/interventions/kamiran-calders-dp"} />
 
 ### Recruiting
 
 We also applied the intervention to the synthetic recruiting data in order to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamiran-calders]. The intervention was slightly less effective on the recruiting data, reducing demographic parity difference from the baseline value of 0.327 to 0.190, and reducing accuracy from 86.2% to 84.3%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_kam_cal_dp} />
-</div>
+<PlotLoader source={"recruiting/interventions/kamiran-calders-dp"} />
 
 </Collapse>
 
@@ -323,31 +175,13 @@ Kamishima et al. propose a regularisation term, which approximately represents t
 
 We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamishima]. The intervention reduced demographic parity difference from the baseline value of 0.193 to 0.059, and decreased accuracy from 85.3% to 80.6%. We can see from the box plots of the scores, that the improvement in demographic parity difference appears to be driven by the scores for both protected groups being squeezed towards zero, and so the classifier is closer to a constant classifier that predicts nobody is a high-earner. This doesn't seem to be much of an improvement.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_kamishima_dp} />
-</div>
+<PlotLoader source={"finance/interventions/kamishima-dp"} />
 
 ### Recruiting
 
 We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamishima]. We saw the demographic parity difference decrease from 0.327 to 0.067, but we also observed a major drop in accuracy from 86.2% to 77.7%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_kamishima_dp} />
-</div>
+<PlotLoader source={"recruiting/interventions/kamishima-dp"} />
 
 </Collapse>
 
@@ -375,79 +209,25 @@ On both data sets we had success imposing equal opportunity, but were unsuccessf
 
 We applied the intervention to the adult dataset in order to impose equal opportunity with respect to sex. Run our analysis yourself on [Binder][binder-finance-pleiss]. The intervention reduced equal opportunity difference from 0.128 to 0.035, and only slightly decreased accuracy from 85.3% to 83.2%. In addition, calibration of the original model was preserved.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_pleiss_eopp} />
-</div>
+<PlotLoader source={"finance/interventions/pleiss-eopp"} />
 
 The intervention was however unsuccessful at imposing equalised odds, the algorithm returns the constant predictor for women, meaning every prediction for women is made with information witheld, and the prediction is made according to the class balance. This results in a large increase in the equalised odds difference, from 0.128 to 0.644.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_pleiss_bl_eo} />
-</div>
+<PlotLoader source={"finance/interventions/pleiss-bl-eo"} />
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_pleiss_eo} />
-</div>
+<PlotLoader source={"finance/interventions/pleiss-eo"} />
 
 ### Recruiting
 
 We also applied the intervention to our synthetic recruiting data to impose equal opportunity and equalised odds with respect to race. Run our analysis yourself on [Binder][binder-recruiting-pleiss]. When imposing equal opportunity we saw equal opportunity difference increase from 0.133 to 0.245, and accuracy fell significantly from 86.2% to 77.9%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_pleiss_eopp} />
-</div>
+<PlotLoader source={"recruiting/interventions/pleiss-eopp"} />
 
 Our attempt to impose equalised odds also failed, with the difference increasing from 0.133 to 0.346, though the decrease in accuracy was less severe, falling from 86.2% to only 84.5%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_pleiss_bl_eo} />
-</div>
+<PlotLoader source={"recruiting/interventions/pleiss-bl-eo"} />
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_pleiss_eo} />
-</div>
+<PlotLoader source={"recruiting/interventions/pleiss-eo"} />
 
 </Collapse>
 
@@ -473,44 +253,17 @@ The approach described by Zemel et al. proceeds by clustering the data in such a
 
 We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. Run our analysis yourself on Binder [here][binder-finance-zemel-race] and [here][binder-finance-zemel-sex]. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_zemel_race_dp} />
-</div>
+<PlotLoader source={"finance/interventions/zemel-race-dp"} />
 
 When imposing demographic parity with respect to sex we had less success, seeing the accuracy fall from 85.3% to 79.2% and demographic parity difference _increase_ from 0.193 to 0.370.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...fin_zemel_sex_dp} />
-</div>
+<PlotLoader source={"finance/interventions/zemel-sex-dp"} />
 
 ### Recruiting
 
 We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. Run our analysis yourself on [Binder][binder-recruiting-zemel]. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
 
-<div
-  style={{
-    padding: "0 10px",
-    margin: "1em 0",
-    backgroundColor: "white",
-    borderRadius: "8px",
-  }}
->
-  <LazyPlot {...rec_zemel_dp} />
-</div>
+<PlotLoader source={"recruiting/interventions/zemel-dp"} />
 
 </Collapse>
 
@@ -540,21 +293,23 @@ We attempt to enforce demographic parity, conditional demographic parity and equ
 
 This algorithm is very effective at imposing demographic parity. With minimal tuning we saw a demographic parity difference fall from 0.193 to 0.025, while accuracy only fell from 85.3% to 83.4%
 
-<LazyPlot {...fin_adv_dp} />
+<PlotLoader source={"finance/interventions/adversarial-dp"} />
 
 #### Conditional demographic parity
 
 Similarly imposing conditional demographic parity with respect to `hours_per_week` with this approach proved very effective. We saw conditional demographic parity difference fall from 0.173 to 0.031 while accuracy fell from 85.3% to 83.4%.
 
-<LazyPlot {...fin_adv_blcdp} />
-<LazyPlot {...fin_adv_cdp} />
+<PlotLoader source={"finance/interventions/bl-adversarial-cdp"} />
+
+<PlotLoader source={"finance/interventions/adversarial-cdp"} />
 
 #### Equal opportunity
 
 Equal opportunity proved more challenging. We saw some improvement, with equalised odds difference falling from 0.128 to 0.094 and accuracy only falling a small amount from 85.3% to 84.9%. If anything the model somewhat over-corrected. The core problem appears to be that the tension between performance and fairness constraints leads to some instability during training that is typical of adversarial methods. Zhang et al. recommend a few possible strategies for addressing these problems, such as modifying the discriminator loss weight over time so as to slowly increase the penalty for unfairness. In our implementation we warm up without a fairness constraint, but then turn on the fairness constraint suddenly rather than slowly increase it, so there are things we could have done differently to address some of the training issues, however it's clear that imposing equalised odds with this algorithm is more delicate than other definitions of fairness.
 
-<LazyPlot {...fin_adv_bleo} />
-<LazyPlot {...fin_adv_eo} />
+<PlotLoader source={"finance/interventions/bl-adversarial-eo"} />
+
+<PlotLoader source={"finance/interventions/adversarial-eo"} />
 
 ### Recruiting
 
@@ -564,21 +319,23 @@ Similarly we impose all three definitions of fairness on the recruiting data set
 
 This was again very effective, reducing demographic parity difference from 0.173 to 0.007, while accuracy fell from 0.862 to 0.845.
 
-<LazyPlot {...rec_adv_dp} />
+<PlotLoader source={"recruiting/interventions/adversarial-dp"} />
 
 #### Conditional demographic parity
 
 This was similarly effective, reducing conditional demographic parity difference from 0.127 to 0.014, and accuracy from 86.2% to 84.5%.
 
-<LazyPlot {...rec_adv_blcdp} />
-<LazyPlot {...rec_adv_cdp} />
+<PlotLoader source={"recruiting/interventions/bl-adversarial-cdp"} />
+
+<PlotLoader source={"recruiting/interventions/adversarial-cdp"} />
 
 #### Equal opportunity
 
 Equal opportunity once again proved more challenging. This time the equalised odds difference actually got slightly worse, increasing from 0.088 to 0.119. The initial value equalised odds difference is fairly small though which doesn't leave much room for improvement. Nevertheless, imposing equalised odds with this method appears more challenging.
 
-<LazyPlot {...fin_adv_bleo} />
-<LazyPlot {...fin_adv_eo} />
+<PlotLoader source={"recruiting/interventions/bl-adversarial-eo"} />
+
+<PlotLoader source={"recruiting/interventions/adversarial-eo"} />
 
 </Collapse>
 

@@ -3,11 +3,7 @@ title: Creating synthetic recruiting data
 ---
 
 import Collapse from "../components/collapse"
-import { LazyPlot } from "../components/siteplotly"
-
-import employed_by_sex from "../figures/recruiting/employed_by_sex.json"
-import employed_by_race from "../figures/recruiting/employed_by_race.json"
-import employed_by_experience from "../figures/recruiting/employed_by_experience.json"
+import { PlotLoader } from "../components/siteplotly"
 
 The second data set we wil be considering is one that we have generated ourselves. We chose this approach as there are relatively few open access recruiting data sets available, and of those either we had some data quality concerns, or there was no sensitive information available to assess bias with. The full details of our data generation process can be seen in [this notebook][binder-preprocessing], and the data exploration presented below can be seen in [this notebook][binder-data]. We will assume that we are a large corporation that wants to automate part of its hiring pipeline using a machine learning model trained to predict hiring decisions on historical applicants.
 
@@ -45,17 +41,17 @@ Since we have generated the data, we have ensured that we only generated relevan
 
 Once the data has been preprocessed, we can look at bias that is present in the data, before we have even trained a model. First, we look at the proportion of male and female applicants employed, we see that the proportion is much higher for men.
 
-<LazyPlot {...employed_by_sex} />
+<PlotLoader source={"recruiting/employed_by_sex"} />
 
 Similarly, there is a large disparity in proportion of successful applicants across different races.
 
-<LazyPlot {...employed_by_race} />
+<PlotLoader source={"recruiting/employed_by_race"} />
 
 Finally there is, perhaps unsurprisingly, a clear relationship between the number of years of experience and the chances that the individual is a high earner. We will consider this as a "legitimate risk factor" when we investigate imposing conditional demographic parity. This means that we would allow ourselves to target protected groups at different rates, if the disparity is due to those groups having differing amounts of experience on average.
 
 Whether this is the right notion of fairness is unclear. On the one hand basing our decision on the experience of the applicant seems reasonable, on the other hand the number of years of experience the applicant has could itself be a manifestation of systemic biases, and merely reflect the exact historical hiring biases we want to mitigate. When selecting legitimate risk factors for analysing fairness it is important we consider whether they are themselves just a proxy for systemic bias.
 
-<LazyPlot {...employed_by_experience} />
+<PlotLoader source={"recruiting/employed_by_experience"} />
 
 Next we'll try training a model without any attempt to mitigate bias and investigate the results.
 
