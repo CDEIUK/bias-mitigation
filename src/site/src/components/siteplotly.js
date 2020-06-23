@@ -67,9 +67,5 @@ export function PlotLoader({ source }) {
     return () => (mounted = false)
   }, [source])
 
-  if (!figureData) {
-    return <Loading />
-  } else {
-    return <LazyPlot {...figureData} />
-  }
+  return figureData ? <LazyPlot {...figureData} /> : <Loading />
 }
