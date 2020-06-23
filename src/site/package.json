@@ -37,7 +37,7 @@
     "format": "prettier --write \"**/*.{css,js,jsx,md,mdx}\"",
     "format-check": "prettier --check \"**/*.{css,js,jsx,md,mdx}\"",
     "start": "npm run develop",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve --prefix-paths",
     "clean": "gatsby clean"
   },
   "repository": {
