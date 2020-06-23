@@ -9,7 +9,7 @@ import employed_by_sex from "../figures/recruiting/employed_by_sex.json"
 import employed_by_race from "../figures/recruiting/employed_by_race.json"
 import employed_by_experience from "../figures/recruiting/employed_by_experience.json"
 
-The second data set we wil be considering is one that we have generated ourselves. We chose this approach as there are relatively few open access recruiting data sets available, and of those either we had some data quality concerns, or there was no sensitive information available to assess bias with. The full details of our data generation process can be seen in [this notebook][binder-data]. We will assume that we are a large corporation that wants to automate part of its hiring pipeline using a machine learning model trained to predict hiring decisions on historical applicants.
+The second data set we wil be considering is one that we have generated ourselves. We chose this approach as there are relatively few open access recruiting data sets available, and of those either we had some data quality concerns, or there was no sensitive information available to assess bias with. The full details of our data generation process can be seen in [this notebook][binder-preprocessing], and the data exploration presented below can be seen in [this notebook][binder-data]. We will assume that we are a large corporation that wants to automate part of its hiring pipeline using a machine learning model trained to predict hiring decisions on historical applicants.
 
 <Collapse label="Features in the synthetic data">
 
@@ -60,3 +60,4 @@ Whether this is the right notion of fairness is unclear. On the one hand basing 
 Next we'll try training a model without any attempt to mitigate bias and investigate the results.
 
 [binder-data]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Fdata.ipynb "Open notebook on Binder"
+[binder-preprocessing]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Fpreprocessing.ipynb "Open notebook on Binder"
