@@ -1,8 +1,9 @@
-# CDEI
+# ML Bias notebooks
 
-This repository hosts WIP example fairness workflows for the CDEI project.
+This directory contains the raw notebooks use to generate figures for the website and also for generating clean notebooks to be hosted on Binder.
 
-## Contact
+Install by navigating to this directory and running
 
-- Tom Begley: tom@faculty.ai
-- Tobias Schwedes: tobias.schwedes@faculty.ai
+```sh
+pip install .
+```
