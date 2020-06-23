@@ -48,7 +48,6 @@ export class PlotLoader extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: false,
       figureDate: undefined,
     }
   }
@@ -61,13 +60,13 @@ export class PlotLoader extends Component {
       /* webpackPrefetch: true */
       /* webpackPreload: true */
       `./../../static/figures/${this.props.source}.json`
-    ).then(module => {
-      this.setState({ loading: false, figureData: module })
+    ).then(data => {
+      this.setState({ figureData: data })
     })
   }
   render() {
-    const { loading, figureData } = this.state
-    if (loading) {
+    const { figureData } = this.state
+    if (!figureData) {
       return <Loading />
     } else {
       return <LazyPlot {...figureData} />
