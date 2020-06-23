@@ -48,6 +48,8 @@ export function PlotLoader({ source }) {
   const [figureData, setFigureData] = useState(null)
 
   useEffect(() => {
+    let mounted = true
+
     const getData = async () => {
       const data = await import(
         /* webpackInclude: /\.json$/ */
@@ -57,9 +59,12 @@ export function PlotLoader({ source }) {
         /* webpackPreload: true */
         `./../../static/figures/${source}.json`
       )
-      setFigureData(data)
+      if (mounted) {
+        setFigureData(data)
+      }
     }
     getData()
+    return () => (mounted = false)
   }, [source])
 
   if (!figureData) {
