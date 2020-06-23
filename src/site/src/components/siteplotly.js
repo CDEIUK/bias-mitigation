@@ -45,12 +45,11 @@ export const LazyPlot = ({ ...rest }) => (
 )
 
 export function PlotLoader({ source }) {
-  const [loading, setLoading] = useState(true)
   const [figureData, setFigureData] = useState(null)
 
   useEffect(() => {
     const getData = async () => {
-      const module = await import(
+      const data = await import(
         /* webpackInclude: /\.json$/ */
         /* webpackChunkName: "figure" */
         /* webpackMode: "lazy" */
@@ -58,13 +57,12 @@ export function PlotLoader({ source }) {
         /* webpackPreload: true */
         `./../../static/figures/${source}.json`
       )
-      setLoading(false)
-      setFigureData(module)
+      setFigureData(data)
     }
     getData()
   }, [source])
 
-  if (loading) {
+  if (!figureData) {
     return <Loading />
   } else {
     return <LazyPlot {...figureData} />
