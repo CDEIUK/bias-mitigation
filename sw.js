@@ -49,7 +49,10 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "93b3d5f90e7d0f48fea4bdb746dd5010"
+    "revision": "5a7ea4bfcd4e624ef03ad9bc87748bf0"
+  },
+  {
+    "url": "fetch.umd.js"
   },
   {
     "url": "pace.min.js"
