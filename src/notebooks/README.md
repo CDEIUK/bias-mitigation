@@ -8,4 +8,4 @@ Install by navigating to this directory and running
 pip install .
 ```
 
-The clean notebooks can be found in the `notebooks/` folder in the root of this repository.
+The clean notebooks can be found in the `notebooks/` folder in the root of this repository. During the cleaning, any notebook cell that has an `export` tag set will be stripped.
