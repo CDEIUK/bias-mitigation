@@ -59,6 +59,9 @@ export function PlotLoader({ source }) {
         /* webpackPreload: true */
         `./../../static/figures/${source}.json`
       )
+      // Workaround for badly resized plots
+      data.layout.autosize = false
+
       if (mounted) {
         data.divId = source
         setFigureData(data)
