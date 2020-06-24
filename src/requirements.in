@@ -1,0 +1,15 @@
+aif360[DisparateImpactRemover]==0.3.0
+fairlearn==0.4.6
+joblib==0.15.1
+matplotlib==3.2.1
+numba==0.48.0
+numpy==1.18.5
+pandas==1.0.4
+plotly==4.8.1
+scikit-learn==0.23.1
+tensorflow==2.2.0
+tqdm==4.46.1
+
+## due to this, run pip install -r src/requirements.txt from the root of this repo
+# local helpers
+./src/helpers/
