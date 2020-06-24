@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { withPrefix } from "gatsby"
 import Loadable from "react-loadable"
 import { MdAspectRatio } from "react-icons/md"
 
@@ -51,14 +52,8 @@ export function PlotLoader({ source }) {
     let mounted = true
 
     const getData = async () => {
-      const data = await import(
-        /* webpackInclude: /\.json$/ */
-        /* webpackChunkName: "figure" */
-        /* webpackMode: "lazy" */
-        /* webpackPrefetch: true */
-        /* webpackPreload: true */
-        `./../../static/figures/${source}.json`
-      )
+      const response = await fetch(withPrefix(`/figures/${source}.json`))
+      const data = await response.json()
       // Workaround for badly resized plots
       data.layout.autosize = false
 
