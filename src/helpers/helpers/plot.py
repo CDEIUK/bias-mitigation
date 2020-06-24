@@ -119,6 +119,11 @@ def group_bar_plots(
                     scores[(attr == a) & (groups == group)].mean()
                     for group in unique_groups
                 ],
+                marker={
+                    "color": _hex_to_rgba(COLORS[i], 0.5),
+                    "line_color": COLORS[i],
+                    "line_width": 1,
+                },
                 y=unique_groups,
                 name=a,
                 orientation="h",
