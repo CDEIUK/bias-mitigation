@@ -345,10 +345,6 @@ The adversarial debiasing technique is extremely effective for demographic parit
 
 We showed with out implementation that it is straightforward to implement this algorithm yourself, but there is also an implementation in AI Fairness 360 that can impose demographic parity but not other notions of fairness.
 
-
-
-
-
 ## Reductions approach via constrained optimisation - Agarwal et al.
 
 [Agarwal et al.][agarwal] introduce an in-processing technique which learns a fair classifier by solving a constrained minisation problem. It is implemented in [FairLearn][fairlearn] library.
@@ -381,8 +377,6 @@ The intervention again improved fairess massively, reducing equalised odds from 
 
 Similarly concincing results were achieved for equal opportunity, reducing equalised odds from 0.128 to 0.014, while the accuracy actually rose by 0.2%. Note that in some cases the restricted state space for the model parameter due to the fairness constraints can lead to a minimiser converging at a local minimum preferable over the local minimum found on the unrestricted space.
 
-
-
 <PlotLoader source={"finance/interventions/agarwal-eopp"} />
 
 ### Recruiting
@@ -411,8 +405,75 @@ The improvement in equal opportunity is similar to the improvement in equalised 
 
 ### Summary
 
-The intervention improved fairness significantly on both data sets, while the overall observed trade-off between fairness and 
-accuracy for the adult data set was superior compared to the synthetic recruiting data. Compared to the other intervention techniques Agarwal et al.'s intervention is highly competitive and leads to consistently good results in repeated independent experiments. For practical use this implementation hence seems to work well.
+The intervention improved fairness significantly on both data sets, while the overall observed trade-off between fairness and accuracy for the adult data set was superior compared to the synthetic recruiting data. Compared to the other intervention techniques Agarwal et al.'s intervention is highly competitive and leads to consistently good results in repeated independent experiments. For practical use this implementation hence seems to work well.
+
+
+
+
+Fairness through unawareness excludes protected attributes when learning a classifier with the aim on improving fairness. We consider the effect of applying FTU for a number of observational group fairness notions.
+
+<Collapse label="How it works">
+
+This notebook contains the implementation of the common pre-processing intervention called Fairness Through Unawareness (FTU) in which the protected attribute is not included as a feature in the training data. Besides being considered as an intervention, FTU can also be considered as a fairness notion, which is consistent with disparate treatment.
+
+Although FTU is often applied by industry practitioners, its effect in terms of reducing unfairness is limited since information on protected attributed can still be contained elsewhere in the data. More precisely, there may be features which are highly correlated with the protected attributes and therefore act as proxies for them. 
+
+Since the intervention is the same independently of the fairness notion considered, the reported accuracy of the FTU model for different notions of fairness is the same.
+
+</Collapse>
+
+<Collapse label="Experimental results">
+
+### Finance
+
+We applied the intervention to the adult dataset in order to impose different notions of fairness with respect to sex. Run our analysis yourself on Binder [here][binder-finance-ftu]. 
+
+#### Demographic parity
+
+The intervention reduced demographic parity difference only slightly, from 0.193 to 0.174. Since we exclude a priori available information from the training process it is reasonable to expect some reduction in accuracy. However, the influence on achieved accuracy is small, reducing it from 85.3% to 84.9%. 
+
+<PlotLoader source={"finance/interventions/ftu-dp"} />
+
+#### Equalised odds
+
+The reduction in equalised odds is more significant, reducting equalised odds difference from 0.128 to 0.074.
+
+<PlotLoader source={"finance/interventions/ftu-eo"} />
+
+#### Equal opportunity
+
+The reduction in equal opportunity is identival to equalised odds.
+
+<PlotLoader source={"finance/interventions/ftu-eopp"} />
+
+### Recruiting
+
+Here we applied the intervention to the synthetic recruiting dataset and impose different notions of fairness with respect to race.
+
+#### Demographic parity
+
+Due to the intervention demographic parity was slightly reduced, from 0.327 to 0.267. The loss of less than 1% in accuracy is fairly low, leading to 85.4% accuracy compared to 86.2% in the original model.
+
+<PlotLoader source={"recruiting/interventions/ftu-dp"} />
+
+#### Equalised odds
+
+Equalised odds could be roughly halved, from 0.133 to 0.064, which is a significant reduction. 
+
+<PlotLoader source={"recruiting/interventions/ftu-eo"} />
+
+#### Equal opportunity
+
+The improvement in equal opportunity is even better than for equalised odds, reducing equal opportunity from 0.133 to 0.039.
+
+<PlotLoader source={"recruiting/interventions/ftu-eopp"} />
+
+</Collapse>
+
+### Summary
+
+The intervention has overall an small influence on loss in accuracy, however also a limited influence to the improvement in fairness. It is therefore useful to consider FTU not as a single fairness intervention technique, but in combination with other techniques.
+
 
 [aif-360]: https://aif360.readthedocs.io/en/latest/
 [agarwal]: http://proceedings.mlr.press/v80/agarwal18a.html
