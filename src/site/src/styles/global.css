@@ -7,6 +7,10 @@ code.inline-code {
   display: none;
 }
 
+.js-plotly-plot > .plot-container > div.svg-container {
+  margin: 0 auto !important;
+}
+
 @media screen and (max-width: 600px) {
   /* Hide plots and show warning. */
   .js-plotly-plot {
