@@ -1,5 +1,5 @@
 
-FIGURES_DIR = ../site/src/figures
+FIGURES_DIR = ../site/static/figures
 NOTEBOOKS_DIR = ../../notebooks
 
 # Master notebooks

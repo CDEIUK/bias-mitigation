@@ -3,11 +3,7 @@ title: Finance - the Adult data set
 ---
 
 import Collapse from "../components/collapse"
-import { LazyPlot } from "../components/siteplotly"
-
-import salary_by_sex from "../figures/finance/salary_by_sex.json"
-import salary_by_race from "../figures/finance/salary_by_race.json"
-import salary_by_hpw from "../figures/finance/salary_by_hours_per_week.json"
+import { PlotLoader } from "../components/siteplotly"
 
 The first data set we will be considering is the Adult data set from the [UCI Machine learning repository][adult-data]. It was derived from the US Census, and contains demographic information from several thousand individuals. The typical task on this data set is to predict whether or not an individual is a high earner from their demographics. You can see the details of our data acquisition and preprocessing in [this notebook][binder-preprocessing], and you can see the details of the below data exploration in [this notebook][binder-data]]
 
@@ -56,17 +52,17 @@ Since we are merely demonstrating different methods of measuring and mitigating 
 
 Once the data has been preprocessed, we can look at bias that is present in the data, before worrying about bias introduced by the model. First, we look at the proportion of men and women that are high earners, we see that the proportion is much higher for men.
 
-<LazyPlot {...salary_by_sex} />
+<PlotLoader source={"finance/salary_by_sex"} />
 
 Similarly, there is a large disparity in proportion of high earners across different races.
 
-<LazyPlot {...salary_by_race} />
+<PlotLoader source={"finance/salary_by_race"} />
 
 Finally there is, perhaps unsurprisingly, a clear relationship between the number of hours worked per week and the chances that the individual is a high earner. We will consider this as a "legitimate risk factor" when we investigate imposing conditional demographic parity. This means that we would allow ourselves to target protected groups at different rates, if the disparity is due to those groups working different numbers of hours per week on average.
 
 Whether this is the right notion of fairness is unclear. On the one hand basing our decision on the hours worked per week feature seems reasonable, on the other hand the number of hours an individual works each week could itself be a manifestation of systemic biases, such as societal pressure for women to stay home and raise children. When selecting legitimate risk factors for analysing fairness it is important we consider whether they are themselves just a proxy for systemic bias.
 
-<LazyPlot {...salary_by_hpw} />
+<PlotLoader source={"finance/salary_by_hours_per_week"} />
 
 Next we'll look at the data we use for the recruiting use case.
 

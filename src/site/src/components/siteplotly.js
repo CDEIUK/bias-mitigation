@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Loadable from "react-loadable"
 import { MdAspectRatio } from "react-icons/md"
 
@@ -37,9 +37,36 @@ export const LazyPlot = ({ ...rest }) => (
       }}
       {...rest}
     />
-    <div class="narrow-screen-warning">
+    <div className={"narrow-screen-warning"}>
       <MdAspectRatio /> Your screen is too narrow to display a plot. Please try
       a bigger screen, or landscape mode.
     </div>
   </div>
 )
+
+export function PlotLoader({ source }) {
+  const [figureData, setFigureData] = useState(null)
+
+  useEffect(() => {
+    let mounted = true
+
+    const getData = async () => {
+      const data = await import(
+        /* webpackInclude: /\.json$/ */
+        /* webpackChunkName: "figure" */
+        /* webpackMode: "lazy" */
+        /* webpackPrefetch: true */
+        /* webpackPreload: true */
+        `./../../static/figures/${source}.json`
+      )
+      if (mounted) {
+        data.divId = source
+        setFigureData(data)
+      }
+    }
+    getData()
+    return () => (mounted = false)
+  }, [source])
+
+  return figureData ? <LazyPlot {...figureData} /> : <Loading />
+}
