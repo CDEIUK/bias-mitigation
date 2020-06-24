@@ -129,7 +129,7 @@ def group_bar_plots(
                 orientation="h",
                 hoverinfo="name+x",
             )
-            for a in sorted(set(attr))
+            for i, a in enumerate(sorted(set(attr)))
         ],
         layout={
             "autosize": True,
