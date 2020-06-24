@@ -4,7 +4,7 @@ This folder contains all of the source for the repository including:
 
 - `helpers/`: a Python package of helper functions we use repeatedly in our analysis, including commonly used plotting functions and metrics
 - `notebooks/`: raw versions of all the notebooks used in our analysis. These notebooks are run when the app is built to ensure plots in the app are in sync with the notebooks in the root of this directory. Any cell with the tag `export` is stripped out during notebook generation.
-- `site`: Contains the source code for the website. See the README in `site/src` for more details.
+- `site/`: Contains the source code for the website. See `site/README.md` for more details.
 
 ## Development
 
