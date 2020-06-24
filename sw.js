@@ -27,16 +27,16 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-39b3ae91d34ba02c626f.js"
+    "url": "webpack-runtime-f35bdaf210197eb7ec5b.js"
   },
   {
-    "url": "framework-00076b3ecd056c734fcd.js"
+    "url": "framework-290a0347a76cdbe3fd5a.js"
   },
   {
     "url": "styles.00f8b4737e2b2bf266d9.css"
   },
   {
-    "url": "styles-794a3f92d26e63fcd402.js"
+    "url": "styles-48d70379b7a931f0bbd4.js"
   },
   {
     "url": "f0e45107-b3fb87956e69fc692194.js"
@@ -45,11 +45,11 @@ self.__precacheManifest = [
     "url": "252f366e-0039c2269e1877ca8100.js"
   },
   {
-    "url": "app-b9d3abc1467340cc79a0.js"
+    "url": "app-17596c7d9dc9959982a7.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "8a29d97d67def03d1e942f810e7f5dfc"
+    "revision": "dee9fa7bdec11e7d79498823174ed397"
   },
   {
     "url": "pace.min.js"
@@ -76,157 +76,187 @@ self.__precacheManifest = [
     "url": "figure13-3ef0331f4af586a5c789.js"
   },
   {
-    "url": "figure14-aa6ab74a7df789796db5.js"
+    "url": "figure14-139a077d669e9a0a0ab0.js"
   },
   {
-    "url": "figure15-34ce048d13fc32d3fa51.js"
+    "url": "figure15-994a338d69e921e76260.js"
   },
   {
-    "url": "figure16-c825082f39374500b39b.js"
+    "url": "figure16-68542fb63c1ee7f23947.js"
   },
   {
-    "url": "figure17-0ee120f4e6570f76a658.js"
+    "url": "figure17-7dddd2c24aba60845d66.js"
   },
   {
-    "url": "figure18-3e91f46e0ea379770ced.js"
+    "url": "figure18-7b9c53d70128ab1e4bf9.js"
   },
   {
-    "url": "figure19-f655396d29fb58aa81ca.js"
+    "url": "figure19-572cab9bad63f79b6462.js"
   },
   {
     "url": "figure2-bffb6ae5acea21c77e2d.js"
   },
   {
-    "url": "figure20-7bd3e1ab7c1aedb5b447.js"
+    "url": "figure20-969119d19976628b8cd7.js"
   },
   {
-    "url": "figure21-c572914b1d12260e299a.js"
+    "url": "figure21-ff5f9b55a7b51f85027a.js"
   },
   {
-    "url": "figure22-f2446175118e19adbeef.js"
+    "url": "figure22-248fc17a02dd9aa6bf3c.js"
   },
   {
-    "url": "figure23-1fd1e06ead7f699881af.js"
+    "url": "figure23-4cadc90bf77ebe64e028.js"
   },
   {
-    "url": "figure24-084842504f3db31bd40e.js"
+    "url": "figure24-b75cc541c4a45858bdfd.js"
   },
   {
-    "url": "figure25-c0f77ec6dcc40a07501b.js"
+    "url": "figure25-0b02f277f8cc7b94dd22.js"
   },
   {
-    "url": "figure26-3ca7b64e254fe69d2fee.js"
+    "url": "figure26-a04d53f309ee373f4f73.js"
   },
   {
-    "url": "figure27-068d0e0d92a52310bf35.js"
+    "url": "figure27-c41cf5028c6dc4529c96.js"
   },
   {
-    "url": "figure28-113eec9000b900128445.js"
+    "url": "figure28-74e3c0916f2dcf4509be.js"
   },
   {
-    "url": "figure29-ec9271702ef3824b19a4.js"
+    "url": "figure29-4d7ace87b1bd0a11be36.js"
   },
   {
     "url": "figure3-59661c515f149dbf6b7e.js"
   },
   {
-    "url": "figure30-9da6100fd247a4c448a7.js"
+    "url": "figure30-625863ad676f10ae850f.js"
   },
   {
-    "url": "figure31-9d756f7a0a623a9737d5.js"
+    "url": "figure31-2e2032959e650cbe07b4.js"
   },
   {
-    "url": "figure32-18a0ce52f9c27d26b6b8.js"
+    "url": "figure32-9e6d0ea56b364eeff7ce.js"
   },
   {
-    "url": "figure33-55ee6303147e06c84fa6.js"
+    "url": "figure33-64aa07bbe84766ac1461.js"
   },
   {
-    "url": "figure34-b5366d77e130e86ac5a2.js"
+    "url": "figure34-8f7abd430bfac2349bd4.js"
   },
   {
-    "url": "figure35-47b2bd27025b529c3825.js"
+    "url": "figure35-b7ecdd7a9d4bedfbce18.js"
   },
   {
-    "url": "figure36-7c3e47862f3f39d87439.js"
+    "url": "figure36-797aa7d765d0fa6baced.js"
   },
   {
-    "url": "figure37-a48bb5d9d0d1678ddfe7.js"
+    "url": "figure37-2beaa6f5759be6a0b15f.js"
   },
   {
-    "url": "figure38-0f497962ad1d28571344.js"
+    "url": "figure38-f6eb9b58a651cfdb8e08.js"
   },
   {
-    "url": "figure39-8c5f1359f939c76b3121.js"
+    "url": "figure39-167abf2c4b765380f553.js"
   },
   {
     "url": "figure4-5afc6a66264a10158704.js"
   },
   {
-    "url": "figure40-9e0d00451e13c3157efa.js"
+    "url": "figure40-a2d6b51861501ee87014.js"
   },
   {
-    "url": "figure41-05f7f1895b4bc6740c1a.js"
+    "url": "figure41-8893a60600baf366b7fc.js"
   },
   {
-    "url": "figure42-26c06ea52cb64d4a46a8.js"
+    "url": "figure42-0e14e9557b5131aa6353.js"
   },
   {
-    "url": "figure43-a69e592f5b74b61e44d7.js"
+    "url": "figure43-d83a3e852e9d4452c826.js"
   },
   {
-    "url": "figure44-2149ba277bb0092ea200.js"
+    "url": "figure44-4f05df4c603d2d33697b.js"
   },
   {
-    "url": "figure45-8781f359c0564d1e68d2.js"
+    "url": "figure45-27a1a45d6c8c59400da0.js"
   },
   {
-    "url": "figure46-43817fe3b9ffcdca5c19.js"
+    "url": "figure46-d8836aa4faf60bc13bd0.js"
   },
   {
-    "url": "figure47-73720d3307ad2c39fc21.js"
+    "url": "figure47-c0c44f864eea7475ac6c.js"
   },
   {
-    "url": "figure48-793e4f68afb60f0e53e2.js"
+    "url": "figure48-ce7ee2f6f4c8e0301ba6.js"
   },
   {
-    "url": "figure49-2a907039475116491b08.js"
+    "url": "figure49-a6ebec3a0bec3bcea273.js"
   },
   {
     "url": "figure5-495d04f51e9175ba6eef.js"
   },
   {
-    "url": "figure50-be86134d9a6655d9e2a7.js"
+    "url": "figure50-ed3dc1313fab204b28fe.js"
   },
   {
-    "url": "figure51-6c3d255f49d39eaf1d5a.js"
+    "url": "figure51-e634e2c3aa1aa0185d79.js"
   },
   {
-    "url": "figure52-546cd1b6c02663defe69.js"
+    "url": "figure52-08298dc06a6cce880f93.js"
   },
   {
-    "url": "figure53-d07d2973fdb341b635dc.js"
+    "url": "figure53-84a382a2b09ae0dca597.js"
   },
   {
-    "url": "figure54-4696c2dd1170da94202a.js"
+    "url": "figure54-9f11bb072a999f3c3dac.js"
   },
   {
-    "url": "figure55-eee53d37338601aa1d07.js"
+    "url": "figure55-4c0887787546db98c043.js"
   },
   {
-    "url": "figure56-6661f7a5a09d0d483a66.js"
+    "url": "figure56-0de68576e6c24e443d50.js"
   },
   {
-    "url": "figure6-e0db057dc05d9255bedc.js"
+    "url": "figure57-7b8f266a0be2078c0b4c.js"
   },
   {
-    "url": "figure7-74bc81df78da140aab6f.js"
+    "url": "figure58-dd675e9a7cb2115e4f12.js"
   },
   {
-    "url": "figure8-1982c72f4b6325d811ac.js"
+    "url": "figure59-1b5c1c4028df1896b606.js"
   },
   {
-    "url": "figure9-45fd565be38ea2e030ca.js"
+    "url": "figure6-de8d77b4e5f8f768b48e.js"
+  },
+  {
+    "url": "figure60-d8fb78abaa5e278655df.js"
+  },
+  {
+    "url": "figure61-b6b9639f02a7667aed4a.js"
+  },
+  {
+    "url": "figure62-34cdc31badd110f94764.js"
+  },
+  {
+    "url": "figure63-dc18fa4f35119b364c34.js"
+  },
+  {
+    "url": "figure64-530959359ccf22c6ef92.js"
+  },
+  {
+    "url": "figure65-dd6ea06862163d8af1e0.js"
+  },
+  {
+    "url": "figure66-857749299406f811838f.js"
+  },
+  {
+    "url": "figure7-35952d68ad7332449e4f.js"
+  },
+  {
+    "url": "figure8-2b722980332e572977e0.js"
+  },
+  {
+    "url": "figure9-8fcfcc52e5b9ca2672c0.js"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-e5cb9e0c77a823b86dc2.js"
@@ -237,7 +267,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "2b874a9ea986ecde9c95f91fe4226b2e"
+    "revision": "2ddf23878b115f22916cfe49d94ed628"
   },
   {
     "url": "manifest.webmanifest",
@@ -334,7 +364,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/cdei-development/app-b9d3abc1467340cc79a0.js`))) {
+  if (!resources || !(await caches.match(`/cdei-development/app-17596c7d9dc9959982a7.js`))) {
     return await fetch(event.request)
   }
 
