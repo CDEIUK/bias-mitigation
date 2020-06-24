@@ -353,7 +353,6 @@ We showed with out implementation that it is straightforward to implement this a
 
 [Agarwal et al.][agarwal] introduce an in-processing technique which learns a fair classifier by solving a constrained minisation problem. It is implemented in [FairLearn][fairlearn] library.
 
-
 <Collapse label="How it works">
 
 The approach described by Agarwal et al. proceeds by formulating a fair classifier as the minimisation of the prediction error under a general form of linear constraint, which addresses Demographic Parity and Equalised Odds as special cases. The optimisation is reformulated as a saddle point problem and is solved by a sequence of cost-sensitive classification problems. 
@@ -364,57 +363,56 @@ The approach described by Agarwal et al. proceeds by formulating a fair classifi
 
 ### Finance
 
+We applied the intervention to the adult dataset in order to impose different notions of fairness with respect to sex. Run our analysis yourself on Binder [here][binder-finance-agarwal]. 
+
+#### Demographic parity
+
+The intervention was very sucessful, reducing demographic from 0.193 to 0.013, while only sacrificing a small amount of accuracy, losing 1.5% from 85.3% to 83.8%.
+
+<PlotLoader source={"finance/interventions/agarwal-dp"} />
+
+#### Equalised odds
+
+The intervention again improved fairess massively, reducing equalised odds from 0.128 to 0.017, while almost no accuracy was lost, that is, accuracy only fell from 85.3% to 85.1%.
+
+<PlotLoader source={"finance/interventions/agarwal-eo.json"} />
+
+#### Equal opportunity
+
+Similarly concincing results were achieved for equal opportunity, reducing equalised odds from 0.128 to 0.014, while the accuracy actually rose by 0.2%. Note that in some cases the restricted state space for the model parameter due to the fairness constraints can lead to a minimiser converging at a local minimum preferable over the local minimum found on the unrestricted space.
 
 
 
-
-
-
-
-
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. Run our analysis yourself on Binder [here][binder-finance-zemel-race] and [here][binder-finance-zemel-sex]. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
-
-<PlotLoader source={"finance/interventions/zemel-race-dp"} />
-
-When imposing demographic parity with respect to sex we had less success, seeing the accuracy fall from 85.3% to 79.2% and demographic parity difference _increase_ from 0.193 to 0.370.
-
-<PlotLoader source={"finance/interventions/zemel-sex-dp"} />
+<PlotLoader source={"finance/interventions/agarwal-eopp.json"} />
 
 ### Recruiting
 
-We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. Run our analysis yourself on [Binder][binder-recruiting-zemel]. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
+Here we applied the intervention to the synthetic recruiting dataset and impose different notions of fairness with respect to race.
 
-<PlotLoader source={"recruiting/interventions/zemel-dp"} />
+#### Demographic parity
+
+Due to the intervention demographic parity was significantly reduced from 0.327 to 0.041. However, the loss in accuracy was realtively high, reducing it from 86.2% to 80%.
+
+<PlotLoader source={"recruiting/interventions/agarwal-dp"} />
+
+#### Equalised odds
+
+Equalised odds could be roughly halved, from 0.133 to 0.065, which is a significant reduction. In this case, the loss in accuracy was small, with a final accuracy of 84.3% compared to 86.2%.
+
+<PlotLoader source={"recruiting/interventions/agarwal-eo.json"} />
+
+#### Equal opportunity
+
+The improvement in equal opportunity is similar to the improvement in equalised odds, reducing equal opportunity from 0.133 to 0.084, and similarly for accuracy, obtaining a fair model accuracy of 85.4%.
+
+<PlotLoader source={"recruiting/interventions/agarwal-eopp.json"} />
 
 </Collapse>
 
 ### Summary
 
-While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The intervention improved fairness significantly on both data sets, while the overall observed trade-off between fairness and 
+accuracy for the adult data set was superior compared to the synthetic recruiting data. Compared to the other intervention techniques Agarwal et al.'s intervention is highly competitive and leads to consistently good results in repeated independent experiments. For practical use this implementation hence seems to work well.
 
 [aif-360]: https://aif360.readthedocs.io/en/latest/
 [agarwal]: http://proceedings.mlr.press/v80/agarwal18a.html
@@ -430,6 +428,7 @@ While the intervention improved fairness on both data sets, the resulting drop i
 [zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
 [binder]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks "Open notebooks on Binder"
 [github]: https://github.com/imrehg/cdei-development
+[binder-finance-agarwal]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fagarwal.ipynb "Open notebook on Binder"
 [binder-finance-feldman]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Ffeldman.ipynb "Open notebook on Binder"
 [binder-finance-hardt]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fhardt.ipynb "Open notebook on Binder"
 [binder-finance-kamiran]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamiran.ipynb "Open notebook on Binder"
@@ -439,6 +438,7 @@ While the intervention improved fairness on both data sets, the resulting drop i
 [binder-finance-zemel-race]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_race.ipynb "Open notebook on Binder"
 [binder-finance-zemel-sex]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_sex.ipynb "Open notebook on Binder"
 [binder-finance-zhang]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzhang.ipynb "Open notebook on Binder"
+[binder-recruiting-agarwal]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fagarwal.ipynb "Open notebook on Binder"
 [binder-recruiting-feldman]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Ffeldman.ipynb "Open notebook on Binder"
 [binder-recruiting-hardt]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fhardt.ipynb "Open notebook on Binder"
 [binder-recruiting-kamiran]: https://mybinder.org/v2/gh/imrehg/cdei-development/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamiran.ipynb "Open notebook on Binder"
