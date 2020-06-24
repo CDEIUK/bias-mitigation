@@ -345,7 +345,79 @@ The adversarial debiasing technique is extremely effective for demographic parit
 
 We showed with out implementation that it is straightforward to implement this algorithm yourself, but there is also an implementation in AI Fairness 360 that can impose demographic parity but not other notions of fairness.
 
+
+
+
+
+## Reductions approach via constrained optimisation - Agarwal et al.
+
+[Agarwal et al.][agarwal] introduce an in-processing technique which learns a fair classifier by solving a constrained minisation problem. It is implemented in [FairLearn][fairlearn] library.
+
+
+<Collapse label="How it works">
+
+The approach described by Agarwal et al. proceeds by formulating a fair classifier as the minimisation of the prediction error under a general form of linear constraint, which addresses Demographic Parity and Equalised Odds as special cases. The optimisation is reformulated as a saddle point problem and is solved by a sequence of cost-sensitive classification problems. 
+
+</Collapse>
+
+<Collapse label="Experimental results">
+
+### Finance
+
+
+
+
+
+
+
+
+
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. Run our analysis yourself on Binder [here][binder-finance-zemel-race] and [here][binder-finance-zemel-sex]. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
+
+<PlotLoader source={"finance/interventions/zemel-race-dp"} />
+
+When imposing demographic parity with respect to sex we had less success, seeing the accuracy fall from 85.3% to 79.2% and demographic parity difference _increase_ from 0.193 to 0.370.
+
+<PlotLoader source={"finance/interventions/zemel-sex-dp"} />
+
+### Recruiting
+
+We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. Run our analysis yourself on [Binder][binder-recruiting-zemel]. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
+
+<PlotLoader source={"recruiting/interventions/zemel-dp"} />
+
+</Collapse>
+
+### Summary
+
+While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [aif-360]: https://aif360.readthedocs.io/en/latest/
+[agarwal]: http://proceedings.mlr.press/v80/agarwal18a.html
 [fairlearn]: https://fairlearn.github.io/
 [feldman]: https://dl.acm.org/doi/10.1145/2783258.2783311
 [hardt]: https://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf
