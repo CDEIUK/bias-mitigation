@@ -12,6 +12,9 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        {/* Workaround for Pace.js being able to follow "fetch" events too */}
+        <script>window.fetch = undefined;</script>
+        <script src="https://unpkg.com/whatwg-fetch@latest/dist/fetch.umd.js"></script>
         <script src={withPrefix("/pace.min.js")}></script>
         <link href={withPrefix("/pace.css")} rel="stylesheet" />
         {props.headComponents}
