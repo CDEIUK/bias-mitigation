@@ -42,7 +42,7 @@ We see a similar picture when comparing the different races. White and Asian hig
 
 We notice something interesting when measuring equalised odds, which is that women under the baseline model actually receive higher accuracy predictions than men. This is ultimately because women are far less likely to be high earners, and so the model mostly predicts that they are low earners with confidence. This is reflected in the box plot above where we see the score distribution for low earning women is extremely narrow and concentrated around the low scores.
 
-The question therefore is who is being disadvantaged by this model? On the one hand we might argue that women, who receive systematically lower scores are disadvantaged, as they have less access to the positive, priviledged outcome. On the other hand, the classification accuracy for women is better, which we might argue _advantages_ them. Specifically the higher classification accuracy means that they are less likely to be marketted or granted a credit card or a loan which they cannot afford, and hence less at risk of default and the negative consequences that come with that. This observation once again underlines the need for understanding the context of the problem, and making a careful determination of what unfairness actually means.
+The question therefore is who is being disadvantaged by this model? On the one hand we might argue that women, who receive systematically lower scores are disadvantaged, as they have less access to the positive, privileged outcome. On the other hand, the classification accuracy for women is better, which we might argue _advantages_ them. Specifically the higher classification accuracy means that they are less likely to be marketed to or granted a credit card or a loan which they cannot afford, and hence less at risk of default and the negative consequences that come with that. This observation once again underlines the need for understanding the context of the problem, and making a careful determination of what unfairness actually means.
 
 ## Recruiting
 
@@ -60,7 +60,7 @@ We see a similar patter when splitting by race, with white individuals systemati
 
 ### Conditional Demographic Parity
 
-For the recruiting data we use years of experience as the legitimate risk factor. We bin individuals according to how many years of experience they have, and compare the distirbution of scores withing those bins between the two sexes. As we can see in each bin women receive lower scores than men, showing that given a man and a woman with the same experience, the model will still be less confident that the woman should be hired.
+For the recruiting data we use years of experience as the legitimate risk factor. We bin individuals according to how many years of experience they have, and compare the distribution of scores within those bins between the two sexes. As we can see in each bin women receive lower scores than men, showing that given a man and a woman with the same experience, the model will still be less confident that the woman should be hired.
 
 <PlotLoader source={"recruiting/bl_cdp_by_sex"} />
 
@@ -80,7 +80,7 @@ Once again we see a similar picture when comparing white and black applicants, w
 
 ## Summary
 
-We trained simple models without any attempt to mitigate fairness, instead only optimising for performance. On both datasets we observe that the model fails to meet the requirements of all definitions of fairness we test for. Hence we should not expect to be able to achieve these notions of fairness without intervention.
+We trained simple models without any attempt to mitigate bias, instead only optimising for performance. On both datasets we observe that the model fails to meet the requirements of all definitions of fairness we test for. Hence we should not expect to be able to achieve these notions of fairness without intervention.
 
 However we also observe that there are some clear tensions between different notions of fairness. For example, while disadvantaged groups receive lower scores on average, they also tend to be classified more accurately. Determining fairness in this context requires us to balance the harm caused by incorrect decisions with the advantage conferred by a positive prediction. Striking such a balance is highly context dependent, and must be done through careful consideration of the task and possible impacts rather than through application of any particular algorithm.
 
