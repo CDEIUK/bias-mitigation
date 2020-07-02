@@ -16,6 +16,7 @@ export const Container = styled.aside`
   transition: transform 0.5s;
   height: 100vh;
   nav {
+    // font-family: 'Alte DIN 1451 Mittelschrift', sans-serif;
     width: 100%;
     align-self: flex-start;
     margin-bottom: 20px;
@@ -76,6 +77,7 @@ export const Heading = styled.li`
   margin-top: 20px;
   color: ${({ theme }) => theme.colors.primary};
   letter-spacing: 0.142em;
+  font-family: "Alte DIN 1451 Mittelschrift", sans-serif;
 `
 
 export const Item = styled.li`

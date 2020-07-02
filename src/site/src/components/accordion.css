@@ -15,8 +15,8 @@
 }
 
 .accordion__button {
-  background-color: #eee;
-  color: #444;
+  background-color: #00a886;
+  color: #fff;
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -25,7 +25,7 @@
 }
 
 .accordion__button:hover {
-  background-color: #ddd;
+  background-color: #70cfcf;
 }
 
 .accordion__button:before {

@@ -8,7 +8,7 @@ export default function Loading() {
     <div style={spinnerStyle}>
       <Loader
         type="ThreeDots"
-        color="#525453"
+        color="#edc946"
         height={75}
         width={75}
         timeout={10000} // 10sec
