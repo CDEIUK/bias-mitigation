@@ -6,7 +6,8 @@ from sklearn.metrics import roc_curve
 from helpers.metrics import calibration_probabilities
 
 
-COLORS = plotly.colors.qualitative.Plotly
+COLORS = ["#f2603b", "#262445", "#00a886", "#edc946", "#70cfcf"]
+LINE_STYLES = ["solid", "dot", "dash", "longdash", "dashdot", "longdashdot"]
 TRANSPARENT = "rgba(0,0,0,0)"
 GRID_COLOR = "rgb(159, 197, 232)"
 
@@ -55,9 +56,10 @@ def group_box_plots(
                 y=groups[attr == a],
                 name=a,
                 orientation="h",
-                marker={"color": _hex_to_rgba(COLORS[i], 0.1)},
+                marker={"color": _hex_to_rgba(COLORS[i], 1), "opacity": 0.1},
                 line_color=COLORS[i],
                 hoverinfo="name+x",
+                jitter=0.2,
             )
             for i, a in enumerate(sorted(set(attr)))
         ],
@@ -243,7 +245,17 @@ def bar_chart(
         xticks["ticktext"] = [str(val) for val in x]
 
     return go.Figure(
-        [go.Bar(x=x, y=y)],
+        [
+            go.Bar(
+                x=x,
+                y=y,
+                marker={
+                    "color": _hex_to_rgba(COLORS[0], 0.5),
+                    "line_color": COLORS[0],
+                    "line_width": 1,
+                },
+            )
+        ],
         layout={
             "autosize": True,
             "hovermode": "closest",
@@ -292,8 +304,15 @@ def calibration_curves(
                     labels[attr == a], scores[attr == a], n_bins
                 ),
                 name=a,
+                mode="lines+markers",
+                line={"dash": LINE_STYLES[i % len(LINE_STYLES)]},
+                marker={
+                    "color": _hex_to_rgba(COLORS[i], 1),
+                    "symbol": i,
+                    "size": 10,
+                },
             )
-            for a in sorted(set(attr))
+            for i, a in enumerate(sorted(set(attr)))
         ],
         layout={
             "autosize": True,
