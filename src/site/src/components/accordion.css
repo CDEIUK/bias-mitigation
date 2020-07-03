@@ -59,6 +59,7 @@
   color: white;
   background-color: #262445;
   letter-spacing: 0.075em;
+  font-family: "Open Sans", sans-serif;
 }
 
 .accordion__panel h3 .anchor.before {

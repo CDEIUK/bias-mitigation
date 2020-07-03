@@ -10,7 +10,16 @@ export default function GlobalStyle() {
     <Global
       styles={css`
         @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-        @import url("static/fonts/din1451alt_g.ttf");
+
+        @font-face {
+          font-family: 'Alte DIN 1451 Mittelschrift';
+          src: url("static/fonts/din1451alt.ttf");
+        }
+        @font-face {
+          font-family: 'Alte DIN 1451 Mittelschrift';
+          src: url("static/fonts/din1451alt_g.ttf");
+          font-weight: bold;
+        }
 
         *,
         *::after,
