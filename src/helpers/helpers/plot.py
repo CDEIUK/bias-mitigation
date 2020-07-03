@@ -1,5 +1,4 @@
 import numpy as np
-import plotly
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from sklearn.metrics import roc_curve
