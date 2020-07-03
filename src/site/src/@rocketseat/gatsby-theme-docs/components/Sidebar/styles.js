@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { darken } from "polished"
 
 export const Container = styled.aside`
   width: 20%;
@@ -93,7 +92,6 @@ export const Item = styled.li`
     background-color: ${({ theme }) => theme.colors.sidebar.background};
     padding: 4px 10px;
     margin: 4px 0;
-    border-radius: 4px;
     font-weight: normal;
     text-decoration: none;
     width: 100%;
@@ -111,10 +109,10 @@ export const Item = styled.li`
     }
     &:not(.active-link):hover {
       padding-left: 20px;
-      color: ${({ theme }) => darken("0.2", theme.colors.sidebar.link)};
+      color: ${({ theme }) => theme.colors.sidebar.itemActive} !important;
     }
-    &.active-link {
-      color: ${({ theme }) => darken("0.2", theme.colors.sidebar.link)};
+    &.active-link, &.active-link:hover {
+      color: white !important;
       background-color: ${({ theme }) => theme.colors.sidebar.itemActive};
     }
   }

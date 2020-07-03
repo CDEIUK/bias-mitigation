@@ -89,7 +89,7 @@ export default function GlobalStyle() {
           font-weight: bold;
 
           &:hover {
-            color: ${theme.colors.primary}!important;
+            color: ${lighten("0.2", theme.colors.font)} !important;
             transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
             opacity: 1 !important;
           }

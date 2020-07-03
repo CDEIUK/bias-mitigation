@@ -4,7 +4,7 @@ export default {
     background: "#f0ede3",
     font: "#262445",
     sidebar: {
-      background: "",
+      background: "#f0ede3",
       link: "#262445",
       heading: "#aaa",
       linkActive: "#13131A",
