@@ -111,7 +111,8 @@ export const Item = styled.li`
       padding-left: 20px;
       color: ${({ theme }) => theme.colors.sidebar.itemActive} !important;
     }
-    &.active-link, &.active-link:hover {
+    &.active-link,
+    &.active-link:hover {
       color: white !important;
       background-color: ${({ theme }) => theme.colors.sidebar.itemActive};
     }

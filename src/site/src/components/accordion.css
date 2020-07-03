@@ -42,7 +42,7 @@
 
 .accordion__button[aria-expanded="true"]::before,
 .accordion__button[aria-selected="true"]::before {
-  transform:  translate(25%, 25%) rotate(45deg) translate(-25%, -25%);
+  transform: translate(25%, 25%) rotate(45deg) translate(-25%, -25%);
   transition: transform 0.3s ease;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .accordion__panel h3 {
-  background-color:red;
+  background-color: red;
   padding: 0.5em 0 0.5em 1.8em;
   margin-left: -1.8em;
   max-width: 15em;
