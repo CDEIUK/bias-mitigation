@@ -12,11 +12,11 @@ export default function GlobalStyle() {
         @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
         @font-face {
-          font-family: 'Alte DIN 1451 Mittelschrift';
+          font-family: "Alte DIN 1451 Mittelschrift";
           src: url("static/fonts/din1451alt.ttf");
         }
         @font-face {
-          font-family: 'Alte DIN 1451 Mittelschrift';
+          font-family: "Alte DIN 1451 Mittelschrift";
           src: url("static/fonts/din1451alt_g.ttf");
           font-weight: bold;
         }
