@@ -5,7 +5,7 @@
 **/
 .accordion {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  /* border-radius: 2px; */
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -15,8 +15,8 @@
 }
 
 .accordion__button {
-  background-color: #eee;
-  color: #444;
+  background-color: rgb(00, 168, 133);
+  color: #fff;
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -25,7 +25,7 @@
 }
 
 .accordion__button:hover {
-  background-color: #ddd;
+  background-color: rgba(00, 168, 133, 0.8);
 }
 
 .accordion__button:before {
@@ -42,13 +42,31 @@
 
 .accordion__button[aria-expanded="true"]::before,
 .accordion__button[aria-selected="true"]::before {
-  transform: rotate(45deg);
+  transform: translate(25%, 25%) rotate(45deg) translate(-25%, -25%);
   transition: transform 0.3s ease;
 }
 
 .accordion__panel {
   padding: 1em 2em 0.5em 2em;
   animation: fadein 0.3s ease-in;
+}
+
+.accordion__panel h3 {
+  background-color: red;
+  padding: 0.5em 0 0.5em 1.8em;
+  margin-left: -1.8em;
+  max-width: 15em;
+  color: white;
+  background-color: #262445;
+  letter-spacing: 0.075em;
+  font-family: "Open Sans", sans-serif;
+}
+
+.accordion__panel h3 .anchor.before {
+  color: white !important;
+  padding: 0.5em 0 0.5em 0;
+  left: 1.5em;
+  fill: white;
 }
 
 /* -------------------------------------------------- */
