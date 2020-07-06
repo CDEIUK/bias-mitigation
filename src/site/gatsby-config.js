@@ -3,7 +3,7 @@ module.exports = {
   siteMetadata: {
     siteTitle: `Machine Learning Bias Mitigation`,
     defaultTitle: `Machine Learning Bias Mitigation`,
-    siteTitleShort: `ML Bias`,
+    siteTitleShort: `ML Bias Mitigations`,
     siteDescription: `See how to mitigate bias in your machine learning models.`,
     siteUrl: `https://imrehg.github.io/cdei-development`,
     siteAuthor: `@rocketseat`,
@@ -26,9 +26,9 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Machine Learning Bias Mitigation`,
-        short_name: `ML Bias`,
+        short_name: `ML Bias Mitigation`,
         start_url: `/`,
-        background_color: `#ffffff`,
+        background_color: `#f0ede3`,
         display: `standalone`,
         icon: `static/favicon.png`,
       },
