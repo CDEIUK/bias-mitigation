@@ -9,7 +9,9 @@ const Plotly = Loadable({
   loader: () => import(`react-plotly.js`),
   loading: ({ timedOut }) =>
     timedOut ? (
-      <blockquote>Error: Loading Plotly timed out. Please try to refresh the page!</blockquote>
+      <blockquote>
+        Error: Loading Plotly timed out. Please try to refresh the page!
+      </blockquote>
     ) : (
       <Loading />
     ),
