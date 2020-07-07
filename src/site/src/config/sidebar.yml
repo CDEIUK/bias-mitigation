@@ -4,18 +4,18 @@
 - label: Use Cases
   items:
     - label: Finance
-      link: /finance/
+      link: /finance
     - label: Recruiting
-      link: /recruiting/
+      link: /recruiting
 - label: Modelling
   items:
     - label: Unfair Baseline
-      link: /baseline/
+      link: /baseline
     - label: Interventions
-      link: /interventions/
+      link: /interventions
 - label: Summary
   items:
     - label: Conclusions
-      link: /conclusions/
+      link: /conclusions
     - label: Additional Resources
-      link: /additional-resources/
+      link: /additional-resources
