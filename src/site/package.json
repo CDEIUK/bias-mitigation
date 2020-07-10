@@ -1,8 +1,8 @@
 {
-  "name": "cdei-bias-exploration",
+  "name": "cdei-bias-mitigation",
   "private": true,
   "version": "0.2.0",
-  "description": "Exploration of bias in machine learning (ML) models.",
+  "description": "Exploration to mitigate bias in machine learning (ML) models.",
   "author": "Faculty / CDEI",
   "starter-name": "gatsby-starter-rocket-docs",
   "dependencies": {
@@ -42,9 +42,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/imrehg/cdei-development"
+    "url": "https://github.com/CDEIUK/bias-mitigation"
   },
   "bugs": {
-    "url": "https://github.com/imrehg/cdei-development/issues"
+    "url": "https://github.com/CDEIUK/bias-mitigation/issues"
   }
 }

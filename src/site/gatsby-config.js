@@ -1,11 +1,11 @@
 module.exports = {
-  pathPrefix: `/cdei-development`,
+  pathPrefix: `/bias-mitigation`,
   siteMetadata: {
     siteTitle: `Machine Learning Bias Mitigation`,
     defaultTitle: `Machine Learning Bias Mitigation`,
     siteTitleShort: `ML Bias Mitigations`,
     siteDescription: `See how to mitigate bias in your machine learning models.`,
-    siteUrl: `https://imrehg.github.io/cdei-development`,
+    siteUrl: `https://cdeiuk.github.io/bias-mitigation/`,
     siteAuthor: `@rocketseat`,
     siteImage: `/banner.png`,
     siteLanguage: `en`,
@@ -37,7 +37,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://imrehg.github.io/cdei-development`,
+        siteUrl: `https://cdeiuk.github.io/bias-mitigation/`,
       },
     },
     `gatsby-plugin-offline`,

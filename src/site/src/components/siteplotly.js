@@ -42,7 +42,7 @@ export const LazyPlot = ({ ...rest }) => (
     />
     <div className={"narrow-screen-warning"}>
       <MdAspectRatio /> Your screen is too narrow to display a plot. Please try
-      a bigger screen, or landscape mode.
+      a bigger screen or landscape mode.
     </div>
   </div>
 )
