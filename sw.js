@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-48d9de43f79d664ae553.js"
+    "url": "webpack-runtime-e107870405818751b320.js"
   },
   {
     "url": "framework-f600a0dcdbbe2ab3be17.js"
@@ -45,11 +45,11 @@ self.__precacheManifest = [
     "url": "252f366e-0039c2269e1877ca8100.js"
   },
   {
-    "url": "app-da0f85468524c918fe9d.js"
+    "url": "app-09d40dff6b848cb8f9a1.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "6d49ff2b73d16b9f0a53f51fdaed4d8e"
+    "revision": "11e9eadb10503e482367e22048909c14"
   },
   {
     "url": "fetch.umd.js"
@@ -69,11 +69,11 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "c1325f389ce9ee0c6ccb1dde3b529f4f"
+    "revision": "8d257faa0821e8b9547af0cc64a279ea"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "3ba42d7c83907a1519bc4491056f4793"
+    "revision": "a75dd43c947eca372d5c85a3d2ba80e5"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -161,12 +161,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/cdei-development`), ``)
+  pathname = pathname.replace(new RegExp(`^/bias-mitigation`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/cdei-development/app-da0f85468524c918fe9d.js`))) {
+  if (!resources || !(await caches.match(`/bias-mitigation/app-09d40dff6b848cb8f9a1.js`))) {
     return await fetch(event.request)
   }
 
@@ -179,7 +179,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/cdei-development/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/bias-mitigation/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
