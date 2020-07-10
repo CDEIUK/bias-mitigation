@@ -16,15 +16,13 @@ Based on our experiences, pre-processing interventions could be used as a step i
 
 ## Tooling
 
-There are a large number of open-source fairness libraries available, however many of them can only be used to measure bias in models, there are relatively few that actually implement any of these intervention strategies. The two most notable are [AI Fairness 360][aif-360] from IBM and [Fairlearn][fairlearn] from Microsoft. Our opinion is that Fairlearn is better curated, more robustly engineered, and has a more flexible interface and hence would be our recommendation if you had to pick one. But both libraries offer a lot of functionality.
+There are a large number of open-source fairness libraries available, however many of them can only be used to measure bias in models, there are relatively few that actually implement any of these intervention strategies. Two notable libraries are [AI Fairness 360][aif-360] from IBM and [Fairlearn][fairlearn] from Microsoft.
 
 ### AI Fairness 360
 
-This is easily the more comprehensive of the two offerings. At the time of writing they have implemented 10 different bias mitigation algorithms covering pre-processing, in-processing and post-processing techniques. Several of these implementation are ported from implementations that accompanied the original research papers, and as such the library offers a "one-stop shop" for fairness algorithms with a unified interface for each algorithm.
+At the time of writing this offering has implemented 10 different bias mitigation algorithms covering pre-processing, in-processing and post-processing techniques. Several of these implementation are ported from implementations that accompanied the original research papers, and as such the library offers a "one-stop shop" for fairness algorithms with a unified interface for each algorithm.
 
 There is perhaps a bit of a danger that arises from the comprehensive nature of the library which is that its creators seem relatively unopinionated about which interventions are the best and should be favoured over others. Additionally, because the implementations have been ported from research code, in some cases with only minor modification, in our opinion not all of the interventions are suitable for production environments.
-
-Furthermore, we found the interface to be a little awkward, requiring data to be passed to algorithms as custom data set types that they define. A recent release has updated the API to be scikit-learn compatible, so hopefully usability will continue to improve over time.
 
 ### Fairlearn
 
