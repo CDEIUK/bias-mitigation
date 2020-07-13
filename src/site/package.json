@@ -1,7 +1,7 @@
 {
   "name": "cdei-bias-mitigation",
   "private": true,
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Exploration to mitigate bias in machine learning (ML) models.",
   "author": "Faculty / CDEI",
   "starter-name": "gatsby-starter-rocket-docs",

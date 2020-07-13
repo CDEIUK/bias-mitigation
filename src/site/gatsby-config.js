@@ -3,7 +3,7 @@ module.exports = {
   siteMetadata: {
     siteTitle: `Machine Learning Bias Mitigation`,
     defaultTitle: `Machine Learning Bias Mitigation`,
-    siteTitleShort: `ML Bias Mitigations`,
+    siteTitleShort: `ML Bias Mitigation`,
     siteDescription: `See how to mitigate bias in your machine learning models.`,
     siteUrl: `https://cdeiuk.github.io/bias-mitigation/`,
     siteAuthor: `@rocketseat`,
