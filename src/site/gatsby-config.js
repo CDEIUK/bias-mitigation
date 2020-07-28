@@ -15,6 +15,19 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-gdpr-tracking`,
+      options: {
+        debug: false,
+        googleAnalytics: {
+          trackingId: `UA-173229929-1`,
+          autoStart: false,
+          controlCookieName: `gdpr-analytics-enabled`,
+          anonymize: true,
+        },
+        environments: ['production', 'development']
+      },
+    },
+    {
       resolve: `@rocketseat/gatsby-theme-docs`,
       options: {
         configPath: `src/config`,
@@ -34,14 +47,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-sitemap`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: `UA-173229929-1`,
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
