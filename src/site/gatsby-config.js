@@ -24,7 +24,7 @@ module.exports = {
           controlCookieName: `gdpr-analytics-enabled`,
           anonymize: true,
         },
-        environments: ['production', 'development']
+        environments: ["production", "development"],
       },
     },
     {
