@@ -9,11 +9,12 @@ export default function CookieBanner() {
       enableDeclineButton
       flipButtons
       onAccept={() => {
-        window.trackGoogleAnalytics();
+        window.trackGoogleAnalytics()
       }}
       declineButtonText="Decline"
       style={{ background: "#262445" }}
-      cookieName="gdpr-analytics-enabled">
+      cookieName="gdpr-analytics-enabled"
+    >
       TODO: Add cookie policy info here
     </CookieConsent>
   )
