@@ -12,10 +12,18 @@ export default function CookieBanner() {
         window.trackGoogleAnalytics()
       }}
       declineButtonText="Decline"
-      style={{ background: "#262445" }}
-      cookieName="gdpr-analytics-enabled"
+      style={{ background: "#909090" }}
+      cookieName="cdeiuk-analytics-enabled"
     >
-      TODO: Add cookie policy info here
+      We would like to use cookies to send information about how our site is
+      used to Google Analytics. We use this information to improve our site.
+      <br />
+      <br />
+      Let us know if this is OK. We'll use a cookie to save your choice. You can{" "}
+      <a href="/cookie-policy" style={{ color: "#ffffff" }}>
+        read more about how we use cookies
+      </a>{" "}
+      before you choose.
     </CookieConsent>
   )
 }

@@ -21,7 +21,7 @@ module.exports = {
         googleAnalytics: {
           trackingId: `UA-173229929-1`,
           autoStart: false,
-          controlCookieName: `gdpr-analytics-enabled`,
+          controlCookieName: `cdeiuk-analytics-enabled`,
           anonymize: true,
         },
         environments: ["production", "development"],
