@@ -14,6 +14,7 @@ export default function CookieBanner() {
       declineButtonText="Decline"
       style={{ background: "#909090" }}
       cookieName="cdeiuk-analytics-enabled"
+      expires={365}
     >
       We would like to use cookies to send information about how our site is
       used to Google Analytics. We use this information to improve our site.

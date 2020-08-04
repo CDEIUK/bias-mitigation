@@ -3,6 +3,7 @@ title: Cookies on this site
 ---
 
 import CookieBanner from "../components/cookies"
+import Collapse from "../components/collapse"
 
 <CookieBanner />
 
@@ -24,6 +25,19 @@ Google Analytics sets cookies that store anonymised information about:
 
 We enable the [IP anonymisation][ip-anonymisation] feature when sending information to Google Analytics.
 
-We do not send any information to Google Analytics unless you accept our cookie policy. We store an additional cookie (cdeiuk-analytics-enabled) to remember your choice. This cookie expires after 1 year.
+We do not send any information to Google Analytics unless you accept our cookie policy. We store additional cookies to remember your choice, which expires after one year. Details of the cookies used on this site can be found below.
+
+<Collapse label="List of cookies used on this site">
+
+| Cookie Name                     | Purpose                                                                                                                            | Expiry  |
+| :------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------- | :------ |
+| \_ga                            | Used by Google Analytics. Tells us how you use our website.                                                                        | 2 years |
+| \_gid                           | Used by Google Analytics. Sets a unique ID for your session to help tell us how you use our website.                               | 1 day   |
+| \_gat                           | Used by Google Analytics. Helps stop Google Analytics web servers crashing when collecting information on how you use our website. | 1 min   |
+| cdeiuk-analytics-enabled        | Used by this website to remember whether you chose to accept or decline the cookie policy.                                         | 1 year  |
+| cdeiuk-analytics-enabled-legacy | As previous, but to provide functionality for older browsers. See [here][react-legacy-cookie] for more details.                    | 1 year  |
+
+</Collapse>
 
 [ip-anonymisation]: https://support.google.com/analytics/answer/2763052?hl=en
+[react-legacy-cookie]: https://www.npmjs.com/package/react-cookie-consent#why-are-there-two-cookies-one-of-which-named-legacy
