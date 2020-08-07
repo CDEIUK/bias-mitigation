@@ -5,7 +5,7 @@ title: Interventions
 import Collapse from "../components/collapse"
 import { PlotLoader } from "../components/siteplotly"
 
-Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations. Some algorithms we have included our own implementations. All of our analysis can be explored on [Binder][binder] and the code is all available on [GitHub][github].
+Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations, but have included our own implementations where necessary. All of our analysis can be explored on [Binder][binder] and the code is all available on [GitHub][github].
 
 ## Fairness through unawareness
 
@@ -123,7 +123,7 @@ We also applied it to the synthetic recruiting data, this time trying to impose 
 
 ### Summary
 
-In our experiments this intervention was not very effective. Other experiments we have seen with this method achieve better results by doing additional feature selection, possibly there was too much correlation between our features for data modification to work well.
+In our experiments this intervention was not very effective. Other experiments we have seen with this method achieve better results by doing additional feature selection. In our case, there was possibly too much correlation between features for data modification to work well.
 
 We note that Feldman can be adapted to work as a post-processing technique. This is an unpublished idea that has been [observed by Hardt][hardt-neurips]. The distribution modification algorithm is applied to the scores of an existing model rather than the data. This is a simple but effective strategy for imposing demographic parity.
 
