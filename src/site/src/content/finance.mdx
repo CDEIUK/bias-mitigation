@@ -46,17 +46,17 @@ Our goal is to try and predict an individual's annual income in order to target 
 
 ## Data identification
 
-In the case of this hypothetical example we don't have the means to collect different data. In the real world we would always consider whether we could have access to better data that is more representative. For example, the data we are using was collected in 1994, so it's quite likely that the demographic patterns captured in the data are no longer representative. If we were performing this task for real we would likely recommend that more up to date data is collected, that better reflects demographic shifts in the intervening 26 years. Moreover the data was collected in the US, if the model we are training is intended for UK use this would be a further reason to try and collect more data.
+In the case of this hypothetical example we don't have the means to collect different data. In the real world we would always consider whether we could have access to better data that is more representative. For example, the data we are using was collected in 1994, so it's quite likely that the demographic patterns captured in the data are no longer representative. If we were performing this task for real we would likely recommend that more up to date data is collected, that better reflects demographic shifts in the intervening years. Moreover the data was collected in the US - if the model we are training is intended for UK use this would be a further reason to try and collect more data.
 
 Another consideration is the representation of different groups in the data. Men outnumber women almost two to one, white respondents outnumber black respondents nine to one, and asian respondents almost thirty to one. This means that our data is not representative of the overall population which isn't ideal, but the bigger problem is that there are relatively few observations of precisely those individuals who are at risk of mistreatment. In order to minimise the risk of bias we should make sure that all groups are well represented in our data.
 
 Since we are merely demonstrating different methods of measuring and mitigating bias we proceed with the data as is, but in a real world application we should see if we can collect more data in order to ensure better representation.
 
-Once the data has been preprocessed, we can look at bias that is present in the data, before worrying about bias introduced by the model. First, we look at the proportion of men and women that are high earners, we see that the proportion is much higher for men.
+Once the data has been preprocessed, we can look at bias that is present in the data, before worrying about bias introduced by the model. First, we look at the proportion of men and women that are high earners, and observe that the proportion is much higher for men.
 
 <PlotLoader source={"finance/salary_by_sex"} />
 
-Similarly, there is a large disparity in proportion of high earners across different races.
+Similarly, there is a large disparity in the proportion of high earners across different races.
 
 <PlotLoader source={"finance/salary_by_race"} />
 
