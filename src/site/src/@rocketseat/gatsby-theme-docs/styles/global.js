@@ -129,18 +129,35 @@ export default function GlobalStyle() {
           color: #444;
         }
 
-        th,
-        td {
-          text-align: left;
+        th {
+          background-color: ${theme.colors.primary};
+          color: #ffffff;
           padding: 12px;
         }
 
-        tr:nth-of-type(2n) td {
-          background-color: ${theme.colors.sidebar.itemActive};
+        td {
+          text-align: left;
+          padding: 12px;
+          color: ${theme.colors.font};
         }
 
         tr {
           background-color: #ffffff;
+          border: solid;
+          border-width: 1px 0;
+          border-color: ${theme.colors.background};
+
+          &:first-child {
+            border-top: none;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: #f1f1f1f1;
+          }
         }
 
         iframe {

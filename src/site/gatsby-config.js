@@ -15,6 +15,19 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-gdpr-tracking`,
+      options: {
+        debug: false,
+        googleAnalytics: {
+          trackingId: `UA-173229929-1`,
+          autoStart: false,
+          controlCookieName: `cdeiuk-analytics-enabled`,
+          anonymize: true,
+        },
+        environments: ["production", "development"],
+      },
+    },
+    {
       resolve: `@rocketseat/gatsby-theme-docs`,
       options: {
         configPath: `src/config`,
