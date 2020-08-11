@@ -1,20 +1,26 @@
 import React from "react"
 import CookieConsent from "react-cookie-consent"
+import "./cookieBanner.css"
 
 export default function CookieBanner() {
   return (
     <CookieConsent
+      disableStyles
       location="bottom"
-      buttonText="Accept"
+      buttonText="I'm OK with analytics cookies"
+      declineButtonText="Do not use analytics cookies"
       enableDeclineButton
       flipButtons
       onAccept={() => {
         window.trackGoogleAnalytics()
       }}
-      declineButtonText="Decline"
-      style={{ background: "#909090" }}
       cookieName="cdeiuk-analytics-enabled"
       expires={365}
+      buttonClasses="button"
+      declineButtonClasses="button"
+      containerClasses="container"
+      contentClasses="content"
+      overlayClasses="overlay"
     >
       We would like to use cookies to send information about how our site is
       used to Google Analytics. We use this information to improve our site.
