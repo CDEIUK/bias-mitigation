@@ -42,7 +42,7 @@
 }
 
 .content {
-  flex: 0 0 auto;
+  flex: 0 0 95%;
   margin: 15px;
 }
 
@@ -54,4 +54,12 @@
   height: 100%;
   z-index: 999;
   background-color: rgba(0;0;0;0.3);
+}
+
+input[type="radio"] {
+  margin: 5px 10px 10px 0;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  cursor: pointer;
 }
