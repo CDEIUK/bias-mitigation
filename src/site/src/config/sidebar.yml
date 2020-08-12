@@ -19,5 +19,9 @@
       link: /conclusions
     - label: Additional Resources
       link: /additional-resources
-- label: Cookie Policy
-  link: /cookie-policy
+- label: Privacy
+  items:
+    - label: Cookie Policy
+      link: /cookie-policy
+    - label: Privacy Notice
+      link: /privacy-notice
