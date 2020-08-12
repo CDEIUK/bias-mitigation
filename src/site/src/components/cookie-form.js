@@ -6,7 +6,10 @@ export default class CookieForm extends React.Component {
   COOKIE_NAME = "cdeiuk-analytics-enabled"
   LEGACY_COOKIE_NAME = "cdeiuk-analytics-enabled-legacy"
   GA_COOKIES = ["_gid", "_ga", "_gat_gtag_UA_173229929_1"]
-  COOKIE_OPTIONS = {
+  GA_COOKIE_OPTIONS = {
+    domain: ".cdeiuk.github.io",
+  }
+  CONSENT_COOKIE_OPTIONS = {
     expires: 365,
   }
 
@@ -33,17 +36,17 @@ export default class CookieForm extends React.Component {
     Cookies.set(
       this.COOKIE_NAME,
       this.state.enableAnalytics,
-      this.COOKIE_OPTIONS
+      this.CONSENT_COOKIE_OPTIONS
     )
     Cookies.set(
       this.LEGACY_COOKIE_NAME,
       this.state.enableAnalytics,
-      this.COOKIE_OPTIONS
+      this.CONSENT_COOKIE_OPTIONS
     )
 
     if (this.state.enableAnalytics === "false") {
       for (let i = 0; i < this.GA_COOKIES.length; i++) {
-        Cookies.remove(this.GA_COOKIES[i])
+        Cookies.remove(this.GA_COOKIES[i], this.GA_COOKIE_OPTIONS)
       }
       this.setState({
         submitMessage:
