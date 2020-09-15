@@ -16,7 +16,6 @@ Fairness through unawareness excludes protected attributes when learning a class
 
 <Collapse label="How it works">
 
-
 This notebook contains the implementation of the common pre-processing intervention called Fairness Through Unawareness in which the protected attribute is not included as a feature in the training data. Besides being considered as an intervention, Fairness Through Unawareness can also be considered as a fairness notion, which is consistent with disparate treatment.
 
 Although Fairness Through Unawareness is often applied by industry practitioners, its effect in terms of reducing unfairness is limited since information on protected attributed can still be contained elsewhere in the data. More precisely, there may be features which are highly correlated with the protected attributes and therefore act as proxies for them.
@@ -25,9 +24,7 @@ Since the intervention is the same independently of the fairness notion consider
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -93,7 +90,6 @@ Similar to our experiments on the adult data, Fairness Through Unawareness has r
 
 </Collapse>
 
-
 ### Summary
 
 The intervention has overall an small influence on loss in accuracy, however also a limited influence to the improvement in fairness. It is therefore relatively harmless to apply, but insufficient by itself.
@@ -104,16 +100,13 @@ The intervention has overall an small influence on loss in accuracy, however als
 
 <Collapse label="How it works">
 
-
 The algorithm assumes a binary or categorical protected attribute. It adjusts the distributions of the features so that they are the same in each protected group. For example, in the Adult data set `hours_per_week` is generally lower for women than for men. In this case the algorithm would increase the hours worked per week slightly for women in the dataset, and reduce hours worked per week for men in the data set, in such a way that the two distributions look the same.
 
 The result of applying the algorithm is a modified dataset, such that each feature in the data has been decorrelated from the protected attribute. The idea is that a model trained on this data, should not be able to learn to discriminate based on the protected attributes.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -131,7 +124,6 @@ We also applied it to the synthetic recruiting data, this time trying to impose 
 
 </Collapse>
 
-
 ### Summary
 
 In our experiments this intervention was not very effective. Other experiments we have seen with this method achieve better results by doing additional feature selection. In our case, there was possibly too much correlation between features for data modification to work well.
@@ -144,16 +136,13 @@ We note that Feldman can be adapted to work as a post-processing technique. This
 
 <Collapse label="How it works">
 
-
 Equalised odds requires that the true and false positive rates are equal for each protected group. Equal opportunity requires that only the true positive rates are the same. In either case the algorithm achieves this by adjusting the decision thresholds for each group that are used to determine the prediction. In some cases this alone is not enough to achieve equality, in which case two thresholds are set for each group, and the prediction is made by first randomly choosing between the thresholds, then making a prediction with the threshold.
 
 The algorithm is very widely applicable, as it only needs access to the model outputs and the protected attribute. Moreover Hardt et al. show that their algorithm is optimal among post-processing algorithms for equalised odds. However, the possible randomness present in predictions may not be satisfactory when individual fairness is a concern, as two identical individuals could receive different predictions due to the stochasticity.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -169,7 +158,6 @@ We also applied it to the synthetic recruiting data, this time trying to impose 
 
 </Collapse>
 
-
 ### Summary
 
 The algorithm of Hardt et al. is extremely effective, which is not surprising as they prove in their paper that their intervention is optimal among post-processing algorithms for equalised odds.
@@ -182,14 +170,11 @@ There are perhaps two drawbacks. The first is that it achieves fairness through 
 
 <Collapse label="How it works">
 
-
 In their paper Kamiran et al. introduce two algorithms, the one implemented by IBM that we benchmark they call Reject Option Classification. The algorithm takes any points which the model is unsure about, i.e. where the probabilities it assigns to different outcomes are not significantly different. Of those points it assigns the favourable outcome to the disadvantaged protected class, and the negative outcome to the advantaged class. In effect, we make an intervention at the margin to balance outcomes overall. Individuals about whom the model is confident are unaffected by the intervention.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -223,7 +208,6 @@ Imposing equal opportunity was similarly effective, with equal opportunity diffe
 
 </Collapse>
 
-
 ### Summary
 
 This intervention is attractive because it can address multiple notions of fairness, and since it is a post-processing algorithm it is model agnostic and relatively straightforward to apply to existing models. Moreover the intervention that is being taken can be easily understood and audited, as it corresponds to a deterministic intervention on ambiguous decisions from the existing model.
@@ -236,14 +220,11 @@ It does however sacrifice accuracy more than some other methods, which in certai
 
 <Collapse label="How it works">
 
-
 Classifiers can learn bias because representatives of the disadvantaged group with positive outcomes are poorly represented in the training data. The reweighting algorithm proposed by Kamiran and Calders identifies such points and upweights them, so that they have a greater impact on model training.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -259,7 +240,6 @@ We also applied the intervention to the synthetic recruiting data in order to im
 
 </Collapse>
 
-
 ### Summary
 
 This intervention does improve fairness without significantly impacting accuracy, but appears to not be enough by itself to address demographic disparity if that is the goal. However, since this is a pre-processing step, it could easily be combined with other interventions to fully achieve demographic parity.
@@ -272,14 +252,11 @@ While the original paper is focussed on demographic parity, we observe that it's
 
 <Collapse label="How it works">
 
-
 Kamishima et al. propose a regularisation term, which approximately represents the mutual information in the predictions and the sensitive attributes, that is incorporated in the optimisation objective. Minimising the objective function thus encourages both accurate prediction while not allowing too extreme a relationship between predictions and the the protected attributes, thus imposing demographic parity.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -295,7 +272,6 @@ We also applied the intervention to our synthetic recruiting data to impose demo
 
 </Collapse>
 
-
 ### Summary
 
 While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
@@ -306,16 +282,13 @@ While the intervention improved fairness on both data sets, the resulting drop i
 
 <Collapse label="How it works">
 
-
 The first component of the algorithm is an information withholding procedure. For a fixed proportion of randomly chosen points in each protected group in the data set, we will predict the in-group class balance of the labels rather than return the output of the model. The observation Pleiss make is that that this procedure preserves calibration.
 
 Since we have control over the proportion of data from each protected group that is classified without using the features, we can choose these proportion to optimise fairness. Pleiss et al. introduce a relaxation of equalised odds, which rather than requiring parity between the true and false positive rates, instead requires that a weighted average of the true and false positive rates is equal between the two groups. Thus within each group it is possible to trade true and false positives to achieve equality. The optimal proportion can be calculated directly from the data.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 On both data sets we had success imposing equal opportunity, but were unsuccessful imposing equalised odds.
 
@@ -345,7 +318,6 @@ Our attempt to impose equalised odds also failed, with the difference increasing
 
 </Collapse>
 
-
 ### Summary
 
 We had mixed success imposing equal opportunity while preserving calibration. The intervention worked well on the adult data, but didn't really help on the recruiting data.
@@ -358,14 +330,11 @@ Imposing equalised odds was unsuccessful on both data sets. It may be possible t
 
 <Collapse label="How it works">
 
-
 The approach described by Zemel et al. proceeds by clustering the data in such a way that the probability of being allocated to any particular cluster does not depend on the protected data. The cluster centers can then be used for classification, and so each data point is classified according to the classification received by the corresponding cluster center.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -385,7 +354,6 @@ We also applied the intervention to our synthetic recruiting data to impose demo
 
 </Collapse>
 
-
 ### Summary
 
 While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
@@ -396,16 +364,13 @@ The paper [Mitigating Unwanted Biases with Adversarial Learning][zhang] of Zhang
 
 <Collapse label="How it works">
 
-
 The model is trained in tandem with an adversary, which we refer to as the discriminator. The discriminator monitors the model output, and tries to predict the protected attributes. If it were able to do so, this would be a sign that the model is treating the protected groups differently. Hence the model is trained to simultaneously optimise a performance objective and to fool the discriminator. If it learns to fool the discriminator, then the model outputs are unbiased.
 
 To achieve conditional demographic parity we additionally pass legitimate risk factors to the discriminator, so that the model receives no benefit from removing information about the protected attributes from its output that is contained in those factors. Similarly to achieve equalised odds we allow the discriminator to additionally see the labels during training, so that the model is not incentivised to remove from its output any information about the sensitive data that is contained in the labels.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -461,7 +426,6 @@ Equal opportunity once again proved more challenging. This time the equalised od
 
 </Collapse>
 
-
 ### Summary
 
 The adversarial debiasing technique is extremely effective for demographic parity and conditional demographic parity. It is less effective for equalised odds, likely due to a combination of the fact that the model of course does not see the labels which get passed to the discriminator, which means it's hard for it to know what information it can use, and because adversarial methods are inherently unstable.
@@ -474,14 +438,11 @@ We showed with out implementation that it is straightforward to implement this a
 
 <Collapse label="How it works">
 
-
 The approach described by Agarwal et al. proceeds by formulating a fair classifier as the minimisation of the prediction error under a general form of linear constraint, which addresses Demographic Parity and Equalised Odds as special cases. The optimisation is reformulated as a saddle point problem and is solved by a sequence of cost-sensitive classification problems.
 
 </Collapse>
 
-
 <Collapse label="Experimental results">
-
 
 ### Finance
 
@@ -528,7 +489,6 @@ The improvement in equal opportunity is similar to the improvement in equalised 
 <PlotLoader source={"recruiting/interventions/agarwal-eopp"} />
 
 </Collapse>
-
 
 ### Summary
 
