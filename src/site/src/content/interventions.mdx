@@ -100,7 +100,7 @@ The intervention has overall an small influence on loss in accuracy, however als
 
 <Collapse label="How it works">
 
-The algorithm assumes a binary or categorical protected attribute. It adjusts the distributions of the features so that they are the same in each protected group. For example, in the Adult data set `hours_per_week` is generally lower for women than for men. In this case the algorithm would increase the hours worked per week slightly for women in the dataset, and reduce hours worked per week for men in the data set, in such a way that the two distributions look the same.
+The algorithm assumes a binary or categorical protected attribute. It adjusts the distributions of the features so that they are the same in each protected group. For example, in the Adult dataset `hours_per_week` is generally lower for women than for men. In this case the algorithm would increase the hours worked per week slightly for women in the dataset, and reduce hours worked per week for men in the dataset, in such a way that the two distributions look the same.
 
 The result of applying the algorithm is a modified dataset, such that each feature in the data has been decorrelated from the protected attribute. The idea is that a model trained on this data, should not be able to learn to discriminate based on the protected attributes.
 
@@ -274,7 +274,7 @@ We also applied the intervention to our synthetic recruiting data to impose demo
 
 ### Summary
 
-While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
+While the intervention improved fairness on both datasets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
 
 ## Information witholding - Pleiss et al.
 
@@ -282,7 +282,7 @@ While the intervention improved fairness on both data sets, the resulting drop i
 
 <Collapse label="How it works">
 
-The first component of the algorithm is an information withholding procedure. For a fixed proportion of randomly chosen points in each protected group in the data set, we will predict the in-group class balance of the labels rather than return the output of the model. The observation Pleiss make is that that this procedure preserves calibration.
+The first component of the algorithm is an information withholding procedure. For a fixed proportion of randomly chosen points in each protected group in the dataset, we will predict the in-group class balance of the labels rather than return the output of the model. The observation Pleiss make is that that this procedure preserves calibration.
 
 Since we have control over the proportion of data from each protected group that is classified without using the features, we can choose these proportion to optimise fairness. Pleiss et al. introduce a relaxation of equalised odds, which rather than requiring parity between the true and false positive rates, instead requires that a weighted average of the true and false positive rates is equal between the two groups. Thus within each group it is possible to trade true and false positives to achieve equality. The optimal proportion can be calculated directly from the data.
 
@@ -290,7 +290,7 @@ Since we have control over the proportion of data from each protected group that
 
 <Collapse label="Experimental results">
 
-On both data sets we had success imposing equal opportunity, but were unsuccessful imposing equalised odds.
+On both datasets we had success imposing equal opportunity, but were unsuccessful imposing equalised odds.
 
 ### Finance
 
@@ -322,7 +322,7 @@ Our attempt to impose equalised odds also failed, with the difference increasing
 
 We had mixed success imposing equal opportunity while preserving calibration. The intervention worked well on the adult data, but didn't really help on the recruiting data.
 
-Imposing equalised odds was unsuccessful on both data sets. It may be possible to do better by controlling the weights in the relaxed definition of equalised odds, but as far as we can tell this option is not exposed to us by the implementation in AI Fairness 360.
+Imposing equalised odds was unsuccessful on both datasets. It may be possible to do better by controlling the weights in the relaxed definition of equalised odds, but as far as we can tell this option is not exposed to us by the implementation in AI Fairness 360.
 
 ## Optimal Clustering - Zemel et al.
 
@@ -356,7 +356,7 @@ We also applied the intervention to our synthetic recruiting data to impose demo
 
 ### Summary
 
-While the intervention improved fairness on both data sets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
+While the intervention improved fairness on both datasets, the resulting drop in accuracy is extreme, and probably too much to make this algorithm practical. Possibly by removing some features which are highly correlated with the protected attribute, and by tuning the hyperparameters we could improve performance, but it seems that other interventions offer better performance with less effort.
 
 ## Adversarial debiasing - Zhang et al.
 
@@ -374,7 +374,7 @@ To achieve conditional demographic parity we additionally pass legitimate risk f
 
 ### Finance
 
-We attempt to enforce demographic parity, conditional demographic parity and equalised odds on the Adult data set with respect to sex. Run our analysis yourself on [Binder][binder-finance-zhang].
+We attempt to enforce demographic parity, conditional demographic parity and equalised odds on the Adult dataset with respect to sex. Run our analysis yourself on [Binder][binder-finance-zhang].
 
 #### Demographic parity
 
@@ -400,7 +400,7 @@ Equal opportunity proved more challenging. We saw some improvement, with equalis
 
 ### Recruiting
 
-Similarly we impose all three definitions of fairness on the recruiting data set. Run our analysis yourself on [Binder][binder-recruiting-zhang].
+Similarly we impose all three definitions of fairness on the recruiting dataset. Run our analysis yourself on [Binder][binder-recruiting-zhang].
 
 #### Demographic parity
 
@@ -492,7 +492,7 @@ The improvement in equal opportunity is similar to the improvement in equalised 
 
 ### Summary
 
-The intervention improved fairness significantly on both data sets, while the overall observed trade-off between fairness and accuracy for the adult data set was superior compared to the synthetic recruiting data. Compared to the other intervention techniques Agarwal et al.'s intervention is highly competitive and leads to consistently good results in repeated independent experiments. For practical use this implementation hence seems to work well.
+The intervention improved fairness significantly on both datasets, while the overall observed trade-off between fairness and accuracy for the adult dataset was superior compared to the synthetic recruiting data. Compared to the other intervention techniques Agarwal et al.'s intervention is highly competitive and leads to consistently good results in repeated independent experiments. For practical use this implementation hence seems to work well.
 
 [aif-360]: https://aif360.readthedocs.io/en/latest/
 [agarwal]: http://proceedings.mlr.press/v80/agarwal18a.html

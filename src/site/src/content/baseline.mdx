@@ -7,13 +7,13 @@ import CookieBanner from "../components/cookies"
 
 <CookieBanner />
 
-This section goes into more detail on testing for bias and applying definitions of fairness to the data sets. It therefore requires a higher level of technical comprehension.
+This section goes into more detail on testing for bias and applying definitions of fairness to the datasets. It therefore requires a higher level of technical comprehension.
 
-We train simple models on each data set to serve as a baseline before we try any of the possible interventions. You can run our analysis yourself on Binder, for the finance use case click [here][binder-finance-baseline] and the recruiting use case click [here][binder-recruiting-baseline].
+We train simple models on each dataset to serve as a baseline before we try any of the possible interventions. You can run our analysis yourself on Binder, for the finance use case click [here][binder-finance-baseline] and the recruiting use case click [here][binder-recruiting-baseline].
 
 ## Finance
 
-We start by looking at the [Adult data set](/finance) for the finance use case.
+We start by looking at the [Adult dataset](/finance) for the finance use case.
 
 ### Demographic Parity
 
@@ -55,7 +55,7 @@ Next we repeat a similar analysis on the [synthetic recruiting data](/recruiting
 
 ### Demographic Parity
 
-As we did for the Adult data, we use box plots to visualise the disparity between the sexes. In this data set women are also systematically given lower scores, indicating the model believes they are less likely to be hired.
+As we did for the Adult data, we use box plots to visualise the disparity between the sexes. In this dataset women are also systematically given lower scores, indicating the model believes they are less likely to be hired.
 
 <PlotLoader source={"recruiting/bl_dp_by_sex"} />
 
