@@ -1,5 +1,5 @@
 ---
-title: Finance - the Adult data set
+title: Finance - the Adult dataset
 ---
 
 import Collapse from "../components/collapse"
@@ -8,13 +8,13 @@ import CookieBanner from "../components/cookies"
 
 <CookieBanner />
 
-The first data set we will be considering is the Adult data set from the [UCI Machine learning repository][adult-data]. It was derived from the US Census, and contains demographic information from several thousand individuals. The typical task on this data set is to predict whether or not an individual is a high earner from their demographics. You can see the details of our data acquisition and preprocessing in [this notebook][binder-preprocessing], and you can see the details of the below data exploration in [this notebook][binder-data].
+The first dataset we will be considering is the Adult dataset from the [UCI Machine learning repository][adult-data]. It was derived from the US Census, and contains demographic information from several thousand individuals. The typical task on this dataset is to predict whether or not an individual is a high earner from their demographics. You can see the details of our data acquisition and preprocessing in [this notebook][binder-preprocessing], and you can see the details of the below data exploration in [this notebook][binder-data].
 
-We will assume that we are a credit card company that wants to target marketing of a new premium credit card to high earning individuals using a machine learning model. We have found the Adult data set and want to use it to train a first version of the model.
+We will assume that we are a credit card company that wants to target marketing of a new premium credit card to high earning individuals using a machine learning model. We have found the Adult dataset and want to use it to train a first version of the model.
 
-<Collapse label="Features in the adult data set">
+<Collapse label="Features in the adult dataset">
 
-The Adult data set contains the following features.
+The Adult dataset contains the following features.
 
 - `age`: the age of the individual in years,
 - `capital_gain`: capital gain in the previous year,
@@ -31,7 +31,7 @@ The Adult data set contains the following features.
 - `sex`: the individual's sex,
 - `workclass`: the industry / sector that the individual works in.
 
-Please note that in this data set (drawn from the US Census), legacy categories for ethnic background exist that are now inappropriate. The graphs shown here are built automatically from that data. The data label `race` includes the category "Eskimo" - but where "American Indian / Eskimo" appears here, the correct terms would be Indigenous peoples, American Indian, Native American, or Alaska Native, depending on context.
+Please note that in this dataset (drawn from the US Census), legacy categories for ethnic background exist that are now inappropriate. The graphs shown here are built automatically from that data. The data label `race` includes the category "Eskimo" - but where "American Indian / Eskimo" appears here, the correct terms would be Indigenous peoples, American Indian, Native American, or Alaska Native, depending on context.
 
 In addition to this, the binary label `salary` encodes whether individual earns more or less than $50,000. We refer to those that earn more than $50,000 as "high earners" and those who don't as "low earners".
 
@@ -39,7 +39,7 @@ We drop the `fnlwgt` feature, as it is not relevant to the prediction task at ha
 
 </Collapse>
 
-We have selected this data set as it is open access, and well known in the machine learning community. Moreover it is commonly used in experiments in the academic literature on fairness, which means we can compare our findings here to those published in many of the original papers.
+We have selected this dataset as it is open access, and well known in the machine learning community. Moreover it is commonly used in experiments in the academic literature on fairness, which means we can compare our findings here to those published in many of the original papers.
 
 Before we proceed with modelling, we should think about what we are trying to achieve and identify possible bias-related risks, as well as whether the data we have available to us is appropriate for the task.
 
@@ -51,7 +51,7 @@ Our goal is to try and predict an individual's annual income in order to target 
 
 In the case of this hypothetical example we don't have the means to collect different data. In the real world we would always consider whether we could have access to better data that is more representative. For example, the data we are using was collected in 1994, so it's quite likely that the demographic patterns captured in the data are no longer representative. If we were performing this task for real we would likely recommend that more up to date data is collected, that better reflects demographic shifts in the intervening years. Moreover the data was collected in the US - if the model we are training is intended for UK use this would be a further reason to try and collect more data.
 
-Another consideration is the representation of different groups in the data. Men outnumber women almost two to one, white respondents outnumber black respondents nine to one, and Asian respondents almost thirty to one. This means that our data is not representative of the overall population which isn't ideal, but the bigger problem is that there are relatively few observations of precisely those individuals who are at risk of mistreatment. In order to minimise the risk of bias we should make sure that all groups are well represented in our data.
+Another consideration is the representation of different groups in the data. Men outnumber women almost two to one, White respondents outnumber Black respondents nine to one, and Asian respondents almost thirty to one. This means that our data is not representative of the overall population which isn't ideal, but the bigger problem is that there are relatively few observations of precisely those individuals who are at risk of mistreatment. In order to minimise the risk of bias we should make sure that all groups are well represented in our data.
 
 Since we are merely demonstrating different methods of measuring and mitigating bias we proceed with the data as is, but in a real world application we should see if we can collect more data in order to ensure better representation.
 
