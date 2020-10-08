@@ -45,11 +45,11 @@ self.__precacheManifest = [
     "url": "252f366e-0039c2269e1877ca8100.js"
   },
   {
-    "url": "app-807a86c25e49a1d9758a.js"
+    "url": "app-aaf2218d3dafb68b4b10.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "6ba1ea2714c8965234f9fa8466d25dec"
+    "revision": "1b7d18f61cf9022b569ba1945ef3f2ae"
   },
   {
     "url": "fetch.umd.js"
@@ -69,7 +69,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "227282286e0d5c04a41e4b8f8c5728a8"
+    "revision": "e6cdadfb304355cbcd5a78e122773049"
   },
   {
     "url": "manifest.webmanifest",
@@ -166,7 +166,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/bias-mitigation/app-807a86c25e49a1d9758a.js`))) {
+  if (!resources || !(await caches.match(`/bias-mitigation/app-aaf2218d3dafb68b4b10.js`))) {
     return await fetch(event.request)
   }
 
