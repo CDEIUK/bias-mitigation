@@ -35,7 +35,7 @@ export default function OutboundLink(props) {
             event_label: props.href,
             transport_type: "beacon",
             event_callback: function () {
-              window.open(props.href)
+              document.location = props.href
             },
           })
         } else {
