@@ -5,10 +5,11 @@ title: Finance - the Adult dataset
 import Collapse from "../components/collapse"
 import { PlotLoader } from "../components/siteplotly"
 import CookieBanner from "../components/cookies"
+import OutboundLink from "../components/outbound-link"
 
 <CookieBanner />
 
-The first dataset we will be considering is the Adult dataset from the [UCI Machine learning repository][adult-data]. It was derived from the US Census, and contains demographic information from several thousand individuals. The typical task on this dataset is to predict whether or not an individual is a high earner from their demographics. You can see the details of our data acquisition and preprocessing in [this notebook][binder-preprocessing], and you can see the details of the below data exploration in [this notebook][binder-data].
+The first dataset we will be considering is the Adult dataset from the <OutboundLink href="https://archive.ics.uci.edu/ml/datasets/Adult">UCI Machine learning repository</OutboundLink>. It was derived from the US Census, and contains demographic information from several thousand individuals. The typical task on this dataset is to predict whether or not an individual is a high earner from their demographics. You can see the details of our data acquisition and preprocessing in <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Fpreprocessing.ipynb">this notebook</OutboundLink>, and you can see the details of the below data exploration in <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Fdata.ipynb">this notebook</OutboundLink>.
 
 We will assume that we are a credit card company that wants to target marketing of a new premium credit card to high earning individuals using a machine learning model. We have found the Adult dataset and want to use it to train a first version of the model.
 
@@ -70,7 +71,3 @@ Whether this is the right notion of fairness is unclear. On the one hand basing 
 <PlotLoader source={"finance/salary_by_hours_per_week"} />
 
 Next we'll look at the data we use for the recruiting use case.
-
-[adult-data]: https://archive.ics.uci.edu/ml/datasets/Adult
-[binder-data]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Fdata.ipynb "Open notebook on Binder"
-[binder-preprocessing]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Fpreprocessing.ipynb "Open notebook on Binder"

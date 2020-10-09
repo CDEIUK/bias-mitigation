@@ -4,12 +4,13 @@ title: Training a biased model
 
 import { PlotLoader } from "../components/siteplotly"
 import CookieBanner from "../components/cookies"
+import OutboundLink from "../components/outbound-link"
 
 <CookieBanner />
 
 This section goes into more detail on testing for bias and applying definitions of fairness to the datasets. It therefore requires a higher level of technical comprehension.
 
-We train simple models on each dataset to serve as a baseline before we try any of the possible interventions. You can run our analysis yourself on Binder, for the finance use case click [here][binder-finance-baseline] and the recruiting use case click [here][binder-recruiting-baseline].
+We train simple models on each dataset to serve as a baseline before we try any of the possible interventions. You can run our analysis yourself on Binder, for the finance use case click <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Fbaseline.ipynb">here</OutboundLink> and the recruiting use case click <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Fbaseline.ipynb">here</OutboundLink>.
 
 ## Finance
 
@@ -90,7 +91,3 @@ We trained simple models without any attempt to mitigate bias, instead only opti
 However we also observe that there are some clear tensions between different notions of fairness. For example, while disadvantaged groups receive lower scores on average, they also tend to be classified more accurately. Determining fairness in this context requires us to balance the harm caused by incorrect decisions with the advantage conferred by a positive prediction. Striking such a balance is highly context dependent, and must be done through careful consideration of the task and possible impacts rather than through application of any particular algorithm.
 
 Next we will investigate a number of bias mitigation algorithms from the literature, their open source implementations, and the results of using them to train unbiased models.
-
-[roc-curve]: https://en.wikipedia.org/wiki/Receiver_operating_characteristic
-[binder-finance-baseline]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Fbaseline.ipynb "Open notebook on Binder"
-[binder-recruiting-baseline]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Fbaseline.ipynb "Open notebook on Binder"
