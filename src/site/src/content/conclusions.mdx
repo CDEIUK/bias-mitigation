@@ -3,6 +3,7 @@ title: Conclusions
 ---
 
 import CookieBanner from "../components/cookies"
+import OutboundLink from "../components/outbound-link"
 
 <CookieBanner />
 
@@ -20,7 +21,7 @@ Based on our experiences, pre-processing interventions could be used as a step i
 
 ## Tooling
 
-There are a large number of open-source fairness libraries available, however many of them can only be used to measure bias in models, there are relatively few that actually implement any of these intervention strategies. Two notable libraries are [AI Fairness 360][aif-360] from IBM and [Fairlearn][fairlearn] from Microsoft.
+There are a large number of open-source fairness libraries available, however many of them can only be used to measure bias in models, there are relatively few that actually implement any of these intervention strategies. Two notable libraries are <OutboundLink href="https://aif360.readthedocs.io/en/latest/">AI Fairness 360</OutboundLink> from IBM and <OutboundLink href="https://fairlearn.github.io/">Fairlearn</OutboundLink> from Microsoft.
 
 ### AI Fairness 360
 
@@ -35,6 +36,3 @@ Fairlearn is a more recent library, having only been under active development fo
 At the moment there are only three mitigation algorithms implemented, that of Hardt et al., Agarwal et al. and a grid search approach that we didn't consider in this work. In our opinion the interface is easier to integrate into an existing workflow, the quality of the code is more consistent, and the algorithms available are better curated - in our experiments the approaches of Hardt et al. and Agarwal et al. both performed extremely well, whereas some of the approaches implemented by AI Fairness 360 were quite poor.
 
 Fairlearn also includes an interactive dashboard for model exploration that can help assess and understand unfairness in your model. Given the need for contextual understanding in effectively mitigating bias this could prove a valuable component of a bias mitigation workflow.
-
-[aif-360]: https://aif360.readthedocs.io/en/latest/
-[fairlearn]: https://fairlearn.github.io/

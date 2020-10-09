@@ -5,10 +5,11 @@ title: Interventions
 import Collapse from "../components/collapse"
 import { PlotLoader } from "../components/siteplotly"
 import CookieBanner from "../components/cookies"
+import OutboundLink from "../components/outbound-link"
 
 <CookieBanner />
 
-Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations, but have included our own implementations where necessary. All of our analysis can be explored on [Binder][binder] and the code is all available on [GitHub][github].
+Having seen that a model trained without intervention leads to unfair outcomes, we now try to apply some of the mitigation algorithms from the literature. Where possible we use existing open source implementations, but have included our own implementations where necessary. All of our analysis can be explored on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks">Binder</OutboundLink> and the code is all available on <OutboundLink href="https://github.com/CDEIUK/bias-mitigation">GitHub</OutboundLink>.
 
 ## Fairness through unawareness
 
@@ -28,7 +29,7 @@ Since the intervention is the same independently of the fairness notion consider
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose different notions of fairness with respect to sex. Run our analysis yourself on [Binder][binder-finance-ftu].
+We applied the intervention to the adult dataset in order to impose different notions of fairness with respect to sex. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fftu.ipynb">Binder</OutboundLink>.
 
 #### Demographic parity
 
@@ -60,7 +61,7 @@ Compared to the baseline model Fairness Through Unawareness has lead to a clear 
 
 ### Recruiting
 
-Here we applied the intervention to the synthetic recruiting dataset and impose different notions of fairness with respect to race. Run our analysis yourself on [Binder][binder-recruiting-ftu].
+Here we applied the intervention to the synthetic recruiting dataset and impose different notions of fairness with respect to race. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fftu.ipynb">Binder</OutboundLink>.
 
 #### Demographic parity
 
@@ -96,7 +97,12 @@ The intervention has overall an small influence on loss in accuracy, however als
 
 ## Feature modification - Feldman et al.
 
-[Feldman et. al][feldman] introduce a pre-processing technique for imposing demographic parity. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+<OutboundLink href="https://dl.acm.org/doi/10.1145/2783258.2783311">
+  Feldman et. al
+</OutboundLink> introduce a pre-processing technique for imposing demographic parity.
+It is implemented in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">
+  IBM's AI Fairness 360
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -110,7 +116,7 @@ The result of applying the algorithm is a modified dataset, such that each featu
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-feldman]. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on <OutboundLink href="ttps://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Ffeldman.ipynb">Binder</OutboundLink>. We found that training on the modified data didn't substantially change the results. There was a small drop in accuracy, whereas our baseline achieved 85.3% test set accuracy, the model trained on the fair data achieved 85.0%. However there was also hardly any change in demographic parity difference, going from 0.193 to 0.186. Below we show a box plot of the score distributions for the two models. They appear very similar.
 
 <PlotLoader source={"finance/interventions/feldman-dp"} />
 
@@ -118,7 +124,7 @@ This is likely because features that are highly correlated with `sex` remain in 
 
 ### Recruiting
 
-We also applied it to the synthetic recruiting data, this time trying to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-feldman]. In this case the intervention was marginally more effective, but still didn't come close to actually achieving fairness. Demographic parity difference decreased from 0.327 in the baseline model to 0.269 for the model trained on fair data. The bar chart of scores shows a modest improvement, but a significant disparity between the races remains.
+We also applied it to the synthetic recruiting data, this time trying to impose demographic parity with respect to race. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Ffeldman.ipynb">Binder</OutboundLink>. In this case the intervention was marginally more effective, but still didn't come close to actually achieving fairness. Demographic parity difference decreased from 0.327 in the baseline model to 0.269 for the model trained on fair data. The bar chart of scores shows a modest improvement, but a significant disparity between the races remains.
 
 <PlotLoader source={"recruiting/interventions/feldman-dp"} />
 
@@ -128,11 +134,18 @@ We also applied it to the synthetic recruiting data, this time trying to impose 
 
 In our experiments this intervention was not very effective. Other experiments we have seen with this method achieve better results by doing additional feature selection. In our case, there was possibly too much correlation between features for data modification to work well.
 
-We note that Feldman can be adapted to work as a post-processing technique. This is an unpublished idea that has been [observed by Hardt][hardt-neurips]. The distribution modification algorithm is applied to the scores of an existing model rather than the data. This is a simple but effective strategy for imposing demographic parity.
+We note that Feldman can be adapted to work as a post-processing technique. This is an unpublished idea that has been <OutboundLink href="https://mrtz.org/nips17/#/41">observed by Hardt</OutboundLink>. The distribution modification algorithm is applied to the scores of an existing model rather than the data. This is a simple but effective strategy for imposing demographic parity.
 
 ## Decision threshold modification - Hardt et al.
 
-[Hardt et al.][hardt] introduce a post-processing technique for imposing equalised odds and equal opportunity. It is implemented in [IBM's AI Fairness 360][aif-360] library, and [Microsoft's FairLearn][fairlearn] library.
+<OutboundLink href="https://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf">
+  Hardt et al.
+</OutboundLink> introduce a post-processing technique for imposing equalised odds
+and equal opportunity. It is implemented in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">
+  IBM's AI Fairness 360
+</OutboundLink> library, and <OutboundLink href="https://fairlearn.github.io/">
+  Microsoft's FairLearn
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -146,13 +159,13 @@ The algorithm is very widely applicable, as it only needs access to the model ou
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose equalised odds with respect to sex. Run our analysis yourself on [Binder][binder-finance-hardt]. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
+We applied the intervention to the adult dataset in order to impose equalised odds with respect to sex. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fhardt.ipynb">Binder</OutboundLink>. The intervention is extremely effective, the test set equalised odds difference is negligible, while the test set accuracy fell about three percentage points compared to the baseline.
 
 <PlotLoader source={"finance/interventions/hardt-eo"} />
 
 ### Recruiting
 
-We also applied it to the synthetic recruiting data, this time trying to impose equalised odds with respect to race. Run our analysis yourself on [Binder][binder-recruiting-hardt]. Again it was extremely effective, with test set equalised odds difference being negligible, and test set accuracy falling about three percentage points.
+We also applied it to the synthetic recruiting data, this time trying to impose equalised odds with respect to race. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fhardt.ipynb">Binder</OutboundLink>. Again it was extremely effective, with test set equalised odds difference being negligible, and test set accuracy falling about three percentage points.
 
 <PlotLoader source={"recruiting/interventions/hardt-eo"} />
 
@@ -166,7 +179,13 @@ There are perhaps two drawbacks. The first is that it achieves fairness through 
 
 ## Reject Option Classification - Kamiran et al.
 
-[Kamiran et al.][kamiran] introduce a post-processing technique for imposing multiple notions of fairness, including demographic parity, equalised odds and equal opportunity. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+<OutboundLink href="https://web.lums.edu.pk/~akarim/pub/decision_theory_icdm2012.pdf">
+  Kamiran et al.
+</OutboundLink> introduce a post-processing technique for imposing multiple notions
+of fairness, including demographic parity, equalised odds and equal opportunity.
+It is implemented in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">
+  IBM's AI Fairness 360
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -178,7 +197,7 @@ In their paper Kamiran et al. introduce two algorithms, the one implemented by I
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity, equalised odds and equal opportunity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamiran]. The interventions are largely effective, demographic parity difference is reduced from 0.193 to 0.025 from the baseline, while accuracy decreased from 85.3% to 79.3%.
+We applied the intervention to the adult dataset in order to impose demographic parity, equalised odds and equal opportunity with respect to sex. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamiran.ipynb">Binder</OutboundLink>. The interventions are largely effective, demographic parity difference is reduced from 0.193 to 0.025 from the baseline, while accuracy decreased from 85.3% to 79.3%.
 
 <PlotLoader source={"finance/interventions/kamiran-dp"} />
 
@@ -192,7 +211,7 @@ Imposing equal opportunity was slightly more effective, reducing the difference 
 
 ### Recruiting
 
-We also applied it to the synthetic recruiting data, this time trying to impose demographic parity, equalised odds and equal opportunity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamiran]. Again it was largely effective, with test set test set fairness improving under each intervention, but in some cases sacrificing a lot of accuracy.
+We also applied it to the synthetic recruiting data, this time trying to impose demographic parity, equalised odds and equal opportunity with respect to race. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamiran.ipynb">Binder</OutboundLink>. Again it was largely effective, with test set test set fairness improving under each intervention, but in some cases sacrificing a lot of accuracy.
 
 First for demographic parity we saw demographic parity difference decrease from 0.327 to 0.055, while accuracy fell from 86.2% to 79.4%.
 
@@ -216,7 +235,12 @@ It does however sacrifice accuracy more than some other methods, which in certai
 
 ## Data reweighting - Kamiran & Calders
 
-[Kamiran and Calders][kamiran-calders] introduce a pre-processing technique for imposing demographic parity based on reweighting the training data. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+<OutboundLink href="https://link.springer.com/content/pdf/10.1007/s10115-011-0463-8.pdf">
+  Kamiran and Calders
+</OutboundLink> introduce a pre-processing technique for imposing demographic parity
+based on reweighting the training data. It is implemented in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">
+  IBM's AI Fairness 360
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -228,13 +252,13 @@ Classifiers can learn bias because representatives of the disadvantaged group wi
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamiran-calders]. The intervention did improve fairness, reducing demographic parity difference from the baseline value of 0.193 to 0.099, and only slightly decreased accuracy from 85.3% to 84.2%.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamiran_calders.ipynb">Binder</OutboundLink>. The intervention did improve fairness, reducing demographic parity difference from the baseline value of 0.193 to 0.099, and only slightly decreased accuracy from 85.3% to 84.2%.
 
 <PlotLoader source={"finance/interventions/kamiran-calders-dp"} />
 
 ### Recruiting
 
-We also applied the intervention to the synthetic recruiting data in order to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamiran-calders]. The intervention was slightly less effective on the recruiting data, reducing demographic parity difference from the baseline value of 0.327 to 0.190, and reducing accuracy from 86.2% to 84.3%.
+We also applied the intervention to the synthetic recruiting data in order to impose demographic parity with respect to race. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamiran_calders.ipynb">Binder</OutboundLink>. The intervention was slightly less effective on the recruiting data, reducing demographic parity difference from the baseline value of 0.327 to 0.190, and reducing accuracy from 86.2% to 84.3%.
 
 <PlotLoader source={"recruiting/interventions/kamiran-calders-dp"} />
 
@@ -248,7 +272,13 @@ While the original paper is focussed on demographic parity, we observe that it's
 
 ## Regularisation - Kamishima et al.
 
-[Kamishima et al.][kamishima] introduce an in-processing technique for imposing demographic parity based on adding a regularising term to the objective function that is being minimised. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+<OutboundLink href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-33486-3_3.pdf">
+  Kamishima et al.
+</OutboundLink> introduce an in-processing technique for imposing demographic parity
+based on adding a regularising term to the objective function that is being minimised.
+It is implemented in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">
+  IBM's AI Fairness 360
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -260,13 +290,13 @@ Kamishima et al. propose a regularisation term, which approximately represents t
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on [Binder][binder-finance-kamishima]. The intervention reduced demographic parity difference from the baseline value of 0.193 to 0.059, and decreased accuracy from 85.3% to 80.6%. We can see from the box plots of the scores, that the improvement in demographic parity difference appears to be driven by the scores for both protected groups being squeezed towards zero, and so the classifier is closer to a constant classifier that predicts nobody is a high-earner. This doesn't seem to be much of an improvement.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamishima.ipynb">Binder</OutboundLink>. The intervention reduced demographic parity difference from the baseline value of 0.193 to 0.059, and decreased accuracy from 85.3% to 80.6%. We can see from the box plots of the scores, that the improvement in demographic parity difference appears to be driven by the scores for both protected groups being squeezed towards zero, and so the classifier is closer to a constant classifier that predicts nobody is a high-earner. This doesn't seem to be much of an improvement.
 
 <PlotLoader source={"finance/interventions/kamishima-dp"} />
 
 ### Recruiting
 
-We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race. Run our analysis yourself on [Binder][binder-recruiting-kamishima]. We saw the demographic parity difference decrease from 0.327 to 0.067, but we also observed a major drop in accuracy from 86.2% to 77.7%.
+We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamishima.ipynb">Binder</OutboundLink>. We saw the demographic parity difference decrease from 0.327 to 0.067, but we also observed a major drop in accuracy from 86.2% to 77.7%.
 
 <PlotLoader source={"recruiting/interventions/kamishima-dp"} />
 
@@ -278,7 +308,13 @@ While the intervention improved fairness on both datasets, the resulting drop in
 
 ## Information witholding - Pleiss et al.
 
-[Pleiss et al.][pleiss] introduce a post-processing algorithm that imposes a relaxed notion of equalised odds while preserving calibration. It is one of the few methods available that targets multiple notions of fairness simultaneously. It is implemented in [IBM's AI Fairness 360][aif-360].
+<OutboundLink href="https://papers.nips.cc/paper/7151-on-fairness-and-calibration.pdf">
+  Pleiss et al.
+</OutboundLink> introduce a post-processing algorithm that imposes a relaxed notion
+of equalised odds while preserving calibration. It is one of the few methods available
+that targets multiple notions of fairness simultaneously. It is implemented in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">
+  IBM's AI Fairness 360
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -294,7 +330,7 @@ On both datasets we had success imposing equal opportunity, but were unsuccessfu
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose equal opportunity with respect to sex. Run our analysis yourself on [Binder][binder-finance-pleiss]. The intervention reduced equal opportunity difference from 0.128 to 0.035, and only slightly decreased accuracy from 85.3% to 83.2%. In addition, calibration of the original model was preserved.
+We applied the intervention to the adult dataset in order to impose equal opportunity with respect to sex. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fpleiss.ipynb">Binder</OutboundLink>. The intervention reduced equal opportunity difference from 0.128 to 0.035, and only slightly decreased accuracy from 85.3% to 83.2%. In addition, calibration of the original model was preserved.
 
 <PlotLoader source={"finance/interventions/pleiss-eopp"} />
 
@@ -306,7 +342,7 @@ The intervention was however unsuccessful at imposing equalised odds, the algori
 
 ### Recruiting
 
-We also applied the intervention to our synthetic recruiting data to impose equal opportunity and equalised odds with respect to race. Run our analysis yourself on [Binder][binder-recruiting-pleiss]. When imposing equal opportunity we saw equal opportunity difference increase from 0.133 to 0.245, and accuracy fell significantly from 86.2% to 77.9%.
+We also applied the intervention to our synthetic recruiting data to impose equal opportunity and equalised odds with respect to race. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fpleiss.ipynb">Binder</OutboundLink>. When imposing equal opportunity we saw equal opportunity difference increase from 0.133 to 0.245, and accuracy fell significantly from 86.2% to 77.9%.
 
 <PlotLoader source={"recruiting/interventions/pleiss-eopp"} />
 
@@ -326,7 +362,12 @@ Imposing equalised odds was unsuccessful on both datasets. It may be possible to
 
 ## Optimal Clustering - Zemel et al.
 
-[Zemel et al.][zemel] introduce a pre-processing technique that learns fair representations of the data based on clustering. It is implemented in [IBM's AI Fairness 360][aif-360] library.
+<OutboundLink href="http://proceedings.mlr.press/v28/zemel13.pdf">
+  Zemel et al.
+</OutboundLink> introduce a pre-processing technique that learns fair representations
+of the data based on clustering. It is implemented in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">
+  IBM's AI Fairness 360
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -338,7 +379,7 @@ The approach described by Zemel et al. proceeds by clustering the data in such a
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. Run our analysis yourself on Binder [here][binder-finance-zemel-race] and [here][binder-finance-zemel-sex]. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
+We applied the intervention to the adult dataset in order to impose demographic parity with respect to sex and separately with respect to race. Run our analysis yourself on Binder <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_race.ipynb">here</OutboundLink> and <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_sex.ipynb">here</OutboundLink>. The intervention on race was more successful, reducing the demographic parity difference from 0.1 to 0.004, however the accuracy fell from 85.3% to 77.0%. The bar plot of outcomes shows that the corrected model ended up rarely predicting that the individual was a high earner.
 
 <PlotLoader source={"finance/interventions/zemel-race-dp"} />
 
@@ -348,7 +389,7 @@ When imposing demographic parity with respect to sex we had less success, seeing
 
 ### Recruiting
 
-We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. Run our analysis yourself on [Binder][binder-recruiting-zemel]. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
+We also applied the intervention to our synthetic recruiting data to impose demographic parity with respect to race, which performed poorly. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fzemel.ipynb">Binder</OutboundLink>. While demographic parity difference fell from 0.327 to 0.146, there was a catastrophic loss of accuracy, falling from 86.2% to 66.4%.
 
 <PlotLoader source={"recruiting/interventions/zemel-dp"} />
 
@@ -360,7 +401,7 @@ While the intervention improved fairness on both datasets, the resulting drop in
 
 ## Adversarial debiasing - Zhang et al.
 
-The paper [Mitigating Unwanted Biases with Adversarial Learning][zhang] of Zhang et al. introduces a method for mitigating bias in a model using adversarial learning. Their approach is able to impose demographic parity, conditional demographic parity, and equalised odds with only minor modifications. There is an implementation in [IBM's AI Fairness 360][aif-360] library, but it can only address demographic parity. Hence we provide our own implementation for comparing its performance across different definitions of fairness.
+The paper <OutboundLink href="https://dl.acm.org/doi/10.1145/3278721.3278779">Mitigating Unwanted Biases with Adversarial Learning</OutboundLink> of Zhang et al. introduces a method for mitigating bias in a model using adversarial learning. Their approach is able to impose demographic parity, conditional demographic parity, and equalised odds with only minor modifications. There is an implementation in <OutboundLink href="https://aif360.readthedocs.io/en/latest/">IBM's AI Fairness 360</OutboundLink> library, but it can only address demographic parity. Hence we provide our own implementation for comparing its performance across different definitions of fairness.
 
 <Collapse label="How it works">
 
@@ -374,7 +415,7 @@ To achieve conditional demographic parity we additionally pass legitimate risk f
 
 ### Finance
 
-We attempt to enforce demographic parity, conditional demographic parity and equalised odds on the Adult dataset with respect to sex. Run our analysis yourself on [Binder][binder-finance-zhang].
+We attempt to enforce demographic parity, conditional demographic parity and equalised odds on the Adult dataset with respect to sex. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzhang.ipynb">Binder</OutboundLink>.
 
 #### Demographic parity
 
@@ -400,7 +441,7 @@ Equal opportunity proved more challenging. We saw some improvement, with equalis
 
 ### Recruiting
 
-Similarly we impose all three definitions of fairness on the recruiting dataset. Run our analysis yourself on [Binder][binder-recruiting-zhang].
+Similarly we impose all three definitions of fairness on the recruiting dataset. Run our analysis yourself on <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fzhang.ipynb">Binder</OutboundLink>.
 
 #### Demographic parity
 
@@ -434,7 +475,12 @@ We showed with out implementation that it is straightforward to implement this a
 
 ## Reductions approach via constrained optimisation - Agarwal et al.
 
-[Agarwal et al.][agarwal] introduce an in-processing technique which learns a fair classifier by solving a constrained minimisation problem. It is implemented in [FairLearn][fairlearn] library.
+<OutboundLink href="http://proceedings.mlr.press/v80/agarwal18a.html">
+  Agarwal et al.
+</OutboundLink> introduce an in-processing technique which learns a fair classifier
+by solving a constrained minimisation problem. It is implemented in <OutboundLink href="https://fairlearn.github.io/">
+  Microsoft's FairLearn
+</OutboundLink> library.
 
 <Collapse label="How it works">
 
@@ -446,7 +492,7 @@ The approach described by Agarwal et al. proceeds by formulating a fair classifi
 
 ### Finance
 
-We applied the intervention to the adult dataset in order to impose different notions of fairness with respect to sex. Run our analysis yourself on Binder [here][binder-finance-agarwal].
+We applied the intervention to the adult dataset in order to impose different notions of fairness with respect to sex. Run our analysis yourself on Binder <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fagarwal.ipynb">here</OutboundLink>.
 
 #### Demographic parity
 
@@ -468,7 +514,7 @@ Similarly convincing results were achieved for equal opportunity, reducing equal
 
 ### Recruiting
 
-Here we applied the intervention to the synthetic recruiting dataset and impose different notions of fairness with respect to race. Run our analysis yourself on Binder [here][binder-recruiting-agarwal].
+Here we applied the intervention to the synthetic recruiting dataset and impose different notions of fairness with respect to race. Run our analysis yourself on Binder <OutboundLink href="https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fagarwal.ipynb">here</OutboundLink>.
 
 #### Demographic parity
 
@@ -493,39 +539,3 @@ The improvement in equal opportunity is similar to the improvement in equalised 
 ### Summary
 
 The intervention improved fairness significantly on both datasets, while the overall observed trade-off between fairness and accuracy for the adult dataset was superior compared to the synthetic recruiting data. Compared to the other intervention techniques Agarwal et al.'s intervention is highly competitive and leads to consistently good results in repeated independent experiments. For practical use this implementation hence seems to work well.
-
-[aif-360]: https://aif360.readthedocs.io/en/latest/
-[agarwal]: http://proceedings.mlr.press/v80/agarwal18a.html
-[fairlearn]: https://fairlearn.github.io/
-[feldman]: https://dl.acm.org/doi/10.1145/2783258.2783311
-[hardt]: https://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf
-[kamiran]: https://web.lums.edu.pk/~akarim/pub/decision_theory_icdm2012.pdf
-[kamiran-calders]: https://link.springer.com/content/pdf/10.1007/s10115-011-0463-8.pdf
-[kamishima]: https://link.springer.com/content/pdf/10.1007%2F978-3-642-33486-3_3.pdf
-[hardt-neurips]: https://mrtz.org/nips17/#/41
-[pleiss]: https://papers.nips.cc/paper/7151-on-fairness-and-calibration.pdf
-[zemel]: http://proceedings.mlr.press/v28/zemel13.pdf
-[zhang]: https://dl.acm.org/doi/10.1145/3278721.3278779
-[binder]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks "Open notebooks on Binder"
-[github]: https://github.com/CDEIUK/bias-mitigation
-[binder-finance-agarwal]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fagarwal.ipynb "Open notebook on Binder"
-[binder-finance-feldman]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Ffeldman.ipynb "Open notebook on Binder"
-[binder-finance-ftu]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fftu.ipynb "Open notebook on Binder"
-[binder-finance-hardt]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fhardt.ipynb "Open notebook on Binder"
-[binder-finance-kamiran]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamiran.ipynb "Open notebook on Binder"
-[binder-finance-kamiran-calders]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamiran_calders.ipynb "Open notebook on Binder"
-[binder-finance-kamishima]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fkamishima.ipynb "Open notebook on Binder"
-[binder-finance-pleiss]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fpleiss.ipynb "Open notebook on Binder"
-[binder-finance-zemel-race]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_race.ipynb "Open notebook on Binder"
-[binder-finance-zemel-sex]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzemel_sex.ipynb "Open notebook on Binder"
-[binder-finance-zhang]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Ffinance%2Finterventions%2Fzhang.ipynb "Open notebook on Binder"
-[binder-recruiting-agarwal]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fagarwal.ipynb "Open notebook on Binder"
-[binder-recruiting-feldman]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Ffeldman.ipynb "Open notebook on Binder"
-[binder-recruiting-ftu]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fftu.ipynb "Open notebook on Binder"
-[binder-recruiting-hardt]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fhardt.ipynb "Open notebook on Binder"
-[binder-recruiting-kamiran]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamiran.ipynb "Open notebook on Binder"
-[binder-recruiting-kamiran-calders]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamiran_calders.ipynb "Open notebook on Binder"
-[binder-recruiting-kamishima]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fkamishima.ipynb "Open notebook on Binder"
-[binder-recruiting-pleiss]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fpleiss.ipynb "Open notebook on Binder"
-[binder-recruiting-zemel]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fzemel.ipynb "Open notebook on Binder"
-[binder-recruiting-zhang]: https://mybinder.org/v2/gh/CDEIUK/bias-mitigation/master?filepath=notebooks%2Frecruiting%2Finterventions%2Fzhang.ipynb "Open notebook on Binder"
