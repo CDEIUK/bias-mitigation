@@ -11,19 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.8'
-          architecture: 'x64'
-
-      - name: Install dependencies
-        working-directory: src/
-        run: |
-          make preinstall
-          make install
-          make install-pipeline
-
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
