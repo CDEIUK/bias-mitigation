@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        make-lint: ["src-black-check", "notebooks-black-check", "src-flake8", "notebooks-flake8"]
+        make-lint: ["src-black-check", "src-flake8"]
 
     steps:
       - uses: actions/checkout@v2
