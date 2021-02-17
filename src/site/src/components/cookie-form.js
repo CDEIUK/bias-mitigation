@@ -7,7 +7,7 @@ export default class CookieForm extends React.Component {
   LEGACY_COOKIE_NAME = "cdeiuk-analytics-enabled-legacy"
   GA_COOKIES = ["_gid", "_ga", "_gat_gtag_UA_173229929_1"]
   GA_COOKIE_OPTIONS = {
-    domain: ".cdeiuk.github.io",
+    domain: ".dbckz.github.io",
   }
   CONSENT_COOKIE_OPTIONS = {
     expires: 365,

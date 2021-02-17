@@ -1,11 +1,11 @@
 module.exports = {
-  pathPrefix: `/bias-mitigation`,
+  pathPrefix: `/pets`,
   siteMetadata: {
-    siteTitle: `Machine Learning Bias Mitigation`,
-    defaultTitle: `Machine Learning Bias Mitigation`,
-    siteTitleShort: `ML Bias Mitigation`,
-    siteDescription: `See how to mitigate bias in your machine learning models.`,
-    siteUrl: `https://cdeiuk.github.io/bias-mitigation/`,
+    siteTitle: `PETs`,
+    defaultTitle: `PETs`,
+    siteTitleShort: `PETs`,
+    siteDescription: `PETs`,
+    siteUrl: `https://dbckz.github.io/pets`,
     siteAuthor: `@rocketseat`,
     siteImage: `/banner.png`,
     siteLanguage: `en`,
@@ -19,7 +19,7 @@ module.exports = {
       options: {
         debug: false,
         googleAnalytics: {
-          trackingId: `UA-173229929-1`,
+          trackingId: ``,
           autoStart: false,
           controlCookieName: `cdeiuk-analytics-enabled`,
           anonymize: true,
@@ -38,8 +38,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Machine Learning Bias Mitigation`,
-        short_name: `ML Bias Mitigation`,
+        name: `PETs`,
+        short_name: `PETs`,
         start_url: `/`,
         background_color: `#f0ede3`,
         display: `standalone`,
@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://cdeiuk.github.io/bias-mitigation/`,
+        siteUrl: `https://dbckz.github.io/pets/`,
       },
     },
     `gatsby-plugin-offline`,

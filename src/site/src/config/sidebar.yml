@@ -1,25 +1,27 @@
 # Sidebar navigation
 - label: Home
   link: /
-- label: Use Cases
+- label: PETs Adoption Guide
+  link: /adoption-guide
+- label: About PETs
   items:
-    - label: Finance
-      link: /finance
-    - label: Recruiting
-      link: /recruiting
-- label: Modelling
+    - label: What are PETs?
+      link: /what-are-pets
+    - label: De-identification techniques
+      link: /de-id
+- label: Emerging PETs
   items:
-    - label: Unfair Baseline
-      link: /baseline
-    - label: Interventions
-      link: /interventions
-- label: Summary
-  items:
-    - label: Conclusions
-      link: /conclusions
-    - label: Additional Resources
-      link: /additional-resources
-- label: Privacy
+    - label: Homomorphic Encryption
+      link: /he
+    - label: Trusted Execution Environments
+      link: /tees
+    - label: Multi-Party Computation
+      link: /mpc
+    - label: Federated Analytics
+      link: /fa
+    - label: Differential Privacy
+      link: /dp
+- label: Privacy policy
   items:
     - label: Cookie Policy
       link: /cookie-policy
