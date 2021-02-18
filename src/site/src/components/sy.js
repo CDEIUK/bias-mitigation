@@ -86,18 +86,21 @@ export default class Sy extends React.Component {
     //Write survey results into database
     console.log("Survey results: " + JSON.stringify(survey.data))
   }
+
+  model = new Survey.Model(this.json)
   render() {
     //Create the model and pass it into react Survey component
     //You may create survey model outside the render function and use it in your App or component
     //The most model properties are reactive, on their change the component will change UI when needed.
-    Survey.StylesManager.applyTheme("modern")
+    if (typeof window !== "undefined") {
+      Survey.StylesManager.applyTheme("modern")
+    }
 
-    var model = new Survey.Model(this.json)
-    return <Survey.Survey model={model} onComplete={this.onComplete} />
-    /*
+    // return <Survey.Survey model={model} onComplete={this.onComplete} />
+
     //The alternative way. react Survey component will create survey model internally
-    return (<Survey.Survey json={this.json} onComplete={this.onComplete}/>);
-    */
+    return <Survey.Survey json={this.json} onComplete={this.onComplete} />
+    // return ""
     //You may pass model properties directly into component or set it into model
     // <Survey.Survey model={model} mode="display"/>
     //or
