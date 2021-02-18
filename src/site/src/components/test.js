@@ -2,7 +2,6 @@ import React from "react"
 import { useTable, useFilters } from "react-table"
 import { useStaticQuery, graphql } from "gatsby"
 
-
 export default function Test() {
   const { allGooglePeTsusecaserepositorySheet } = useStaticQuery(
     graphql`
@@ -24,20 +23,20 @@ export default function Test() {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'Who',
-        accessor: 'who',
-        disableFilters: true
+        Header: "Who",
+        accessor: "who",
+        disableFilters: true,
       },
       {
-        Header: 'Sector',
-        accessor: 'sector',
+        Header: "Sector",
+        accessor: "sector",
         Filter: SelectColumnFilter,
-        filter: 'includes',
+        filter: "includes",
       },
       {
-        Header: 'Description',
-        accessor: 'description',
-        disableFilters: true
+        Header: "Description",
+        accessor: "description",
+        disableFilters: true,
       },
     ],
     []
@@ -55,7 +54,7 @@ export default function Test() {
       })
       return [...options.values()]
     }, [id, preFilteredRows])
-  
+
     // Render a multi-select box
     return (
       <select
@@ -100,42 +99,33 @@ export default function Test() {
 
   return (
     <div>
-    <table {...getTableProps()} >
-       <thead>
-         {headerGroups.map(headerGroup => (
-           <tr {...headerGroup.getHeaderGroupProps()}>
-             {headerGroup.headers.map(column => (
-               <th
-                 {...column.getHeaderProps()}   
-               >
-                 {column.render('Header')}
-                 <div>{column.canFilter ? column.render('Filter') : null}</div>
-               </th>
-             ))}
-           </tr>
-         ))}
-       </thead>
-       <tbody {...getTableBodyProps()}>
-         {rows.map(row => {
-           prepareRow(row)
-           return (
-             <tr {...row.getRowProps()}>
-               {row.cells.map(cell => {
-                 return (
-                   <td
-                     {...cell.getCellProps()}
-                   >
-                     {cell.render('Cell')}
-                   </td>
-                 )
-               })}
-             </tr>
-           )
-         })}
-       </tbody>
-     </table>
-     <div>
-   </div>
-   </div>
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps()}>
+                  {column.render("Header")}
+                  <div>{column.canFilter ? column.render("Filter") : null}</div>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map(row => {
+            prepareRow(row)
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+      <div></div>
+    </div>
   )
 }
