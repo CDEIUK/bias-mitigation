@@ -1,12 +1,16 @@
 # Sidebar navigation
 - label: Home
   link: /
+- label: PETs Adoption Guide
+  items:
+    - label: The Guide
+      link: /adoption-guide
+    - label: Repository of Use Cases
+      link: /repository
 - label: About PETs
   items:
     - label: What are PETs?
       link: /what-are-pets
-- label: Technologies
-  items:
     - label: De-identification techniques
       link: /de-id
     - label: Homomorphic Encryption
@@ -19,13 +23,6 @@
       link: /fa
     - label: Differential Privacy
       link: /dp
-- label: PETs Adoption Guide
-  items:
-    - label: The Guide
-      link: /adoption-guide
-    - label: Repository of Use Cases
-      link: /repository
-
 - label: Privacy policy
   items:
     - label: Cookie Policy
