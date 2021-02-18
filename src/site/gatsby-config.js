@@ -15,6 +15,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-source-google-spreadsheets',
+      options: {
+        spreadsheetId: '11Lel-hbZ4nuOP1CIhIAq543l1-Xz9V5kEj6ZFxKn4u4',
+        credentials: require('./pets.json')
+      }
+    },
+    {
       resolve: `gatsby-plugin-gdpr-tracking`,
       options: {
         debug: false,
