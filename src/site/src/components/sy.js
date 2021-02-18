@@ -11,76 +11,36 @@ export default class Sy extends React.Component {
   //    };
 
   json = {
-    completedHtml:
-      "<h3>Thank you for your feedback.</h3> <h5>Your thoughts and ideas will help us to create a great product!</h5>",
-    completedHtmlOnCondition: [
-      {
-        expression: "{nps_score} > 8",
-        html:
-          "<h3>Thank you for your feedback.</h3> <h5>We glad that you love our product. Your ideas and suggestions will help us to make our product even better!</h5>",
-      },
-      {
-        expression: "{nps_score} < 7",
-        html:
-          "<h3>Thank you for your feedback.</h3> <h5> We are glad that you share with us your ideas.We highly value all suggestions from our customers. We do our best to improve the product and reach your expectation.</h5><br/>",
-      },
-    ],
-    pages: [
-      {
-        name: "page1",
-        elements: [
-          {
-            type: "rating",
-            name: "nps_score",
-            title:
-              "On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?",
-            isRequired: true,
-            rateMin: 0,
-            rateMax: 10,
-            minRateDescription: "(Most unlikely)",
-            maxRateDescription: "(Most likely)",
-          },
-          {
-            type: "checkbox",
-            name: "promoter_features",
-            visibleIf: "{nps_score} >= 9",
-            title: "What features do you value the most?",
-            isRequired: true,
-            validators: [
-              {
-                type: "answercount",
-                text: "Please select two features maximum.",
-                maxCount: 2,
-              },
-            ],
-            hasOther: true,
-            choices: [
-              "Performance",
-              "Stability",
-              "User Interface",
-              "Complete Functionality",
-            ],
-            otherText: "Other feature:",
-            colCount: 2,
-          },
-          {
-            type: "comment",
-            name: "passive_experience",
-            visibleIf: "{nps_score} > 6  and {nps_score} < 9",
-            title: "What is the primary reason for your score?",
-          },
-          {
-            type: "comment",
-            name: "disappointed_experience",
-            visibleIf: "{nps_score} notempty",
-            title:
-              "What do you miss and what was disappointing in your experience with us?",
-          },
-        ],
-      },
-    ],
     showQuestionNumbers: "off",
+    completedHtml: "<h3>Get a fish</h3>",
+    questions: [
+      {
+        type: "dropdown",
+        name: "wantPet",
+        title: "Do you want a PET to love and care for?",
+        isRequired: true,
+        choices: ["Yes", "No"],
+        // colCount: 0
+      },
+      {
+        type: "dropdown",
+        name: "forgetPet",
+        title: "Are you likely to forget you have a PET?",
+        visibleIf: "{wantPet}='Yes'",
+        isRequired: true,
+        choices: ["Yes", "No"],
+      },
+      {
+        type: "dropdown",
+        name: "lessThanFourDays",
+        title: "For less than 4 days in a row?",
+        visibleIf: "{forgetPet}='Yes'",
+        isRequired: true,
+        choices: ["Yes", "No"],
+      },
+    ],
   }
+
   //Define a callback methods on survey complete
   onComplete(survey, options) {
     //Write survey results into database
