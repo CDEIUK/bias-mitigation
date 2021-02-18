@@ -12,6 +12,7 @@ export default function Test() {
             who
             sector
             description
+            stageOfDev
           }
         }
       }
@@ -36,6 +37,11 @@ export default function Test() {
       {
         Header: "Description",
         accessor: "description",
+        disableFilters: true,
+      },
+      {
+        Header: "Stage of development",
+        accessor: "stageOfDev",
         disableFilters: true,
       },
     ],
