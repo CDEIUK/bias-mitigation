@@ -3,7 +3,7 @@ import { useTable, useFilters } from "react-table"
 // import { useStaticQuery, graphql } from "gatsby"
 
 export default function Test() {
-  const data = require('./data.json');
+  const data = require("./data.json")
 
   const columns = React.useMemo(
     () => [
@@ -11,44 +11,51 @@ export default function Test() {
         Header: "Who",
         accessor: "who",
         disableFilters: true,
-        minWidth: 200
+        minWidth: 200,
       },
       {
         Header: "Sector",
         accessor: "sector",
         Filter: SelectColumnFilter,
         filter: "includes",
-        minWidth: 200
+        minWidth: 200,
       },
       {
         Header: "Description",
         accessor: "description",
         disableFilters: true,
-        minWidth: 450 
+        minWidth: 450,
       },
       {
         Header: "Stage of development",
         accessor: "stage-of-dev",
         disableFilters: true,
-        minWidth: 200
+        minWidth: 200,
       },
       {
         Header: "PETs",
         accessor: "tech",
         Filter: SelectColumnFilter,
         filter: "includes",
-        minWidth: 200
+        minWidth: 200,
       },
       {
         Header: "Links to resources",
-        Cell: ({ row }) =>
-        <div>
-          <p><a href={row.original.link1URL}>{row.original.link1}</a></p>
-          <p><a href={row.original.link2URL}>{row.original.link2}</a></p>
-          <p><a href={row.original.link3URL}>{row.original.link3}</a></p>
-        </div>,
+        Cell: ({ row }) => (
+          <div>
+            <p>
+              <a href={row.original.link1URL}>{row.original.link1}</a>
+            </p>
+            <p>
+              <a href={row.original.link2URL}>{row.original.link2}</a>
+            </p>
+            <p>
+              <a href={row.original.link3URL}>{row.original.link3}</a>
+            </p>
+          </div>
+        ),
         disableFilters: true,
-        minWidth: 300
+        minWidth: 300,
       },
     ],
     []
@@ -116,12 +123,13 @@ export default function Test() {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps({
-                   style: {minWidth : column.minWidth}
-               })}>
+                <th
+                  {...column.getHeaderProps({
+                    style: { minWidth: column.minWidth },
+                  })}
+                >
                   {column.render("Header")}
                   <div>{column.canFilter ? column.render("Filter") : null}</div>
-                  
                 </th>
               ))}
             </tr>
