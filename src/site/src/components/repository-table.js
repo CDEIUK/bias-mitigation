@@ -110,14 +110,14 @@ export default function RepositoryTable() {
     const options = React.useMemo(() => {
       const options = new Set()
       preFilteredRows.forEach(row => {
-        if (row.values[id] !== "") {
-          options.add(row.values[id])
+        if (row.original[id] !== "") {
+          options.add(row.original[id])
         }
-        if (row.values[id2]) {
-          options.add(row.values[id2])
+        if (row.original[id2]) {
+          options.add(row.original[id2])
         }
-        if (row.values[id3]) {
-          options.add(row.values[id3])
+        if (row.original[id3]) {
+          options.add(row.original[id3])
         }
       })
       return [...options.values()]
