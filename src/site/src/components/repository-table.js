@@ -24,6 +24,7 @@ export default function RepositoryTable() {
         accessor: "description",
         disableFilters: true,
         minWidth: 450,
+        textAlign: "left",
       },
       {
         Header: "Stage of development",
@@ -197,7 +198,19 @@ export default function RepositoryTable() {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  return (
+                    <td
+                      {...cell.getCellProps({
+                        style: {
+                          "text-align": cell.column.textAlign
+                            ? cell.column.textAlign
+                            : "center",
+                        },
+                      })}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  )
                 })}
               </tr>
             )
