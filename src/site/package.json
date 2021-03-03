@@ -13,7 +13,6 @@
     "gatsby-plugin-manifest": "^2.2.37",
     "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-sitemap": "^2.2.26",
-    "gatsby-source-google-spreadsheets": "^3.0.7",
     "plotly.js": "^1.54.3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

@@ -1,9 +1,8 @@
 import React from "react"
 import { useTable, useFilters } from "react-table"
-// import { useStaticQuery, graphql } from "gatsby"
 
-export default function Test() {
-  const data = require("./data.json")
+export default function RepositoryTable() {
+  const data = require("../data/repository.json")
 
   const columns = React.useMemo(
     () => [
@@ -33,14 +32,24 @@ export default function Test() {
         minWidth: 200,
       },
       {
-        Header: "PETs",
-        accessor: "tech",
-        Filter: SelectColumnFilter,
-        filter: "includes",
+        Header: "PETs used",
+        accessor: "pets1",
+        Cell: ({ row }) => (
+          <div>
+            <p>{row.original.pets1}</p>
+            <p>{row.original.pets2}</p>
+            <p>{row.original.pets3}</p>
+          </div>
+        ),
+        Filter: SelectPetsFilter,
+        id: "pets1",
+        id2: "pets2",
+        id3: "pets3",
+        filter: petsCustomFilterFn,
         minWidth: 200,
       },
       {
-        Header: "Links to resources",
+        Header: "Supporting links",
         Cell: ({ row }) => (
           <div>
             <p>
@@ -92,6 +101,55 @@ export default function Test() {
     )
   }
 
+  function SelectPetsFilter({
+    column: { filterValue, setFilter, preFilteredRows, id, id2, id3 },
+  }) {
+    // Calculate the options for filtering
+    // using the preFilteredRows
+    const options = React.useMemo(() => {
+      const options = new Set()
+      preFilteredRows.forEach(row => {
+        if (row.values[id] !== "") {
+          options.add(row.values[id])
+        }
+        if (row.values[id2]) {
+          options.add(row.values[id2])
+        }
+        if (row.values[id3]) {
+          options.add(row.values[id3])
+        }
+      })
+      return [...options.values()]
+    }, [id, id2, id3, preFilteredRows])
+
+    // Render a multi-select box
+    return (
+      <select
+        value={filterValue}
+        onChange={e => {
+          setFilter(e.target.value || undefined)
+        }}
+      >
+        <option value="">All</option>
+        {options.map((option, i) => (
+          <option key={i} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
+  function petsCustomFilterFn(rows, id, filterValue) {
+    return rows.filter(row => {
+      return (
+        row.original["pets1"] === filterValue ||
+        row.original["pets2"] === filterValue ||
+        row.original["pets3"] === filterValue
+      )
+    })
+  }
+
   const defaultColumn = React.useMemo(
     () => ({
       Filter: SelectColumnFilter,
@@ -105,8 +163,6 @@ export default function Test() {
     headerGroups,
     rows,
     prepareRow,
-    state,
-    visibleColumns,
   } = useTable(
     {
       columns,
