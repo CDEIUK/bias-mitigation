@@ -12,29 +12,62 @@ export default class Sy extends React.Component {
 
   json = {
     showQuestionNumbers: "off",
-    completedHtml: "<h3>Get a fish</h3>",
+    completedHtml: "<h3>Use homomorphic encryption</h3>",
     questions: [
       {
-        type: "dropdown",
-        name: "wantPet",
-        title: "Do you want a PET to love and care for?",
+        type: "radiogroup",
+        name: "one",
+        title: "Which of the following best matches your intended use of data?",
         isRequired: true,
-        choices: ["Yes", "No"],
-        // colCount: 0
+        colCount: 1,
+        choices: [
+          "You hold the data and want to outsource / share the data to a third party / user",
+          "You want to leverage data held by other parties / users",
+        ],
       },
       {
-        type: "dropdown",
-        name: "forgetPet",
-        title: "Are you likely to forget you have a PET?",
-        visibleIf: "{wantPet}='Yes'",
+        type: "radiogroup",
+        name: "two",
+        title:
+          "Do you need to make available the raw data, or make available insights / generalisations derived from the data?",
+        visibleIf:
+          "{one}='You hold the data and want to outsource / share the data to a third party / user'",
+        isRequired: true,
+        choices: ["Raw data", "Insights / generalisations"],
+      },
+      {
+        type: "radiogroup",
+        name: "four",
+        title:
+          "Does the raw data contain sensitive or personally identifiable information?",
+        visibleIf: "{two}='Raw data'",
         isRequired: true,
         choices: ["Yes", "No"],
       },
       {
-        type: "dropdown",
-        name: "lessThanFourDays",
-        title: "For less than 4 days in a row?",
-        visibleIf: "{forgetPet}='Yes'",
+        type: "radiogroup",
+        name: "five",
+        title:
+          "Is the party you are sharing data with performing computation / analysis on your behalf, or for their own means?",
+        visibleIf: "{four}='Yes'",
+        isRequired: true,
+        choices: ["On my behalf", "For their own means"],
+      },
+      {
+        type: "radiogroup",
+        name: "six",
+        title:
+          "Is it in important that the computation / analysis is done with low latency?",
+        visibleIf: "{five}='On my behalf'",
+        isRequired: true,
+        choices: ["Yes", "No"],
+      },
+      {
+        type: "radiogroup",
+        name: "three",
+        title: "What?",
+        visibleIf:
+          "{one}='You want to leverage data held by other parties / users'",
         isRequired: true,
         choices: ["Yes", "No"],
       },
@@ -52,9 +85,9 @@ export default class Sy extends React.Component {
     //Create the model and pass it into react Survey component
     //You may create survey model outside the render function and use it in your App or component
     //The most model properties are reactive, on their change the component will change UI when needed.
-    if (typeof window !== "undefined") {
-      Survey.StylesManager.applyTheme("modern")
-    }
+    // if (typeof window !== "undefined") {
+    //   Survey.StylesManager.applyTheme("modern")
+    // }
 
     // return <Survey.Survey model={model} onComplete={this.onComplete} />
 
