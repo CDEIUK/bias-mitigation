@@ -7,22 +7,6 @@
       link: /adoption-guide
     - label: Repository of Use Cases
       link: /repository
-- label: About PETs
-  items:
-    - label: What are PETs?
-      link: /what-are-pets
-    - label: De-identification techniques
-      link: /de-id
-    - label: Homomorphic Encryption
-      link: /he
-    - label: Trusted Execution Environments
-      link: /tees
-    - label: Multi-Party Computation
-      link: /mpc
-    - label: Federated Analytics
-      link: /fa
-    - label: Differential Privacy
-      link: /dp
 - label: Privacy policy
   items:
     - label: Cookie Policy

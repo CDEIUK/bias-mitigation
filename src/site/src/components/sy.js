@@ -2,17 +2,9 @@ import React from "react"
 import * as Survey from "survey-react"
 
 export default class Sy extends React.Component {
-  //Define Survey JSON
-  //Here is the simplest Survey with one text question
-  //  json = {
-  //     elements: [
-  //      { type: "text", name: "customerName", title: "What is your name?", isRequired: true}
-  //     ]
-  //    };
-
   json = {
     showQuestionNumbers: "off",
-    completedHtml: "<h3>Use homomorphic encryption</h3>",
+    showCompletedPage: false,
     questions: [
       {
         type: "radiogroup",
@@ -39,17 +31,20 @@ export default class Sy extends React.Component {
         type: "radiogroup",
         name: "four",
         title:
-          "Does the raw data contain sensitive or personally identifiable information?",
+          "Does sensitive / personally identifiable information need to be included in the dataset that is shared, or could it be useful without it?",
         visibleIf: "{two}='Raw data'",
         isRequired: true,
-        choices: ["Yes", "No"],
+        choices: [
+          "Sensitive information needs to be included",
+          "Data could be useful without sensitive information",
+        ],
       },
       {
         type: "radiogroup",
         name: "five",
         title:
           "Is the party you are sharing data with performing computation / analysis on your behalf, or for their own means?",
-        visibleIf: "{four}='Yes'",
+        visibleIf: "{four}='Sensitive information needs to be included'",
         isRequired: true,
         choices: ["On my behalf", "For their own means"],
       },
@@ -65,41 +60,56 @@ export default class Sy extends React.Component {
       {
         type: "radiogroup",
         name: "three",
-        title: "What?",
+        title:
+          "Do you want to use their data to train a predictive model or perform more traditional data science/analysis?",
         visibleIf:
           "{one}='You want to leverage data held by other parties / users'",
+        isRequired: true,
+        choices: [
+          "Train a predictive model",
+          "Traditional data science/analysis",
+        ],
+      },
+      {
+        type: "radiogroup",
+        name: "seven",
+        title:
+          "Could it be possible to run the training algorithm on the other parties'/users' servers/devices?",
+        visibleIf: "{three}='Train a predictive model'",
+        isRequired: true,
+        choices: ["Yes", "No"],
+      },
+      {
+        type: "radiogroup",
+        name: "eight",
+        title:
+          "Do you need to use sensitive/personally identifiable information in the training dataset?",
+        visibleIf: "{seven}='No'",
         isRequired: true,
         choices: ["Yes", "No"],
       },
     ],
+    navigateToUrlOnCondition: [
+      { expression: "{six} = 'Yes'", url: "/he" },
+      { expression: "{six} = 'No'", url: "/tees" },
+      {
+        expression:
+          "{four} = 'Data could be useful without sensitive information'",
+        url: "/de-id",
+      },
+      { expression: "{five} = 'For their own means'", url: "/dsa" },
+      { expression: "{two} = 'Insights / generalisations'", url: "/dp" },
+      { expression: "{seven} = 'Yes'", url: "/fl" },
+      { expression: "{eight} = 'Yes'", url: "/min" },
+      { expression: "{eight} = 'No'", url: "/de-id" },
+      {
+        expression: "{three} = 'Traditional data science/analysis'",
+        url: "/fa",
+      },
+    ],
   }
 
-  //Define a callback methods on survey complete
-  onComplete(survey, options) {
-    //Write survey results into database
-    console.log("Survey results: " + JSON.stringify(survey.data))
-  }
-
-  model = new Survey.Model(this.json)
   render() {
-    //Create the model and pass it into react Survey component
-    //You may create survey model outside the render function and use it in your App or component
-    //The most model properties are reactive, on their change the component will change UI when needed.
-    // if (typeof window !== "undefined") {
-    //   Survey.StylesManager.applyTheme("modern")
-    // }
-
-    // return <Survey.Survey model={model} onComplete={this.onComplete} />
-
-    //The alternative way. react Survey component will create survey model internally
-    return <Survey.Survey json={this.json} onComplete={this.onComplete} />
-    // return ""
-    //You may pass model properties directly into component or set it into model
-    // <Survey.Survey model={model} mode="display"/>
-    //or
-    // model.mode="display"
-    // <Survey.Survey model={model}/>
-    // You may change model properties outside render function.
-    //If needed react Survey Component will change its behavior and change UI.
+    return <Survey.Survey json={this.json} />
   }
 }
