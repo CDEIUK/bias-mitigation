@@ -7,6 +7,10 @@
       link: /adoption-guide
     - label: Repository of Use Cases
       link: /repository
+    - label: Glossary
+      link: /glossary
+    - label: Future work
+      link: /future-work
 - label: Privacy policy
   items:
     - label: Cookie Policy
