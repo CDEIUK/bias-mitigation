@@ -46,6 +46,14 @@ module.exports = {
         icon: `static/favicon.png`,
       },
     },
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        linkImagesToOriginal: false,
+        backgroundColor: `transparent`,
+        withWebp: true,
+      },
+    },
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-canonical-urls`,
