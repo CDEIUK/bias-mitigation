@@ -166,6 +166,7 @@ export default function GlobalStyle() {
 
         img {
           max-width: 100%;
+          background: transparent;
         }
 
         ul,
