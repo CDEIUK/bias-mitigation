@@ -38,7 +38,6 @@ export const Children = styled.div`
 `
 
 export const Wrapper = styled.div`
-  display: inline-block;
   padding-left: 280px;
   transition: transform 0.5s;
 

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 
 export const Container = styled.aside`
+  box-shadow: 10px 0 4px -4px #888;
   width: 20%;
   max-width: 280px;
   min-width: 280px;
