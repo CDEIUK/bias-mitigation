@@ -23,8 +23,8 @@ export default function RepositoryTable() {
         Header: "Description",
         accessor: "description",
         disableFilters: true,
-        minWidth: 450,
-        textAlign: "left",
+        minWidth: 550,
+        textAlign: "justify",
       },
       {
         Header: "Stage of development",
@@ -37,9 +37,69 @@ export default function RepositoryTable() {
         accessor: "pets1",
         Cell: ({ row }) => (
           <div>
-            <p>{row.original.pets1}</p>
-            <p>{row.original.pets2}</p>
-            <p>{row.original.pets3}</p>
+            <p>
+              <a
+                href={
+                  row.original.pets1 === "HE"
+                    ? "/glossary#homomorphic-encryption-he"
+                    : row.original.pets1 === "TEE"
+                    ? "/glossary#trusted-execution-environments-tee"
+                    : row.original.pets1 === "MPC"
+                    ? "/glossary#multi-party-computation-mpc"
+                    : row.original.pets1 === "FA"
+                    ? "/glossary#federated-analytics-fa"
+                    : row.original.pets1 === "DP"
+                    ? "/glossary#differential-privacy-dp"
+                    : row.original.pets1 === "De-ID"
+                    ? "/glossary#de-identification-techniques-de-id"
+                    : null
+                }
+              >
+                {row.original.pets1}
+              </a>
+            </p>
+            <p>
+              <a
+                href={
+                  row.original.pets2 === "HE"
+                    ? "/glossary#homomorphic-encryption-he"
+                    : row.original.pets2 === "TEE"
+                    ? "/glossary#trusted-execution-environments-tee"
+                    : row.original.pets2 === "MPC"
+                    ? "/glossary#multi-party-computation-mpc"
+                    : row.original.pets2 === "FA"
+                    ? "/glossary#federated-analytics-fa"
+                    : row.original.pets2 === "DP"
+                    ? "/glossary#differential-privacy-dp"
+                    : row.original.pets2 === "De-ID"
+                    ? "/glossary#de-identification-techniques-de-id"
+                    : null
+                }
+              >
+                {row.original.pets2}
+              </a>
+            </p>
+            <p>
+              <a
+                href={
+                  row.original.pets3 === "HE"
+                    ? "/glossary#homomorphic-encryption-he"
+                    : row.original.pets3 === "TEE"
+                    ? "/glossary#trusted-execution-environments-tee"
+                    : row.original.pets3 === "MPC"
+                    ? "/glossary#multi-party-computation-mpc"
+                    : row.original.pets3 === "FA"
+                    ? "/glossary#federated-analytics-fa"
+                    : row.original.pets3 === "DP"
+                    ? "/glossary#differential-privacy-dp"
+                    : row.original.pets3 === "De-ID"
+                    ? "/glossary#de-identification-techniques-de-id"
+                    : null
+                }
+              >
+                {row.original.pets3}
+              </a>
+            </p>
           </div>
         ),
         Filter: SelectPetsFilter,
