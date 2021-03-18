@@ -78,4 +78,16 @@ The privacy-utility trade-off is formalised through the concept of Ɛ-differenti
 
 ## De-identification Techniques (De-ID)
 
-<Collapse label="Details">TODO</Collapse>
+We define a de-identification technique as any data transformation or modification that reduces the amount of information about an individual or entity in a dataset, and/or reduces the risk that an individual or entity can be re-identified. These methods are distinguished from the PETs described above in that they involve direct modification of data before it is shared or disseminated, rather than provided mechanisms for protecting confidentiality whilst maintaining maximum utility over the underlying data.
+
+<Collapse label="Details">
+
+Examples of de-identification techniques are:
+
+- _**Redaction:**_ deleting an entire record or field, or obfuscating part of a record or field (e.g. deleting all but the last 4 digits of a credit card number)
+- _**Tokenization:**_ replacing a real value with a randomly generated value
+- _**Hashing:**_ applying a function to a value to produce a fixed-length value (or hash)
+- _**Generalization:**_ transforming a value to a less precise or bucketed value, e.g. replacing a height of 179cm to 170-180cm
+- _**K-anonymity:**_ applying a combination of de-identification techniques so that any record in the dataset becomes indistinguishable from (k-1) records
+
+</Collapse>
