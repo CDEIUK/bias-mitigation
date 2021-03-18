@@ -1,9 +1,9 @@
 {
-  "name": "cdei-bias-mitigation",
+  "name": "cdei-pets",
   "private": true,
   "version": "1.0.0",
-  "description": "Exploration to mitigate bias in machine learning (ML) models.",
-  "author": "Faculty / CDEI",
+  "description": "PETs use case repository and adoption guide",
+  "author": "CDEI",
   "starter-name": "gatsby-starter-rocket-docs",
   "dependencies": {
     "@rocketseat/gatsby-theme-docs": "^2.1.1",
@@ -30,8 +30,8 @@
     "prettier": "2.0.5"
   },
   "keywords": [
-    "machine-learning",
-    "bias",
+    "pets",
+    "privacy",
     "cdei"
   ],
   "scripts": {
@@ -45,9 +45,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CDEIUK/bias-mitigation"
+    "url": "https://github.com/CDEIUK/pets"
   },
   "bugs": {
-    "url": "https://github.com/CDEIUK/bias-mitigation/issues"
+    "url": "https://github.com/CDEIUK/pets/issues"
   }
 }

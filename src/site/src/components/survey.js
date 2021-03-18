@@ -1,7 +1,7 @@
 import React from "react"
 import * as Survey from "survey-react"
 
-export default class Sy extends React.Component {
+export default class Survey extends React.Component {
   json = {
     showQuestionNumbers: "off",
     showCompletedPage: false,
