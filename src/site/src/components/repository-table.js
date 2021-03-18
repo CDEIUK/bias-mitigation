@@ -25,6 +25,7 @@ export default function RepositoryTable() {
         disableFilters: true,
         minWidth: 550,
         textAlign: "justify",
+        fontSize: "12px",
       },
       {
         Header: "Stage of development",
@@ -265,6 +266,9 @@ export default function RepositoryTable() {
                           "text-align": cell.column.textAlign
                             ? cell.column.textAlign
                             : "center",
+                          "font-size": cell.column.fontSize
+                            ? cell.column.fontSize
+                            : "",
                         },
                       })}
                     >

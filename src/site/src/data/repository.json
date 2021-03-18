@@ -204,6 +204,64 @@
   },
   {
     "unique-id": 8,
+    "who": "Duality Technologies",
+    "use-case-type": "secure_data_processing",
+    "use-case-sub-type": "",
+    "sector": "Finance",
+    "description": "This project allows a party to query data that is owned by another party and receive the results without any sensitive parameters being disclosed to the external data owner. It aims to accelerate triage in fraud and anti-money laundering (AML) investigations. The privacy of the entity and the investigation is preserved throughout, even when complex SQL-like queries are made. ",
+    "stage-of-dev": "Proof of concept",
+    "he": "x",
+    "mpc": "",
+    "fa": "",
+    "tee": "",
+    "dp": "",
+    "zkp": "",
+    "sd": "",
+    "de-id": "",
+    "pets1": "HE",
+    "pets2": "",
+    "pets3": "",
+    "link1": "RUSI-FFIS report (Chapter 7)",
+    "link2": "",
+    "link3": "",
+    "link1URL": "https://www.gcffc.org/wp-content/uploads/2020/06/FFIS-Innovation-and-discussion-paper-Case-studies-of-the-use-of-privacy-preserving-analysis.pdf",
+    "link2URL": "",
+    "link3URL": "",
+    "kw1": "",
+    "kw2": "",
+    "kw3": ""
+  },
+  {
+    "unique-id": 9,
+    "who": "Enveil Inc.",
+    "use-case-type": "collaborative_data_analysis",
+    "use-case-sub-type": "",
+    "sector": "Finance",
+    "description": "Enveil has designed and developed an approach for financial institutions to identify matching customer information in external datasets without disclosing information about that customer. This allows financial institutions to investigate suspicious activity without revealing personal information, especially in the case that the customer being investigated is ultimately innocent. This proof of concept has been executed using synthetic data and also showed that information can still be made visible for audit, tracebeility and trust building where required. ",
+    "stage-of-dev": "Proof of concept",
+    "he": "x",
+    "mpc": "",
+    "fa": "",
+    "tee": "",
+    "dp": "",
+    "zkp": "",
+    "sd": "",
+    "de-id": "",
+    "pets1": "HE",
+    "pets2": "",
+    "pets3": "",
+    "link1": "RUSI-FFIS report (Chapter 7)",
+    "link2": "",
+    "link3": "",
+    "link1URL": "https://www.gcffc.org/wp-content/uploads/2020/06/FFIS-Innovation-and-discussion-paper-Case-studies-of-the-use-of-privacy-preserving-analysis.pdf",
+    "link2URL": "",
+    "link3URL": "",
+    "kw1": "",
+    "kw2": "",
+    "kw3": ""
+  },
+  {
+    "unique-id": 10,
     "who": "Estonian Association of Information Technology and Telecommunications (ITL)",
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "As an economist/policy advisor/minister, I want to derive performance metrics about a sector, whilst preserving the privacy of commercially sensitive information held by organisations in that sector",
@@ -232,7 +290,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 9,
+    "unique-id": 11,
     "who": "Facebook",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller/processor, I want to be able to share aggregate data/statistics with a party/parties/the public such that personal information in the dataset cannot be reverse-engineered",
@@ -261,7 +319,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 10,
+    "unique-id": 12,
     "who": "Google",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller/processor, I want to be able to share aggregate data/statistics with a party/parties/the public such that personal information in the dataset cannot be reverse-engineered",
@@ -290,7 +348,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 11,
+    "unique-id": 13,
     "who": "Google",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to to train personalised systems without having to gather personal data from individuals",
@@ -319,11 +377,11 @@
     "kw3": ""
   },
   {
-    "unique-id": 12,
+    "unique-id": 14,
     "who": "Google",
     "use-case-type": "",
     "use-case-sub-type": "",
-    "sector": "",
+    "sector": "Digital",
     "description": "In order to compute accurate conversion rates from advertisements to actual purchases, Google computes the size of the intersection between the list of people shown an advertisement to the list of people actually purchasing the advertised goods. When the goods are not purchased online and so the purchase connection to the shown advertisement cannot be tracked, Google and the company paying for the advertisement have to share their respective lists in order to compute the intersection size. In order to compute this without revealing anything but the size of the intersection, Google utilises a protocol for privacy-preserving set intersection. Although this protocol is far from the most efficient known today, it is simple and meets their computational requirements.",
     "stage-of-dev": "Product",
     "he": "x",
@@ -348,7 +406,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 13,
+    "unique-id": 15,
     "who": "Indian Insitute of Science's",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "",
@@ -377,7 +435,36 @@
     "kw3": ""
   },
   {
-    "unique-id": 14,
+    "unique-id": 16,
+    "who": "Inpher Inc.",
+    "use-case-type": "collaborative_data_analysis",
+    "use-case-sub-type": "",
+    "sector": "Finance",
+    "description": "This project allowed a subsidiary of a large bank to build a machine-learning sales prediction model using data from other subsidiaries of the same bank located in other countries. The product ensured that there was no cross-border disclosure of the data contributing to the algorithm, enabling the subsidiary in question to exploit 300,000 more data points when training the model. The analyst doing the computation only saw the outputs of the model. The inputs were encrypted throughout the process. This product has been commercially deployed and can run on real customer data. There have been so data interoperability issues, enabling full use of distributed datasets. ",
+    "stage-of-dev": "Product",
+    "he": "x",
+    "mpc": "x",
+    "fa": "",
+    "tee": "",
+    "dp": "",
+    "zkp": "",
+    "sd": "",
+    "de-id": "",
+    "pets1": "HE",
+    "pets2": "MPC",
+    "pets3": "",
+    "link1": "RUSI-FFIS report (Chapter 7)",
+    "link2": "",
+    "link3": "",
+    "link1URL": "https://www.gcffc.org/wp-content/uploads/2020/06/FFIS-Innovation-and-discussion-paper-Case-studies-of-the-use-of-privacy-preserving-analysis.pdf",
+    "link2URL": "",
+    "link3URL": "",
+    "kw1": "",
+    "kw2": "",
+    "kw3": ""
+  },
+  {
+    "unique-id": 17,
     "who": "IQVIA",
     "use-case-type": "",
     "use-case-sub-type": "",
@@ -406,7 +493,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 15,
+    "unique-id": 18,
     "who": "Microsoft",
     "use-case-type": "secure_data_processing",
     "use-case-sub-type": "As a data controller and processor, I want to conduct my own processing within an environment that I do not fully trust, such as a cloud provider’s infrastructure",
@@ -435,7 +522,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 16,
+    "unique-id": 19,
     "who": "Microsoft",
     "use-case-type": "",
     "use-case-sub-type": "",
@@ -464,7 +551,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 17,
+    "unique-id": 20,
     "who": "Microsoft",
     "use-case-type": "",
     "use-case-sub-type": "",
@@ -493,7 +580,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 18,
+    "unique-id": 21,
     "who": "Netherlands Organisation for Applied Scientific Research (TNO)",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
@@ -522,7 +609,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 19,
+    "unique-id": 22,
     "who": "NHS Digital/Privitar",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller, I want to link data with a dataset held by another party without having to compromise the anonymity of individuals in each dataset",
@@ -551,7 +638,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 20,
+    "unique-id": 23,
     "who": "NVIDIA and King's College London",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
@@ -580,7 +667,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 21,
+    "unique-id": 24,
     "who": "OpenSAFELY",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
@@ -609,7 +696,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 22,
+    "unique-id": 25,
     "who": "Owkin",
     "use-case-type": "",
     "use-case-sub-type": "",
@@ -638,7 +725,36 @@
     "kw3": ""
   },
   {
-    "unique-id": 23,
+    "unique-id": 26,
+    "who": "Privitar",
+    "use-case-type": "privacy_preserving_data_science",
+    "use-case-sub-type": "",
+    "sector": "Finance",
+    "description": "With the use of partial homomorphic encryption, this pilot project allows financial institutions to learn statistics about a population from disparate private and public datasets without collecting any identifiable information. In this process, the recipient analyses multiple datasets where the raw data is presented in tokenised form. The results of this project would enable a public authority to gather aggregate statistics about a population which would inform public policy in a privacy-preserving way. Even if a party intercepts the data at any point in the process, they would not be able to decrypt or link the various datasets. ",
+    "stage-of-dev": "Pilot",
+    "he": "x",
+    "mpc": "",
+    "fa": "",
+    "tee": "",
+    "dp": "",
+    "zkp": "",
+    "sd": "",
+    "de-id": "",
+    "pets1": "HE",
+    "pets2": "",
+    "pets3": "",
+    "link1": "RUSI-FFIS report (Chapter 7)",
+    "link2": "",
+    "link3": "",
+    "link1URL": "https://www.gcffc.org/wp-content/uploads/2020/06/FFIS-Innovation-and-discussion-paper-Case-studies-of-the-use-of-privacy-preserving-analysis.pdf",
+    "link2URL": "",
+    "link3URL": "",
+    "kw1": "",
+    "kw2": "",
+    "kw3": ""
+  },
+  {
+    "unique-id": 27,
     "who": "Signal",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller, I want to link data with a dataset held by another party without having to compromise the anonymity of individuals in each dataset",
@@ -667,7 +783,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 24,
+    "unique-id": 28,
     "who": "Tsinghua University and Microsoft",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
@@ -696,7 +812,7 @@
     "kw3": ""
   },
   {
-    "unique-id": 25,
+    "unique-id": 29,
     "who": "US Census Bureau",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller/processor, I want to be able to share aggregate data/statistics with a party/parties/the public such that personal information in the dataset cannot be reverse-engineered",
