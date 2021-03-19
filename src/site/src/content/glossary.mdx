@@ -8,7 +8,7 @@ import OutboundLink from "../components/outbound-link"
 
 <CookieBanner />
 
-## Homomorphic Encryption (HE)
+## Homomorphic Encryption
 
 Homomorphic encryption enables computation directly on encrypted data. Whereas traditional encryption schemes facilitate the encryption of data _in transit_ and _at rest_, homomorphic encryption schemes additionally facilitate encryption _in process_.
 
@@ -22,7 +22,7 @@ Similarly, homomorphic encryption may provide assurance to an organisation condu
 
 </Collapse>
 
-## Trusted Execution Environments (TEE)
+## Trusted Execution Environments
 
 A trusted execution environment (TEE) is a processing environment isolated from a computer’s main processor and memory. Code or data held within this environment cannot be accessed from the main processor, and communications between the main processorand the TEE are encrypted.
 
@@ -34,7 +34,7 @@ The use cases for TEEs are similar to homomorphic encryption. A data controller 
 
 </Collapse>
 
-## Multi-party Computation (MPC)
+## Multi-party Computation
 
 A multi-party computation (MPC) protocol enables a function taking input from multiple parties to be jointly computed, whilst each participating party keeps their input secret from the others. This typically involves fragmenting data over multiple networked nodes, such that each node hosts an “unintelligible shard” of data; inspection of a single shard does not reveal information about the original data. Each node computes a function on its shard, and the outcomes are aggregated into a final result. MPC protocols leverage cryptographic primitives to ensure the security and confidentiality of the data.
 
@@ -46,7 +46,7 @@ To gain an intuitive understanding of MPC, consider a group of employees who wan
 
 </Collapse>
 
-## Federated Analytics (FA)
+## Federated Analytics
 
 Federated analytics is a paradigm for executing a computer program against decentralised data. This involves a party uploading the program to the server or device on which the data is situated, executing it on the server or device with the data in situ, and communicating the results back to the originating party. In this way, no data is directly revealed to the party.
 
@@ -62,7 +62,7 @@ An attacker could infer user information from these weights, and mechanisms (suc
 
 </Collapse>
 
-## Differential Privacy (DP)
+## Differential Privacy
 
 Differential privacy is a formal definition of privacy requiring that the output of any statistical analysis reveals no information specific to an individual in the dataset. An algorithm isi typically made differentially private by adding noise to either the input data (local differential privacy) or to the output it produces (global differential privacy).
 
@@ -76,7 +76,7 @@ The privacy-utility trade-off is formalised through the concept of Ɛ-differenti
 
 </Collapse>
 
-## De-identification Techniques (De-ID)
+## De-identification Techniques
 
 We define a de-identification technique as any data transformation or modification that reduces the amount of information about an individual or entity in a dataset, and/or reduces the risk that an individual or entity can be re-identified. These methods are distinguished from the PETs described above in that they involve direct manipulation of the raw data, rather than being mechanisms for protecting confidentiality whilst maintaining maximum utility over the underlying data.
 

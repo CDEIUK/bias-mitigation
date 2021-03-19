@@ -30,7 +30,8 @@ export default function RepositoryTable() {
       {
         Header: "Stage of development",
         accessor: "stage-of-dev",
-        disableFilters: true,
+        Filter: SelectColumnFilter,
+        filter: "includes",
         minWidth: 200,
       },
       {
@@ -41,18 +42,18 @@ export default function RepositoryTable() {
             <p>
               <a
                 href={
-                  row.original.pets1 === "HE"
-                    ? "/pets/glossary#homomorphic-encryption-he"
-                    : row.original.pets1 === "TEE"
-                    ? "/pets/glossary#trusted-execution-environments-tee"
-                    : row.original.pets1 === "MPC"
-                    ? "/pets/glossary#multi-party-computation-mpc"
-                    : row.original.pets1 === "FA"
-                    ? "/pets/glossary#federated-analytics-fa"
-                    : row.original.pets1 === "DP"
-                    ? "/pets/glossary#differential-privacy-dp"
-                    : row.original.pets1 === "De-ID"
-                    ? "/pets/glossary#de-identification-techniques-de-id"
+                  row.original.pets1 === "Homomorphic Encryption"
+                    ? "/pets/glossary#homomorphic-encryption"
+                    : row.original.pets1 === "Trusted Execution Environment"
+                    ? "/pets/glossary#trusted-execution-environments"
+                    : row.original.pets1 === "Multi-party Computation"
+                    ? "/pets/glossary#multi-party-computation"
+                    : row.original.pets1 === "Federated Analytics"
+                    ? "/pets/glossary#federated-analytics"
+                    : row.original.pets1 === "Differential Privacy"
+                    ? "/pets/glossary#differential-privacy"
+                    : row.original.pets1 === "De-identification techniques"
+                    ? "/pets/glossary#de-identification-techniques"
                     : null
                 }
               >
@@ -62,18 +63,18 @@ export default function RepositoryTable() {
             <p>
               <a
                 href={
-                  row.original.pets2 === "HE"
-                    ? "/pets/glossary#homomorphic-encryption-he"
-                    : row.original.pets2 === "TEE"
-                    ? "/pets/glossary#trusted-execution-environments-tee"
-                    : row.original.pets2 === "MPC"
-                    ? "/pets/glossary#multi-party-computation-mpc"
-                    : row.original.pets2 === "FA"
-                    ? "/pets/glossary#federated-analytics-fa"
-                    : row.original.pets2 === "DP"
-                    ? "/pets/glossary#differential-privacy-dp"
-                    : row.original.pets2 === "De-ID"
-                    ? "/pets/glossary#de-identification-techniques-de-id"
+                  row.original.pets2 === "Homomorphic Encryption"
+                    ? "/pets/glossary#homomorphic-encryption"
+                    : row.original.pets2 === "Trusted Execution Environment"
+                    ? "/pets/glossary#trusted-execution-environments"
+                    : row.original.pets2 === "Multi-party Computation"
+                    ? "/pets/glossary#multi-party-computation"
+                    : row.original.pets2 === "Federated Analytics"
+                    ? "/pets/glossary#federated-analytics"
+                    : row.original.pets2 === "Differential Privacy"
+                    ? "/pets/glossary#differential-privacy"
+                    : row.original.pets2 === "De-identification techniques"
+                    ? "/pets/glossary#de-identification-techniques"
                     : null
                 }
               >
@@ -83,18 +84,18 @@ export default function RepositoryTable() {
             <p>
               <a
                 href={
-                  row.original.pets3 === "HE"
-                    ? "/pets/glossary#homomorphic-encryption-he"
-                    : row.original.pets3 === "TEE"
-                    ? "/pets/glossary#trusted-execution-environments-tee"
-                    : row.original.pets3 === "MPC"
-                    ? "/pets/glossary#multi-party-computation-mpc"
-                    : row.original.pets3 === "FA"
-                    ? "/pets/glossary#federated-analytics-fa"
-                    : row.original.pets3 === "DP"
-                    ? "/pets/glossary#differential-privacy-dp"
-                    : row.original.pets3 === "De-ID"
-                    ? "/pets/glossary#de-identification-techniques-de-id"
+                  row.original.pets3 === "Homomorphic Encryption"
+                    ? "/pets/glossary#homomorphic-encryption"
+                    : row.original.pets3 === "Trusted Execution Environment"
+                    ? "/pets/glossary#trusted-execution-environments"
+                    : row.original.pets3 === "Multi-party Computation"
+                    ? "/pets/glossary#multi-party-computation"
+                    : row.original.pets3 === "Federated Analytics"
+                    ? "/pets/glossary#federated-analytics"
+                    : row.original.pets3 === "Differential Privacy"
+                    ? "/pets/glossary#differential-privacy"
+                    : row.original.pets3 === "De-identification techniques"
+                    ? "/pets/glossary#de-identification-techniques"
                     : null
                 }
               >
@@ -108,7 +109,7 @@ export default function RepositoryTable() {
         id2: "pets2",
         id3: "pets3",
         filter: petsCustomFilterFn,
-        minWidth: 200,
+        minWidth: 250,
       },
       {
         Header: "Supporting links",
