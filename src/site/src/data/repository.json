@@ -92,7 +92,7 @@
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "As a regulator, I want to identify illegal online activity that is coordinated across institutions, whilst ensuring that sensitive information held by each institution is not revealed",
     "sector": "Finance",
-    "description": "Developing federated system to identify suspicious financial activities carried out by individuals or groups across a number of financial institutions. Aim to be able to gather insights from over 100 million accounts.",
+    "description": "AUSTRAC is building a platform to identify financial crime across major Australian financial institutions. They have built an algorithm designed to flag suspicious links between two or more accounts and/or trace suspicious funds as they move between accounts at various financial institutions. It does this by connecting databases held by different organisations and PETs are used to protect the privacy of customers who are innocent. The project is being delivered as part of a private-public partnership, including 28 member financial institutions, and they aim to gather insights from over 100 millions accounts.",
     "stage-of-dev": "In development",
     "he": "x",
     "mpc": "x",
