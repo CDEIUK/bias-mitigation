@@ -8,6 +8,6 @@ You can view these on our [website][site].
 
 ## Development
 
-All source code is contained in `src/`. See the README in `src/` for more details.
+All source code is contained in `src/`. See the README in `src/` for more details
 
 [site]: https://cdeiuk.github.io/pets/
