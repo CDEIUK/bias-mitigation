@@ -1,14 +1,12 @@
 # Sidebar navigation
 - label: Home
   link: /
-- label: PETs Adoption Guide
-  items:
-    - label: Repository of Use Cases
-      link: /repository
-    - label: Glossary
-      link: /glossary
-    - label: Future work
-      link: /future-work
+- label: Repository of Use Cases
+  link: /repository
+- label: Glossary
+  link: /glossary
+- label: Future work
+  link: /future-work
 - label: Privacy policy
   items:
     - label: Cookie Policy
