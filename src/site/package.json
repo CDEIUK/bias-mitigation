@@ -7,6 +7,7 @@
   "starter-name": "gatsby-starter-rocket-docs",
   "dependencies": {
     "@rocketseat/gatsby-theme-docs": "^2.1.1",
+    "d3-mitch-tree": "^1.1.2",
     "gatsby": "^2.19.10",
     "gatsby-plugin-canonical-urls": "^2.1.19",
     "gatsby-plugin-gdpr-tracking": "^1.1.1",
