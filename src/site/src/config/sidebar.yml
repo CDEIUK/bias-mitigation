@@ -1,6 +1,8 @@
 # Sidebar navigation
 - label: Home
   link: /
+- label: Background
+  link: /background
 - label: Repository of Use Cases
   link: /repository
 - label: Glossary
