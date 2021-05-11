@@ -1,5 +1,35 @@
 #visualisation {
   width: 1000px;
-  height: 1000px;
+  height: 650px;
   border-style: solid;
+  border-color: #262445;
+}
+
+.mitch-d3-tree.boxed-tree.default .link {
+  fill: none;
+  stroke: #00a886;
+  stroke-width: 2.5px;
+}
+
+.mitch-d3-tree.boxed-tree.default .node.collapsed .body-group .body-box {
+  fill: white;
+  stroke-width: 2.5px;
+}
+.mitch-d3-tree.boxed-tree.default .node.selected .body-group .body-box {
+  stroke: #f2603b;
+  stroke-width: 2.5px;
+  border-radius: 25px;
+}
+.mitch-d3-tree.boxed-tree.default .node .body-group .body-box {
+  stroke: #00a886;
+  stroke-width: 2.5px;
+  /* fill: yellow; */
+  /* rx: 600; */
+  /* ry: 600; */
+}
+.mitch-d3-tree.boxed-tree.default .node.childless .body-group .body-box {
+  stroke: purple;
+  stroke-width: 2.5px;
+  font-size: larger;
+  fill: lightpink;
 }
