@@ -128,7 +128,17 @@ function getHierarchicalData() {
                         type: "Organism",
                         description:
                           "Data could be useful without sensitive information",
-                        children: [],
+                        children: [
+                          {
+                            id: 99,
+                            name: "RESULT",
+                            type: "Organism",
+                            description:
+                              "De-identification. Click for further infrormation.",
+                            link: "/adoption-guide/de-identification",
+                            children: [],
+                          },
+                        ],
                       },
                     ],
                   },
@@ -238,7 +248,8 @@ function getHierarchicalData() {
                                     id: 31,
                                     name: "RESULT",
                                     type: "Organism",
-                                    description: "De-identification",
+                                    description:
+                                      "De-identification. Click for further information.",
                                     link: "/adoption-guide/de-identification",
                                     children: [],
                                   },

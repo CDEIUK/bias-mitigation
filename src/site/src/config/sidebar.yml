@@ -1,8 +1,10 @@
 # Sidebar navigation
-- label: About
+- label: Home
   link: /
 - label: Adopting PETs
   items:
+    - label: Background
+      link: /background
     - label: PETs Adoption Guide
       link: /adoption-guide
     - label: Repository of Use Cases
