@@ -2,6 +2,7 @@
   {
     "unique-id": 1,
     "who": "Alan Turing Insitute",
+    "country": "UK",
     "use-case-type": "",
     "use-case-sub-type": "",
     "sector": "Health and Social Care",
@@ -31,6 +32,7 @@
   {
     "unique-id": 2,
     "who": "Apple",
+    "country": "USA",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to to train personalised systems without having to gather personal data from individuals",
     "sector": "Digital",
@@ -60,6 +62,7 @@
   {
     "unique-id": 3,
     "who": "Apple/Google contact tracing API",
+    "country": "USA",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
     "sector": "Health and Social Care",
@@ -89,6 +92,7 @@
   {
     "unique-id": 4,
     "who": "AUSTRAC",
+    "country": "Australia",
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "As a regulator, I want to identify illegal online activity that is coordinated across institutions, whilst ensuring that sensitive information held by each institution is not revealed",
     "sector": "Finance",
@@ -118,6 +122,7 @@
   {
     "unique-id": 5,
     "who": "Boston Women's Workforce Council (BWWC) and Boston University's Hariri Institute for Computing",
+    "country": "USA",
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "As a regulator, I want to identify illegal online activity that is coordinated across institutions, whilst ensuring that sensitive information held by each institution is not revealed",
     "sector": "Other",
@@ -147,6 +152,7 @@
   {
     "unique-id": 6,
     "who": "Danisco and the Association of Sugar Beet Growers",
+    "country": "Denmark",
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "As an economist/policy advisor/minister, I want to derive performance metrics about a sector, whilst preserving the privacy of commercially sensitive information held by organisations in that sector",
     "sector": "Other",
@@ -176,6 +182,7 @@
   {
     "unique-id": 7,
     "who": "Duality Technologies",
+    "country": "USA",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
     "sector": "Health and Social Care",
@@ -205,6 +212,7 @@
   {
     "unique-id": 8,
     "who": "Duality Technologies",
+    "country": "Australia",
     "use-case-type": "secure_data_processing",
     "use-case-sub-type": "",
     "sector": "Finance",
@@ -234,6 +242,7 @@
   {
     "unique-id": 9,
     "who": "Enveil Inc.",
+    "country": "Australia",
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "",
     "sector": "Finance",
@@ -263,6 +272,7 @@
   {
     "unique-id": 10,
     "who": "Estonian Association of Information Technology and Telecommunications (ITL)",
+    "country": "Estonia",
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "As an economist/policy advisor/minister, I want to derive performance metrics about a sector, whilst preserving the privacy of commercially sensitive information held by organisations in that sector",
     "sector": "Other",
@@ -292,6 +302,7 @@
   {
     "unique-id": 11,
     "who": "Facebook",
+    "country": "USA",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller/processor, I want to be able to share aggregate data/statistics with a party/parties/the public such that personal information in the dataset cannot be reverse-engineered",
     "sector": "Digital",
@@ -321,6 +332,7 @@
   {
     "unique-id": 12,
     "who": "Google",
+    "country": "Global",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller/processor, I want to be able to share aggregate data/statistics with a party/parties/the public such that personal information in the dataset cannot be reverse-engineered",
     "sector": "Health and Social Care",
@@ -350,6 +362,7 @@
   {
     "unique-id": 13,
     "who": "Google",
+    "country": "USA",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to to train personalised systems without having to gather personal data from individuals",
     "sector": "Digital",
@@ -379,6 +392,7 @@
   {
     "unique-id": 14,
     "who": "Google",
+    "country": "USA",
     "use-case-type": "",
     "use-case-sub-type": "",
     "sector": "Digital",
@@ -408,6 +422,7 @@
   {
     "unique-id": 15,
     "who": "Indian Insitute of Science",
+    "country": "India",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "",
     "sector": "Transport",
@@ -437,6 +452,7 @@
   {
     "unique-id": 16,
     "who": "Inpher Inc.",
+    "country": "Australia",
     "use-case-type": "collaborative_data_analysis",
     "use-case-sub-type": "",
     "sector": "Finance",
@@ -466,6 +482,7 @@
   {
     "unique-id": 17,
     "who": "IQVIA",
+    "country": "UK",
     "use-case-type": "",
     "use-case-sub-type": "",
     "sector": "Health and Social Care",
@@ -495,6 +512,7 @@
   {
     "unique-id": 18,
     "who": "Microsoft",
+    "country": "USA",
     "use-case-type": "secure_data_processing",
     "use-case-sub-type": "As a data controller and processor, I want to conduct my own processing within an environment that I do not fully trust, such as a cloud provider’s infrastructure",
     "sector": "Digital",
@@ -524,6 +542,7 @@
   {
     "unique-id": 19,
     "who": "Microsoft",
+    "country": "USA",
     "use-case-type": "",
     "use-case-sub-type": "",
     "sector": "Digital",
@@ -553,6 +572,7 @@
   {
     "unique-id": 20,
     "who": "Microsoft",
+    "country": "USA",
     "use-case-type": "",
     "use-case-sub-type": "",
     "sector": "Digital",
@@ -582,6 +602,7 @@
   {
     "unique-id": 21,
     "who": "Netherlands Organisation for Applied Scientific Research (TNO)",
+    "country": "Netherlands",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
     "sector": "Health and Social Care",
@@ -611,6 +632,7 @@
   {
     "unique-id": 22,
     "who": "NHS Digital/Privitar",
+    "country": "UK",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller, I want to link data with a dataset held by another party without having to compromise the anonymity of individuals in each dataset",
     "sector": "Health and Social Care",
@@ -640,6 +662,7 @@
   {
     "unique-id": 23,
     "who": "NVIDIA and King's College London",
+    "country": "UK",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
     "sector": "Health and Social Care",
@@ -669,6 +692,7 @@
   {
     "unique-id": 24,
     "who": "OpenSAFELY",
+    "country": "UK",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
     "sector": "Health and Social Care",
@@ -698,6 +722,7 @@
   {
     "unique-id": 25,
     "who": "Owkin",
+    "country": "France",
     "use-case-type": "",
     "use-case-sub-type": "",
     "sector": "Health and Social Care",
@@ -727,6 +752,7 @@
   {
     "unique-id": 26,
     "who": "Privitar",
+    "country": "Australia",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "",
     "sector": "Finance",
@@ -756,6 +782,7 @@
   {
     "unique-id": 27,
     "who": "Signal",
+    "country": "USA",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller, I want to link data with a dataset held by another party without having to compromise the anonymity of individuals in each dataset",
     "sector": "Digital",
@@ -785,6 +812,7 @@
   {
     "unique-id": 28,
     "who": "Tsinghua University and Microsoft",
+    "country": "China",
     "use-case-type": "privacy_preserving_data_science",
     "use-case-sub-type": "As a data scientist, I want to experiment with and train systems to perform valuable tasks which require highly sensitive data",
     "sector": "Health and Social Care",
@@ -814,6 +842,7 @@
   {
     "unique-id": 29,
     "who": "US Census Bureau",
+    "country": "USA",
     "use-case-type": "data_sharing",
     "use-case-sub-type": "As a data controller/processor, I want to be able to share aggregate data/statistics with a party/parties/the public such that personal information in the dataset cannot be reverse-engineered",
     "sector": "Other",

@@ -7,12 +7,24 @@ import OutboundLink from "../components/outbound-link"
 
 <CookieBanner />
 
-- Pull in stuff from landscape?
-- Rationale for the work - reference CDEI's data sharing paper, Royal Society report
+Privacy is a fundamental right. Organisations have an obligation to protect privacy, and must consider important legal, ethical, and reputational concerns when working with personal or sensitive data. Our <OutboundLink href="https://www.gov.uk/government/publications/cdei-publishes-its-first-report-on-public-sector-data-sharing">report on public sector data sharing</OutboundLink> found that these concerns can lead to risk aversion that may inhibit data from being fully utilised to provide benefits for society. The use of PETs can help manage and mitigate some of the risks involved, potentially unlocking avenues to innovation.
 
 ## What are PETs?
 
-- Distinguish between traditional techniques and emerging PETs
-- Highlight that PETs fit within a broader privacy ecosystem, and reference other techniques such as audit trails, access controls, organisational governance structures etc.
+A privacy enhancing technology is any technical method that protects the privacy or confidentiality of sensitive information. This broad definition covers a range of technologies, from relatively simple ad-blocking browser extensions to the Tor network for anonymous communication. We are interested in a narrower set of technologies, that we divide into two categories: _traditional_ and _emerging_ PETs.
 
-Other stuff from the landscape? Take a look
+Traditional PETs are well-established privacy techniques, such as encryption schemes that secure information in transit and at rest, and de-identification techniques such as tokenization and k-anonymity.
+
+Emerging PETs are a group of technologies that have begun to provide novel solutions to privacy challenges in modern data-driven systems. Which PETs fall into this category is a somewhat arbitrary choice, but we consider homomorphic encryption, trusted execution environments, secure multi-party computation, differential privacy, and systems for federated data processing.
+
+Descriptions of these technologies are provided in the [glossary](/glossary).
+
+## Opportunities for PETs
+
+PETs can be an _enabler for innovation_, unlocking new opportunities for valuable data sharing and processing. Additionally, PETs can enable existing data sharing and processing to be carried out in a more privacy-focused way.
+
+However, PETs are not a silver bullet. No single PET will fully address the privacy challenges inherent in a data-driven system, and PETs should be applied as part of a broader privacy ecosystem that includes appropriate access control systems, audit trails, and information governance structures.
+
+**TODO: say PETs reduce risk, and have the scales animation?**
+
+The application of PETs is highly context-specific, and our research has found that increasing awareness and understanding of PETs could foster greater adoption of the technologies. The [PETs adoption guide](/adoption-guide) aims to help bridge this gap, posing questions to help technologists working on initiatives involving sensitive information consider which PETs could be useful to them. The guide aims not to be overly prescriptive, but rather provides pointers to relevant resources and [use cases from the repository](/repository) that may support decision-making.
