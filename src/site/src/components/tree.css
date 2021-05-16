@@ -33,3 +33,19 @@
   font-size: larger;
   fill: lightpink;
 }
+
+.mitch-d3-tree.boxed-tree.default .node.depth-0 .body-group .body-box {
+  stroke: #f2603b;
+}
+
+.mitch-d3-tree.boxed-tree.default .node.depth-1 .body-group .body-box {
+  stroke:#00a886;
+}
+
+.mitch-d3-tree.boxed-tree.default .node.depth-2 .body-group .body-box {
+  stroke: green;
+}
+
+.mitch-d3-tree.boxed-tree.default .node.depth-3 .body-group .body-box {
+  stroke: black;
+}
