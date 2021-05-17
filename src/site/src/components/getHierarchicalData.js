@@ -72,7 +72,9 @@ function getHierarchicalData() {
                                             type: "Organism",
                                             description:
                                               "Homomorphic encryption. Click for further information.",
-                                            link: "/homomorphic-encryption",
+                                            link:
+                                              "/pets/homomorphic-encryption", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                                            // link: "/homomorphic-encryption"
                                             children: [],
                                           },
                                         ],
@@ -90,7 +92,8 @@ function getHierarchicalData() {
                                             description:
                                               "Trusted execution environment. Click for further information.",
                                             link:
-                                              "/trusted-execution-environments",
+                                              "/pets/trusted-execution-environments", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                                            // link: "trusted-execution-environments",
                                             children: [],
                                           },
                                         ],
@@ -111,7 +114,8 @@ function getHierarchicalData() {
                                     type: "Organism",
                                     description:
                                       "Data sharing agreement. Click for further information.",
-                                    link: "/data-sharing-agreement",
+                                    link: "/pets/data-sharing-agreement", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                                    // link: "/data-sharing-agreement",
                                     children: [],
                                   },
                                 ],
@@ -133,7 +137,8 @@ function getHierarchicalData() {
                             type: "Organism",
                             description:
                               "De-identification. Click for further infrormation.",
-                            link: "/de-identification",
+                            link: "/pets/de-identification", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                            // link: "/de-identification",
                             children: [],
                           },
                         ],
@@ -154,7 +159,8 @@ function getHierarchicalData() {
                     type: "Organism",
                     description:
                       "Differential privacy. Click for further information.",
-                    link: "/differential-privacy",
+                    link: "/pets/differential-privacy", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                    // link: "/differential-privacy",
                     children: [],
                   },
                 ],
@@ -201,7 +207,8 @@ function getHierarchicalData() {
                             type: "Organism",
                             description:
                               "Federated learning. Click for further information.",
-                            link: "/federated-learning",
+                            link: "/pets/federated-learning", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                            // link: "/federated-learning",
                             children: [],
                           },
                         ],
@@ -231,7 +238,8 @@ function getHierarchicalData() {
                                     type: "Organism",
                                     description:
                                       "Data minimisation. Click for further information.",
-                                    link: "/data-minimisation",
+                                    link: "/pets/data-minimisation", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                                    // link: "/data-minimisation",
                                     children: [],
                                   },
                                 ],
@@ -248,7 +256,8 @@ function getHierarchicalData() {
                                     type: "Organism",
                                     description:
                                       "De-identification. Click for further information.",
-                                    link: "/de-identification",
+                                    link: "/pets/de-identification", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                                    // link: "/de-identification",
                                     children: [],
                                   },
                                 ],
@@ -273,7 +282,8 @@ function getHierarchicalData() {
                     type: "Organism",
                     description:
                       "Federated analytics. Click for further information.",
-                    link: "/federated-analytics",
+                    link: "/pets/federated-analytics", // annoyingly there's some dodgy path stuff that means prod and dev links need to be changed here manually. Technical debt!
+                    // link: "/federated-analytics",
                     children: [],
                   },
                 ],
