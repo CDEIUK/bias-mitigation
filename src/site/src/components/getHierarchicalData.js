@@ -72,8 +72,7 @@ function getHierarchicalData() {
                                             type: "Organism",
                                             description:
                                               "Homomorphic encryption. Click for further information.",
-                                            link:
-                                              "/adoption-guide/homomorphic-encryption",
+                                            link: "/homomorphic-encryption",
                                             children: [],
                                           },
                                         ],
@@ -91,7 +90,7 @@ function getHierarchicalData() {
                                             description:
                                               "Trusted execution environment. Click for further information.",
                                             link:
-                                              "/adoption-guide/trusted-execution-environments",
+                                              "/trusted-execution-environments",
                                             children: [],
                                           },
                                         ],
@@ -112,8 +111,7 @@ function getHierarchicalData() {
                                     type: "Organism",
                                     description:
                                       "Data sharing agreement. Click for further information.",
-                                    link:
-                                      "/adoption-guide/data-sharing-agreement",
+                                    link: "/data-sharing-agreement",
                                     children: [],
                                   },
                                 ],
@@ -135,7 +133,7 @@ function getHierarchicalData() {
                             type: "Organism",
                             description:
                               "De-identification. Click for further infrormation.",
-                            link: "/adoption-guide/de-identification",
+                            link: "/de-identification",
                             children: [],
                           },
                         ],
@@ -156,7 +154,7 @@ function getHierarchicalData() {
                     type: "Organism",
                     description:
                       "Differential privacy. Click for further information.",
-                    link: "/adoption-guide/differential-privacy",
+                    link: "/differential-privacy",
                     children: [],
                   },
                 ],
@@ -203,7 +201,7 @@ function getHierarchicalData() {
                             type: "Organism",
                             description:
                               "Federated learning. Click for further information.",
-                            link: "/adoption-guide/federated-learning",
+                            link: "/federated-learning",
                             children: [],
                           },
                         ],
@@ -233,7 +231,7 @@ function getHierarchicalData() {
                                     type: "Organism",
                                     description:
                                       "Data minimisation. Click for further information.",
-                                    link: "/adoption-guide/data-minimisation",
+                                    link: "/data-minimisation",
                                     children: [],
                                   },
                                 ],
@@ -250,7 +248,7 @@ function getHierarchicalData() {
                                     type: "Organism",
                                     description:
                                       "De-identification. Click for further information.",
-                                    link: "/adoption-guide/de-identification",
+                                    link: "/de-identification",
                                     children: [],
                                   },
                                 ],
@@ -275,7 +273,7 @@ function getHierarchicalData() {
                     type: "Organism",
                     description:
                       "Federated analytics. Click for further information.",
-                    link: "/adoption-guide/federated-analytics",
+                    link: "/federated-analytics",
                     children: [],
                   },
                 ],
