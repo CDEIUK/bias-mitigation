@@ -27,13 +27,13 @@ export default function CookieBanner() {
       <br />
       <br />
       Let us know if this is OK. We'll use a cookie to save your choice. You can{" "}
-      <a href="/cookie-policy" style={{ color: "#fff" }}>
+      <a href="/bias-mitigation/cookie-policy" style={{ color: "#fff" }}>
         read more about how we use cookies
       </a>{" "}
       before you choose. You can update your cookie consent preferences at any
       time by navigating to the{" "}
       <a
-        href="/cookie-policy#update-your-cookie-settings"
+        href="/bias-mitigation/cookie-policy#update-your-cookie-settings"
         style={{ color: "#fff" }}
       >
         Cookie Policy
